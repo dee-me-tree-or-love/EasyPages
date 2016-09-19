@@ -18,5 +18,9 @@ class Service extends Model {
 	{
 		return $this->hasMany('ServicePicture');
 	}
-
+        
+        public function ShortDescription()
+        {
+            return substr($this->description, 0, 50);
+        }
 }

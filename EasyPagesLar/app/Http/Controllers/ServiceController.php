@@ -1,6 +1,11 @@
 <?php 
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+
+use App\Service;
+use App\Http\Requests;
+
 
 class ServiceController extends Controller {
 
@@ -11,7 +16,8 @@ class ServiceController extends Controller {
    */
   public function index()
   {
-    
+    $services = Service::all();
+    return view('serviceboard', ['services' => $services]);
   }
 
   /**
@@ -40,9 +46,10 @@ class ServiceController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function show($id)
+  public function show($service_id)
   {
-    
+        $service = Service::where('service_id', $service_id)->first();
+        return view('singleservice', ['service' => $service]);
   }
 
   /**
