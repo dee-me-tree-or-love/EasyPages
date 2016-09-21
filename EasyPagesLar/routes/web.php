@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::get('services', 'ServiceController@index');
 
+
 Route::get('reviews', 'ReviewController@index');
 
 Route::get('service/{id}', ['uses' => 'ServiceController@show']);
@@ -43,3 +44,8 @@ Route::resource('service', 'ServiceController');
 Route::resource('reviewpicture', 'ReviewPictureController');
 Route::resource('servicepicture', 'ServicePictureController');
 Route::resource('profilepicture', 'ProfilePictureController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
