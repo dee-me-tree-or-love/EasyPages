@@ -22,7 +22,7 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 50vh;
             }
 
             .flex-center {
@@ -63,7 +63,10 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
-
+            .container{
+                display: block;
+                margin-top: 15pt;
+            }
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -74,6 +77,7 @@
            
                 <div class="top-left links">
                     <a href="{{ url('/services') }}">\(^_^)/</a>
+                    <a href="{{ url('/reviews') }}">/(0_0)\</a>
                 </div>
             
                 <div class="top-right links">
@@ -86,8 +90,8 @@
                 <div class="title m-b-md">
                 @yield('caption')
                 </div>
-                
-                @yield('main_content')
+            </div>   
+               
                 
                 
 <!--
@@ -96,7 +100,10 @@
                     
                 </div>
 -->
-            </div>
+            
+        </div>
+        <div class="flex-center">
+         @yield('main_content')
         </div>
     </body>
 </html>

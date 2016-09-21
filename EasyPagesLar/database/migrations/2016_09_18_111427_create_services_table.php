@@ -9,6 +9,7 @@ class CreateServicesTable extends Migration {
 	{
 		Schema::create('services', function(Blueprint $table) {
 			$table->increments('service_id');
+                        //$table->primary('service_id');
 			$table->timestamps();
 			$table->string('title', 255);
 			$table->decimal('price');

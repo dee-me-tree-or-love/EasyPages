@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Profile;
 
 class Review extends Model {
 
@@ -11,7 +12,11 @@ class Review extends Model {
 
 	public function reviewhaspictures()
 	{
-		return $this->hasMany('ReviewPicture');
+		return $this->hasMany('App\ReviewPicture');
 	}
-
+        public function getprofile()
+        {
+            return Profile::where('profile_id', $this->profile_id)->first();
+        }
+        
 }
