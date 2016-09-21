@@ -7,10 +7,15 @@ SINGLE OVERVIEW
 
 
 @section('main_content')
-<div style="width: 40%; margin: 0 auto; text-align: center">
+<div style="width: 40vw; margin: 0 auto; text-align: center">
     <h1>{{$service->title}}</h1>
     <h5>{{$service->description}}</h5>
     <h3>{{$service->price}}</h3>
+    
+    <h5>Write a review: </h5>
+    <textarea style="max-width: 40vw; max-height: 10vw;">
+        
+    </textarea>
     <!--
     <div>
         {{$reviews}}
@@ -19,7 +24,9 @@ SINGLE OVERVIEW
     @foreach($reviews as $review)
     <div>
         <h3>
-            By {{$review->profile_id}}, {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}
+            By {{$review->profile_id}}
+             , {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}   
+
         </h3>
         <p>
             {{$review->ShortDescription(35)}}

@@ -3,7 +3,7 @@
 @extends('layouts.master')
 
 @section('caption')
-SINGLE Review
+SINGLE REVIEW
 @endsection
 
 
@@ -13,10 +13,11 @@ SINGLE Review
     <div>
         <h1>
             By {{$review->profile_id}}, {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}
+            <br/>
+            For {{$review->getservice()->title}}
         </h1>
         <p>
             {{$review->description}}
-            
         </p>
         <h4>
             Rating: {{$review->rating}}
