@@ -15,13 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// service route managment
 Route::get('services', 'ServiceController@index');
-
-
-Route::get('reviews', 'ReviewController@index');
-
 Route::get('service/{id}', ['uses' => 'ServiceController@show']);
+
+
+// review route management
+Route::get('reviews', 'ReviewController@index');
+Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 
 
 /*

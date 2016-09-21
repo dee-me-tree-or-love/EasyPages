@@ -19,4 +19,9 @@ class Review extends Model {
             return Profile::where('profile_id', $this->profile_id)->first();
         }
         
+        public function ShortDescription($limit)
+        {
+            return substr($this->description, 0, $limit)."...";
+        }
+        
 }

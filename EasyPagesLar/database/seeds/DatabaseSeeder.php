@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
                 //$this->call(servicesTableSeeder::class);
                 $this->call(servicesTableSeeder::class);
-                //$this->call(usersSeeder::class);
+				$this->call(usersSeeder::class);
                 $this->call(profilesSeeder::class);
                 $this->call(reviewsSeeder::class);
 	}

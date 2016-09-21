@@ -44,7 +44,8 @@ class ReviewController extends Controller {
      * @return Response
      */
     public function show($id) {
-        
+        $review = Review::where('review_id', $id)->first();
+    return view('singlereview', ['review' => $review]);
     }
 
     /**

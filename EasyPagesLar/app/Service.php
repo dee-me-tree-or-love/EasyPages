@@ -21,6 +21,6 @@ class Service extends Model {
         
         public function ShortDescription()
         {
-            return substr($this->description, 0, 50);
+            return substr($this->description, 0, 50)."...";;
         }
 }
