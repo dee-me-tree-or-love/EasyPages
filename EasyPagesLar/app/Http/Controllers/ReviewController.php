@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Review;
 use App\Service;
 
@@ -31,22 +31,31 @@ class ReviewController extends Controller {
      *
      * @return Response
      */
-<<<<<<< HEAD
-    public function store() {
+
+    public function store(Request $request) {
+//        $this->validate($request, [
+//            'title' => 'required',
+//            'rating' => 'required',
+//            'service_id' => 'required',
+//            'profile_id' => 'required',
+//        ]);
+        //$linktogo = $request->service_id;
+        $review = new Review;
+        $review->title = $request->title;
+        $review->service_id = $request->service_id;
+        $review->profile_id = $request->profile_id;
+        $review->description =$request->description;
+        $review->rating =$request->rating;
+        // should now be saved
+        $review->save();
         
-=======
-    public function store($profile_id) {
-        $this->validate($request, [
-            'title' => 'required',
-            'rating' => 'required',
-            'service_id' => 'required',
-            'profile_id' => 'required',
-        ]);
-        $linktogo = $request->service_id;
-        Item::create($request->all());
-        return redirect()->route('/service/'.$linktogo);                  
->>>>>>> development
-    }
+        //$review = Review::create($input);  
+        
+        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
+        $vars = get_object_vars($review);
+        return view('/result', ['inputs' => $vars]);                  
+        //!!!!!! redirect to something better, okay?
+    } 
 
     /**
      * Display the specified resource.
@@ -56,11 +65,8 @@ class ReviewController extends Controller {
      */
     public function show($id) {
         $review = Review::where('review_id', $id)->first();
-<<<<<<< HEAD
-    return view('singlereview', ['review' => $review]);
-=======
+
         return view('singlereview', ['review' => $review]);
->>>>>>> development
     }
 
     /**

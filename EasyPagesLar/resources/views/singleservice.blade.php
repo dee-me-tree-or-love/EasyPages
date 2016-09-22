@@ -24,10 +24,20 @@ SINGLE OVERVIEW
 
     <!-- New Review Form -->
     <h5 style="text-align: right;">{{ Auth::user()->username }}</h5>
-    <form id="newreview" action="newreview" method="POST" class="form-horizontal">
+    
+    <form id="newreview" action="{{ url('/newreview') }}" method="POST" class="form-horizontal">
         <table style="width: 20vw; margin: auto;">
+            <div>
+                {{ csrf_field() }}
+                <input type="number" type="hidden"  name="profile_id" id="profile_id" value="{{Auth::user()->getprofile()->profile_id}}">
+            </div>
+            <div>
+                <input type="number" type="hidden" name="service_id" id="service_id" value="{{$service->service_id}}">
+            </div>
+
             <!-- Review Rating -->
             <tr>
+
             <div class="form-group">
                 <td>
                     <label for="review-title" class="control-label">Rating</label>

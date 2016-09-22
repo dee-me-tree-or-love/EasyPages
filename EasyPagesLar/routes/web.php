@@ -29,6 +29,9 @@ Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 // profile page link
 Route::get('profile/{id}', 'ProfileController@show');
 
+// tasks creation link
+Route::post('newreview', 'ReviewController@store');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

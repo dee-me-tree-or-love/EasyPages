@@ -22,6 +22,7 @@ class Review extends Model {
         $profile = Profile::where('profile_id', $this->profile_id)->first();
         return $profile;
     }
+
     
     public function getservice() {
         $service = Service::where('service_id', $this->service_id)->first();
