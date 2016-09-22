@@ -7,7 +7,7 @@ class servicesTableSeeder extends Seeder
     public function run()
     {
 		$titles = array("Creative","Babysitting","Hair","Tailor","Repair","Cutter","Faboulous","Styling and Fashion","Incorporated");
-		$descriptions = array("We ","love ","doing ","our job ",".","creativity ",".",",","fashion ", "and ","our clients");
+		$descriptions = array("We ","love ","doing ","our job ",".","creativity ",".",",","fashion ", "and ","our clients ");
 		for($j=0; $j<10; $j++)
 		{
 			$desc = "";
@@ -16,9 +16,10 @@ class servicesTableSeeder extends Seeder
 				$desc = $desc.($descriptions[rand(0,count($descriptions)-1)]);
 			}
 			DB::table('services')->insert([
-				'title' => $titles[rand(0,count($titles)-1)]." ".$titles[rand(0,count($titles)-1)],
+				'title' => $titles[rand(0,count($titles)-1)]." ".$titles[rand(0,count($titles)-1)]." ".$titles[rand(0,count($titles)-1)],
 				'price' => mt_rand (1*10, 1000*10) / 10,
 				'description' => $desc,
+                'company_id' => rand(1, 25)
 			]);
 		}
     }    

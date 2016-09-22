@@ -11,16 +11,16 @@ class Service extends Model {
 
 	public function servicehasreviews()
 	{
-		return $this->hasMany('Review');
+		$this->hasMany('App\Review', 'service_id');
 	}
 
 	public function servicehaspictures()
 	{
-		return $this->hasMany('ServicePicture');
+		return $this->hasMany('App\ServicePicture');
 	}
         
         public function ShortDescription()
         {
-            return substr($this->description, 0, 50);
+            return substr($this->description, 0, 50)."...";;
         }
 }
