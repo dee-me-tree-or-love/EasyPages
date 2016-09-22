@@ -15,7 +15,7 @@ class profilesSeeder extends Seeder
         $lnames = array("McGreggor","Kavinsky","Peterson","Lucky","van Bergen","Torvalds","Smith");
         $sex = array("m","f");
 // for every users atm
-        for($j = 1; $j<54;$j++)
+        for($j = 1; $j<200;$j++)
         {
             
             DB::table('profiles')->insert([

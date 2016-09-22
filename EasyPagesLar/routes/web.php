@@ -25,6 +25,8 @@ Route::get('reviews', 'ReviewController@index');
 Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 
 
+// profile page link
+Route::get('profile/{id}', 'ProfileController@show');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
