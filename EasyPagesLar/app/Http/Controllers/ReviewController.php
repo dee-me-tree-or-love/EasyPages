@@ -14,8 +14,6 @@ class ReviewController extends Controller {
      */
     public function index() {
         $reviews = Review::all();
-        
-
         return view('reviewboard', ['reviews' => $reviews]);
     }
 
@@ -33,8 +31,21 @@ class ReviewController extends Controller {
      *
      * @return Response
      */
+<<<<<<< HEAD
     public function store() {
         
+=======
+    public function store($profile_id) {
+        $this->validate($request, [
+            'title' => 'required',
+            'rating' => 'required',
+            'service_id' => 'required',
+            'profile_id' => 'required',
+        ]);
+        $linktogo = $request->service_id;
+        Item::create($request->all());
+        return redirect()->route('/service/'.$linktogo);                  
+>>>>>>> development
     }
 
     /**
@@ -45,7 +56,11 @@ class ReviewController extends Controller {
      */
     public function show($id) {
         $review = Review::where('review_id', $id)->first();
+<<<<<<< HEAD
     return view('singlereview', ['review' => $review]);
+=======
+        return view('singlereview', ['review' => $review]);
+>>>>>>> development
     }
 
     /**

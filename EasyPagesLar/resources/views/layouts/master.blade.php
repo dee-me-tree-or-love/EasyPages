@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="/css/app.css" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
@@ -74,36 +75,50 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-           
-                <div class="top-left links">
-                    <a href="{{ url('/services') }}">\(^_^)/</a>
-                    <a href="{{ url('/reviews') }}">/(0_0)\</a>
-                </div>
-            
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-           
 
+            <div class="top-left links">
+                <a href="{{ url('/services') }}">\(^_^)/</a>
+                <a href="{{ url('/#') }}">/(0_0)\</a>
+            </div>
+            @if (Auth::guest())
+            <div class="top-right links">
+                <a href="{{ url('/login') }}">Login</a>
+                <a href="{{ url('/register') }}">Register</a>
+            </div>
+            @else
+            <div class="top-right links">
+                <a href="/profile/{{Auth::user()->id}}"> {{Auth::user()->username}} </a>
+                <a href="{{ url('/logout') }}"
+                   onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+
+            @endif
             <div class="content">
                 <div class="title m-b-md">
-                @yield('caption')
+
+                    @yield('caption')
                 </div>
             </div>   
-               
-                
-                
-<!--
-                <div class="links">
-                    <a href="#">Refreshments?</a>
-                    
-                </div>
--->
-            
+
+
+
+            <!--
+                            <div class="links">
+                                <a href="#">Refreshments?</a>
+                                
+                            </div>
+            -->
+
         </div>
         <div class="flex-center">
-         @yield('main_content')
+            @yield('main_content')
         </div>
     </body>
 </html>

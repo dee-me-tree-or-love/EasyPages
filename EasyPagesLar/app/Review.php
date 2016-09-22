@@ -8,6 +8,9 @@ use App\Service;
 
 class Review extends Model {
 
+
+    public $fillable = ['title','description','rating','service_id','review_id'];
+
     protected $table = 'reviews';
     public $timestamps = true;
 

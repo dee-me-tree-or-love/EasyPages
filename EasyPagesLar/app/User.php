@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username', 'email', 'password',
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function getprofile() {
+        $profile = Profile::where('user_id', $this->id)->first();
+        return $profile;
+    }
 }

@@ -12,16 +12,25 @@ SINGLE REVIEW
     
     <div>
         <h1>
-            By {{$review->profile_id}}, {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}
+
+            "{{$review->title}}"
             <br/>
             For {{$review->getservice()->title}}
         </h1>
+        <h3>
+            By {{$review->profile_id}}, {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}
+        </h3>
+
         <p>
             {{$review->description}}
         </p>
         <h4>
             Rating: {{$review->rating}}
         </h4>
+
+        <a href="/service/{{$review->service_id}}">
+            Back
+        </a>
 
     </div>
 

@@ -16,6 +16,7 @@ class profilesSeeder extends Seeder
         $sex = array("m","f");
 // for every users atm
         for($j = 1; $j<54;$j++)
+
         {
             
             DB::table('profiles')->insert([
