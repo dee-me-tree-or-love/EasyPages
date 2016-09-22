@@ -38,6 +38,11 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
+        Schema::table('services', function(Blueprint $table) {
+			$table->foreign('company_id')->references('company_id')->on('companies')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
 	}
 
 	public function down()
@@ -59,6 +64,9 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('p_pictures', function(Blueprint $table) {
 			$table->dropForeign('p_pictures_profile_id_foreign');
+		});
+        Schema::table('services', function(Blueprint $table) {
+			$table->dropForeign('services_company_id_foreign');
 		});
 	}
 }

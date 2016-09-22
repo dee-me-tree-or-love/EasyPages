@@ -13,6 +13,7 @@ class CreateServicesTable extends Migration {
 			$table->string('title', 255);
 			$table->decimal('price');
 			$table->string('description', 1024);
+            $table->integer('company_id')->unsigned();
 		});
 	}
 
