@@ -28,9 +28,18 @@ Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 
 // profile page link
 Route::get('profile/{id}', 'ProfileController@show');
+// redirects to a respective profile setup (individual or corporate)
+Route::get('newprofile', 'HomeController@afterReg');
+Route::post('initprofile', 'ProfileController@store');
 
-// tasks creation link
+
+// review creation link
 Route::post('newreview', 'ReviewController@store');
+
+// company related routes
+Route::get('company/{id}', 'CompanyController@show');
+Route::post('initcompany', 'CompanyController@store');
+
 
 /*
 |--------------------------------------------------------------------------

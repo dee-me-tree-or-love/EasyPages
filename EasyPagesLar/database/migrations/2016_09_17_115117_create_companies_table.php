@@ -4,32 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCompaniesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->increments('company_id');
-			$table->timestamps();
-			$table->string('username', 32)->unique();
-			$table->string('email', 255)->unique();
-			$table->string('password', 255);
-            $table->rememberToken();
-        });
-    }
+class CreateCompaniesTable extends Migration {
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('companies');
-    }
+	public function up()
+	{
+		Schema::create('companies', function(Blueprint $table) {
+			$table->increments('company_id');
+			$table->timestamps();
+			$table->integer('user_id')->unsigned()->nullable();
+			$table->string('name', 250);
+			$table->string('website', 250);
+			$table->string('description', 512);
+		});
+	}
+
+	public function down()
+	{
+		Schema::drop('companies');
+	}
 }

@@ -8,7 +8,8 @@ class Profile extends Model {
 
 	protected $table = 'profiles';
 	public $timestamps = true;
-
+        public $fillable = ['fname','lname','sex','dob','addres_id'];
+        
 	public function profilehasuserdata()
 	{
 		return $this->hasOne('User', 'user_id');

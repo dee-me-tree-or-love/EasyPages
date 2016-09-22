@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('navbar.navbartest')
+
 @section('content')
 <div class="container">
     <div class="row">

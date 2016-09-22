@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\User;
+use App\Profile;
 
 class ProfileController extends Controller {
 
@@ -30,8 +31,21 @@ class ProfileController extends Controller {
      *
      * @return Response
      */
-    public function store() {
+    public function store(Request $request) {
+        $profile = new Profile;
+        $profile->user_id = $request->user_id;
+        $profile->fname = $request->fname;
+        $profile->lname = $request->lname;
+        $profile->dob = $request->dob;
+        $profile->sex =$request->sex;
+        // should now be saved
+        $profile->save();
         
+        //$review = Review::create($input);  
+        
+        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
+        $vars = get_object_vars($profile);
+        return view('/result', ['inputs' => $vars]);    
     }
 
     /**
@@ -42,7 +56,7 @@ class ProfileController extends Controller {
      */
     public function show($id) {
         $user = User::find($id);
-        return view('wop', ['user' => $user]);
+        return view('profiledashboard.main', ['user' => $user]);
     }
 
     /**

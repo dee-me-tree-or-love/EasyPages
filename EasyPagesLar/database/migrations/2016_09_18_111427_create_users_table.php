@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 class CreateUsersTable extends Migration {
 
@@ -12,13 +14,9 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 			$table->string('username', 32)->unique();
 			$table->string('email', 255)->unique();
-<<<<<<< HEAD
-			$table->string('password', 255);
-            $table->rememberToken();
-=======
                         $table->rememberToken();
 			$table->string('password', 255);
->>>>>>> development
+                        $table->string('type', 1);
 		});
 	}
 

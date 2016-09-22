@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 class HomeController extends Controller
 {
     /**
@@ -25,4 +26,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    
+    public function afterReg()
+    {
+        // the further logics is done there
+        return view('profilesetup.main');       
+    }
+    
 }
