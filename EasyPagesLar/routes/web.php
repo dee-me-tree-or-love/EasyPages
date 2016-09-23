@@ -24,6 +24,7 @@ Route::delete('deleteservice', 'ServiceController@destroy');
 // review route management
 Route::get('reviews', 'ReviewController@index'); 
 Route::get('review/{id}', ['uses' => 'ReviewController@show']);
+Route::delete('deletereview', 'ReviewController@destroy');
 
 // user related links
 Route::get('user/{id}', 'UserController@show')
@@ -34,6 +35,7 @@ Route::get('profile/{id}', 'ProfileController@show');
 // redirects to a respective profile setup (individual or corporate)
 Route::get('newprofile', 'HomeController@afterReg');
 Route::post('initprofile', 'ProfileController@store'); 
+Route::post('updateprofile', 'ProfileController@update');
 
 
 // review creation link

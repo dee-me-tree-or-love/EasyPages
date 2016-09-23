@@ -96,8 +96,12 @@ class ReviewController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
-        
+    public function destroy(Request $request) {
+        if($request->has('review_id'))
+        {
+            $deletedreview = Review::where('review_id',$request->review_id)->delete();
+        }
+        return redirect()->back();
     }
 
 }

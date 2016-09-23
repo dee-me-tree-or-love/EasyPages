@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use Auth;
 
 class ProfileController extends Controller {
 
@@ -76,8 +77,33 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update($id) {
+    public function update(Request $request) {
+        $profile = Auth::user()->getprofile();
+        if ($request->has('fname')) {
+            $newFirstName = $request->fname;
+            Profile::where('profile_id', $profile->profile_id)
+                    ->update(['fname' => $newFirstName]);
+        }
+        if ($request->has('lname')) {
+            $newLastName = $request->lname;
+            Profile::where('profile_id', $profile->profile_id)
+                    ->update(['lname' => $newLastName]);
+        }
+        if ($request->has('dob')) {
+            $newDob = $request->dob;
+            Profile::where('profile_id', $profile->profile_id)
+                    ->update(['dob' => $newDob]);
+        }
+        if ($request->has('sex')) {
+            $newGender = $request->sex;
+            Profile::where('profile_id', $profile->profile_id)
+                    ->update(['sex' => $newGender]);
+        }
+        //$company = Company::where('company_id', $company->company_id)->first();
+        //return view('/result2', ['inputs' => $company]);
+        // /\ used for testing
         
+        return redirect()->back();
     }
 
     /**
