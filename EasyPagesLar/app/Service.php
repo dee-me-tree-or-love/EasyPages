@@ -7,16 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model {
 
 	protected $table = 'services';
+        public $fillable = ['title','description','company_id','price'];
 	public $timestamps = true;
 
 	public function servicehasreviews()
 	{
-		return $this->hasMany('Review');
+		$this->hasMany('App\Review', 'service_id');
 	}
 
 	public function servicehaspictures()
 	{
-		return $this->hasMany('ServicePicture');
+		return $this->hasMany('App\ServicePicture');
 	}
-
+        
+        public function ShortDescription()
+        {
+            return substr($this->description, 0, 50)."...";;
+        }
 }

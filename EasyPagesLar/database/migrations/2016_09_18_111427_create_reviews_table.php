@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
 
 class CreateReviewsTable extends Migration {
 
@@ -10,6 +12,7 @@ class CreateReviewsTable extends Migration {
 		Schema::create('reviews', function(Blueprint $table) {
 			$table->increments('review_id');
 			$table->timestamps();
+                        $table->string('title', 140);
 			$table->string('description', 1024);
 			$table->integer('rating');
 			$table->integer('profile_id')->unsigned()->nullable();

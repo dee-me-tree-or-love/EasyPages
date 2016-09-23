@@ -1,83 +1,101 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Service;
+use App\Review;
+use App\Http\Requests;
+
 class ServiceController extends Controller {
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return Response
-   */
-  public function index()
-  {
-    
-  }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index() {
+        $services = Service::all();
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return Response
-   */
-  public function create()
-  {
-    
-  }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @return Response
-   */
-  public function store()
-  {
-    
-  }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function show($id)
-  {
-    
-  }
+        return view('serviceboard', ['services' => $services]);
+    }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function edit($id)
-  {
-    
-  }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create() {
+        
+    }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function update($id)
-  {
-    
-  }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(Request $request) {
+        $service = Service::create($request->all());
+        //$review = Review::create($input);  
+        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
+        //$vars = get_object_vars($service);
+        //return view('/result', ['inputs' => $vars]);
+        //!!!!!! redirect to something better, okay?
+        return redirect()->back();
+    }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return Response
-   */
-  public function destroy($id)
-  {
-    
-  }
-  
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($service_id) {
+        $service = Service::where('service_id', $service_id)->first();
+        $reviews = Review::where('service_id', $service_id)->get();
+        $data = array(
+            'service' => $service,
+            'reviews' => $reviews,
+        );
+        return view('singleservice', compact('service', 'reviews'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id) {
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id) {
+        
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy(Request $request) {
+        if($request->has('service_id'))
+        {
+            $deletedservice = Service::where('service_id',$request->service_id)->delete();
+        }
+        return redirect()->back();
+    }
+
 }
 
 ?>
