@@ -18,30 +18,31 @@ Route::get('/', function () {
 // service route managment
 Route::get('services', 'ServiceController@index');
 Route::get('service/{id}', ['uses' => 'ServiceController@show']);
-Route::post('newservice', 'ServiceController@store');
-
+Route::post('newservice', 'ServiceController@store'); //should check if a company
+Route::delete('deleteservice', 'ServiceController@destroy');
 
 // review route management
-Route::get('reviews', 'ReviewController@index');
+Route::get('reviews', 'ReviewController@index'); 
 Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 
 // user related links
-Route::get('user/{id}', 'UserController@show');
+Route::get('user/{id}', 'UserController@show')
+        ->middleware('checkUser'); //should check if is the same person, if not redirect to company/id or profile/id
 
 // profile page link
 Route::get('profile/{id}', 'ProfileController@show');
 // redirects to a respective profile setup (individual or corporate)
 Route::get('newprofile', 'HomeController@afterReg');
-Route::post('initprofile', 'ProfileController@store');
+Route::post('initprofile', 'ProfileController@store'); 
 
 
 // review creation link
 Route::post('newreview', 'ReviewController@store');
 
 // company related routes
-Route::get('company/{id}', 'CompanyController@show');
-Route::post('initcompany', 'CompanyController@store');
-Route::post('updatecompany', 'CompanyController@update');
+Route::get('company/{id}', 'CompanyController@show'); 
+Route::post('initcompany', 'CompanyController@store'); //should check if a company
+Route::post('updatecompany', 'CompanyController@update'); //should check if a company
 
 
 /*

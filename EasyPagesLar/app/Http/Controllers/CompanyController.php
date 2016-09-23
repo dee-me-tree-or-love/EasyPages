@@ -53,8 +53,9 @@ class CompanyController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function show($id) {
-        
+    public function show($comid) {
+        $company = Company::where('company_id',$comid)->first();
+        return view('companydashboard.restricted.main', ['company' => $company]);
     }
 
     /**

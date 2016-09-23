@@ -88,8 +88,12 @@ class ServiceController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
-        
+    public function destroy(Request $request) {
+        if($request->has('service_id'))
+        {
+            $deletedservice = Service::where('service_id',$request->service_id)->delete();
+        }
+        return redirect()->back();
     }
 
 }

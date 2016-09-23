@@ -6,6 +6,7 @@
 
 @section('main_content')
 <div>
-    <h1>..Uck.</h1>
+    <h1>WELCOME</h1><br/>
+    <h5><i>Here later will be a quick login</i></h5>
 </div>
 @endsection

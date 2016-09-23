@@ -62,7 +62,7 @@ HELLO, {{Auth::user()->username}}
         @if(null == Auth::user()->getsayan()->getservices())
         @include('companydashboard.noServicesSoFar')
         @else
-        @include('services.servicelist', ['services' => Auth::user()->getsayan()->getservices()])
+        @include('companydashboard.topservices', ['services' => Auth::user()->getsayan()->getservices()])
         @endif
     </div>
 </div>

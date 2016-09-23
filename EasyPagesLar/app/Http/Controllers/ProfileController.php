@@ -55,9 +55,9 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function show($id) {
-        $user = User::find($id);
-        return view('profiledashboard.main', ['user' => $user]);
+    public function show($profid) {
+        $profile = Profile::where('profile_id',$profid)->first();
+        return view('profiledashboard.restricted.main', ['profile' => $profile]);
     }
 
     /**
