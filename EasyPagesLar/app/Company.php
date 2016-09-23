@@ -8,6 +8,7 @@ use App\Service;
 
 class Company extends Model {
 
+    public $fillable = ['name','description','user_id','website'];
     protected $table = 'companies';
     public $timestamps = true;
 

@@ -40,9 +40,10 @@ class ServiceController extends Controller {
         $service = Service::create($request->all());
         //$review = Review::create($input);  
         //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
-        $vars = get_object_vars($service);
-        return view('/result', ['inputs' => $vars]);
+        //$vars = get_object_vars($service);
+        //return view('/result', ['inputs' => $vars]);
         //!!!!!! redirect to something better, okay?
+        return redirect()->back();
     }
 
     /**

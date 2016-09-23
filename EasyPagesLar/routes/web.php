@@ -41,6 +41,7 @@ Route::post('newreview', 'ReviewController@store');
 // company related routes
 Route::get('company/{id}', 'CompanyController@show');
 Route::post('initcompany', 'CompanyController@store');
+Route::post('updatecompany', 'CompanyController@update');
 
 
 /*
