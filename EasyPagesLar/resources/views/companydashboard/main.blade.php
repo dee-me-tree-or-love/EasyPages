@@ -21,7 +21,7 @@ HELLO, {{Auth::user()->username}}
 <div style='text-align: left; margin-top: 30pt;'>
     <div id="company_desc" style="border-bottom: 1px #1b6d85 solid; padding-bottom: 10pt;">
         <h4 style="color: #a4aaae;">This is your company:</h4>
-        
+
         <script>
             function ShowEditBanner() {
                 if (document.getElementById('editbanner').style.display == 'none') {
@@ -38,18 +38,19 @@ HELLO, {{Auth::user()->username}}
                 return false;
             }
         </script>
-        
-        <h4 style="color: #a4aaae; font-size: 10pt; text-align: right;"><a id="myLink" href="javascript:ShowEditBanner();">EDIT</a></h4>
+
 
         @include('companydashboard.companyeditbanner')
         <div id='static_company_data' style='display: block'>
-        <h2>
-            {{Auth::user()->getsayan()->name}}
-            <h4><a href="{{Auth::user()->getsayan()->website}}">{{Auth::user()->getsayan()->website}}</a></h4>
-        </h2>
-        <h2>
-            <i>"{{Auth::user()->getsayan()->description}}"</i>
-        </h2>
+            <h4 style="color: #a4aaae; font-size: 10pt; text-align: right;"><a id="myLink" href="javascript:ShowEditBanner();">EDIT</a></h4>
+
+            <h2>
+                {{Auth::user()->getsayan()->name}}
+                <h4><a href="{{Auth::user()->getsayan()->website}}">{{Auth::user()->getsayan()->website}}</a></h4>
+            </h2>
+            <h2>
+                <i>"{{Auth::user()->getsayan()->description}}"</i>
+            </h2>
         </div>
     </div>
 
