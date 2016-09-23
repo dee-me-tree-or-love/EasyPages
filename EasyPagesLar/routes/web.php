@@ -18,13 +18,15 @@ Route::get('/', function () {
 // service route managment
 Route::get('services', 'ServiceController@index');
 Route::get('service/{id}', ['uses' => 'ServiceController@show']);
+Route::post('newservice', 'ServiceController@store');
 
 
 // review route management
 Route::get('reviews', 'ReviewController@index');
 Route::get('review/{id}', ['uses' => 'ReviewController@show']);
 
-
+// user related links
+Route::get('user/{id}', 'UserController@show');
 
 // profile page link
 Route::get('profile/{id}', 'ProfileController@show');

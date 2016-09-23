@@ -1,6 +1,10 @@
 <?php 
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\User;
+use App\Profile;
+use App\Company;
 
 class UserController extends Controller {
 
@@ -42,6 +46,15 @@ class UserController extends Controller {
    */
   public function show($id)
   {
+    $user = User::find($id);
+    if($user->type == 'i')
+    {
+        return view('profiledashboard.main', ['user' => $user]);
+    }
+    else
+    {
+        return view('companydashboard.main', ['user' => $user]);
+    }
     
   }
 

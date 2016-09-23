@@ -21,64 +21,11 @@ SINGLE OVERVIEW
     <h5><a href="{{ url('/login') }}">Login or register</a> to write a review:</h5>
     @else
 
-
-    <!-- New Review Form -->
-    <h5 style="text-align: right;">{{ Auth::user()->username }}</h5>
-    
-    <form id="newreview" action="{{ url('/newreview') }}" method="POST" class="form-horizontal">
-        <table style="width: 20vw; margin: auto;">
-            <div>
-                {{ csrf_field() }}
-                <input type="number" type="hidden"  name="profile_id" id="profile_id" value="{{Auth::user()->getprofile()->profile_id}}">
-            </div>
-            <div>
-                <input type="number" type="hidden" name="service_id" id="service_id" value="{{$service->service_id}}">
-            </div>
-
-            <!-- Review Rating -->
-            <tr>
-
-            <div class="form-group">
-                <td>
-                    <label for="review-title" class="control-label">Rating</label>
-                </td>
-                <td>
-                    <div>
-                        <input type="number" name="rating" id="rating" min="1" max="10">
-                    </div>
-                </td>
-            </div>
-            </tr>
-
-            <!-- Review Title -->
-            <tr>
-            <div class="form-group">
-                <td>
-                    <label for="title" class="control-label">Title</label>
-                </td>
-                <td>
-                    <div>
-                        <input type="text" name="title" id="title">
-                    </div>
-                </td>
-            </div>
-            </tr>
-        </table>
-
-        <h5 style="text-align: left;">What do you think?</h5>
-        <textarea style="max-height: 10vw; width: 40vw; height: 60pt" name="description" form="newreview"> 
-        </textarea>
-        <!-- Add Review Button -->
-        <div>
-            <div>
-                <button type="submit" class="btn btn-default">
-                    Save
-                </button>
-            </div>
-        </div>
-    </form>
-
-
+        @if(Auth::user()->getprofile() !== null)
+            @include('reviews.newreviewform')
+        @else
+            <h5><i>You can not add a review, being a company member</i></h5>
+        @endif
     @endif
 
 
@@ -92,31 +39,12 @@ SINGLE OVERVIEW
         {{$reviews}}
     </div>
     -->
-    @foreach($reviews as $review)
-    <div>
-        <h3>
-            By {{$review->profile_id}}
+    @if(null !== $reviews)
+    @include('reviews.reviewlist')
+    @else
+    <h4>Yet nor reviews..</h4>
+    @endif
 
-            , {{$review->getprofile()->fname}} {{$review->getprofile()->lname}}   
-
-        </h3>
-        <h4>
-            {{$review->title}}
-        </h4>
-
-        <p>
-            {{$review->ShortDescription(35)}}
-            <br/>
-            <span class="links">
-                <a href="/review/{{$review->review_id}}">Read More</a>
-            </span>
-        </p>
-        <h4>
-            Rating: {{$review->rating}}
-        </h4>
-
-    </div>
-    @endforeach
 
 </div>
 @endsection

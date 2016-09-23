@@ -12,69 +12,13 @@
 
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 50vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-            .top-left {
-                position: absolute;
-                left: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .container{
-                display: block;
-                margin-top: 15pt;
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <link href="/css/master.css" rel="stylesheet">    
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+
+            <!--@include('navbar.mstrnavbar') 
+            Does not work! -->
 
             <div class="top-left links">
                 <a href="{{ url('/services') }}">\(^_^)/</a>
@@ -87,10 +31,10 @@
             </div>
             @else
             <div class="top-right links">
-                <a href="/profile/{{Auth::user()->id}}"> {{Auth::user()->username}} </a>
+                <a href="/user/{{Auth::user()->id}}"> {{Auth::user()->username}} </a>
                 <a href="{{ url('/logout') }}"
                    onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                           document.getElementById('logout-form').submit();">
                     Logout
                 </a>
 
@@ -100,6 +44,8 @@
             </div>
 
             @endif
+
+
             <div class="content">
                 <div class="title m-b-md">
 

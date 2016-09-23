@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model {
 
 	protected $table = 'services';
+        public $fillable = ['title','description','company_id','price'];
 	public $timestamps = true;
 
 	public function servicehasreviews()

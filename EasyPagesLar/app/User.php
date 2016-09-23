@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Profile;
+use App\Company;
 
 class User extends Authenticatable
 {
@@ -30,5 +32,23 @@ class User extends Authenticatable
     public function getprofile() {
         $profile = Profile::where('user_id', $this->id)->first();
         return $profile;
+    }
+    
+    public function getcompany() {
+        $company = Company::where('user_id', $this->id)->first();
+        return $company;
+    }
+    
+    public function getsayan() {
+        $sayan = [];
+        if($this->type == 'i')
+        {
+            $sayan = Profile::where('user_id', $this->id)->first();
+        }
+        else
+        {
+            $sayan = Company::where('user_id', $this->id)->first();
+        }
+        return $sayan;
     }
 }
