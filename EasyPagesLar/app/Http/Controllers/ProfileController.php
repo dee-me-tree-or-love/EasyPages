@@ -47,7 +47,7 @@ class ProfileController extends Controller {
         //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
         //$vars = get_object_vars($profile);
         //return view('/result', ['inputs' => $vars]);    
-        return redirect('/user/'.$profile->user_id);
+        return $profile;
     }
 
     /**

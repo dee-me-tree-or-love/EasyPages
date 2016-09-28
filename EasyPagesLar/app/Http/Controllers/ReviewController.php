@@ -14,7 +14,7 @@ class ReviewController extends Controller {
      */
     public function index() {
         $reviews = Review::all();
-        return view('reviewboard', ['reviews' => $reviews]);
+        return $reviews;
     }
 
     /**
@@ -67,7 +67,7 @@ class ReviewController extends Controller {
     public function show($id) {
         $review = Review::where('review_id', $id)->first();
 
-        return view('singlereview', ['review' => $review]);
+        return $review;
     }
 
     /**

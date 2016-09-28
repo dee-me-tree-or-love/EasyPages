@@ -21,7 +21,7 @@
             Does not work! -->
 
             <div class="top-left links">
-                <a href="{{ url('/services') }}"><!--\(^_^)/-->SERVICES</a>
+                <a href="{{ url('/service') }}"><!--\(^_^)/-->SERVICES</a>
                 <!--<a href="{{ url('/#') }}">/(0_0)\</a>-->
             </div>
             @if (Auth::guest())

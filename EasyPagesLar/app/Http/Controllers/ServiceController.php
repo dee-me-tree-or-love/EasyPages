@@ -16,10 +16,7 @@ class ServiceController extends Controller {
      */
     public function index() {
         $services = Service::all();
-
-
-
-        return view('serviceboard', ['services' => $services]);
+        return $services;
     }
 
     /**
@@ -59,7 +56,7 @@ class ServiceController extends Controller {
             'service' => $service,
             'reviews' => $reviews,
         );
-        return view('singleservice', compact('service', 'reviews'));
+        return compact('service', 'reviews');
     }
 
     /**
