@@ -14,18 +14,18 @@ class CompanyController extends Controller {
      *
      * @return Response
      */
-    public function index() {
-        
-    }
+//    public function index() {
+//        
+//    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return Response
      */
-    public function create() {
-        
-    }
+//    public function create() {
+//        
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,7 +55,16 @@ class CompanyController extends Controller {
      */
     public function show($comid) {
         $company = Company::where('company_id',$comid)->first();
-        return $company;
+        $resp = $company;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -64,9 +73,9 @@ class CompanyController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id) {
-        
-    }
+//    public function edit($id) {
+//        
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -104,9 +113,9 @@ class CompanyController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
-        
-    }
+//    public function destroy($id) {
+//        
+//    }
 
 }
 

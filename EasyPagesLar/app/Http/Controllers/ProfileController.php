@@ -47,7 +47,10 @@ class ProfileController extends Controller {
         //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
         //$vars = get_object_vars($profile);
         //return view('/result', ['inputs' => $vars]);    
-        return $profile;
+        $resp = $profile;
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -58,7 +61,17 @@ class ProfileController extends Controller {
      */
     public function show($profid) {
         $profile = Profile::where('profile_id',$profid)->first();
-        return view('profiledashboard.restricted.main', ['profile' => $profile]);
+        $resp = $profile;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+        
     }
 
     /**
@@ -67,9 +80,9 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id) {
-        
-    }
+//    public function edit($id) {
+////        
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -102,8 +115,16 @@ class ProfileController extends Controller {
         //$company = Company::where('company_id', $company->company_id)->first();
         //return view('/result2', ['inputs' => $company]);
         // /\ used for testing
-        
-        return redirect()->back();
+        $resp = $profile;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -112,9 +133,9 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
-        
-    }
+//    public function destroy($id) {
+//        
+//    }
 
 }
 

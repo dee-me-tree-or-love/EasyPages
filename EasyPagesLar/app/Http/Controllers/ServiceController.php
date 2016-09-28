@@ -7,6 +7,7 @@ use App\Service;
 use App\Review;
 use App\Http\Requests;
 
+
 class ServiceController extends Controller {
 
     /**
@@ -16,7 +17,16 @@ class ServiceController extends Controller {
      */
     public function index() {
         $services = Service::all();
-        return $services;
+        $resp = $services;
+        if($resp == null)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -40,7 +50,16 @@ class ServiceController extends Controller {
         //$vars = get_object_vars($service);
         //return view('/result', ['inputs' => $vars]);
         //!!!!!! redirect to something better, okay?
-        return redirect()->back();
+        $resp = $service;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -56,41 +75,60 @@ class ServiceController extends Controller {
             'service' => $service,
             'reviews' => $reviews,
         );
-        return compact('service', 'reviews');
+        $resp =  compact('service', 'reviews');
+        if(!$service)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id) {
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id) {
-        
-    }
+//    /**
+//     * Show the form for editing the specified resource.
+//     *
+//     * @param  int  $id
+//     * @return Response
+//     */
+//    public function edit($id) {
+//        
+//    }
+//
+//    /**
+//     * Update the specified resource in storage.
+//     *
+//     * @param  int  $id
+//     * @return Response
+//     */
+//    public function update($id) {
+//        
+//    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Request  $request
      * @return Response
      */
     public function destroy(Request $request) {
+        $resp = false;
         if($request->has('service_id'))
         {
             $deletedservice = Service::where('service_id',$request->service_id)->delete();
+            $resp = "success";
         }
-        return redirect()->back();
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
 }
