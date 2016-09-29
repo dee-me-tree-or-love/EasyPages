@@ -34,9 +34,9 @@ class ServiceController extends Controller {
      *
      * @return Response
      */
-    public function create() {
-        
-    }
+//    public function create() {
+//        
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -44,6 +44,15 @@ class ServiceController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
+        
+        if(! $request->company_id || ! $request->title){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please Provide service_id and profile_id'
+                ]
+            ], 422);
+        }
+        
         $service = Service::create($request->all());
         //$review = Review::create($input);  
         //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!

@@ -33,8 +33,8 @@ Route::get('/', function () {
   | and give it the Closure to execute when that URI is requested.
   |
  */
-
-Route::group(['prefix' => 'api/eplar'], function() {
+//, 'middleware' => 'auth' -- add after prefix if needed
+Route::group(['prefix' => 'api/eplar' ], function() {
     Route::resource('users', 'UserController');
     Route::resource('company', 'CompanyController');
     Route::resource('profiles', 'ProfileController');

@@ -50,10 +50,10 @@ class ReviewController extends Controller {
 //            'service_id' => 'required',
 //            'profile_id' => 'required',
 //        ]);
-        if(! $request->profile_id){
+        if(! $request->profile_id || ! $request->service_id){
             return response()->json([
                 'error' => [
-                    'message' => 'Please Provide Both body and profile_id'
+                    'message' => 'Please Provide service_id and profile_id'
                 ]
             ], 422);
         }

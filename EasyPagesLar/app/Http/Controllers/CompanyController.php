@@ -14,9 +14,21 @@ class CompanyController extends Controller {
      *
      * @return Response
      */
-//    public function index() {
-//        
-//    }
+    public function index() {
+        $companies = Company::all();
+        
+        
+        $resp = $companies;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
 
     /**
      * Show the form for creating a new resource.
