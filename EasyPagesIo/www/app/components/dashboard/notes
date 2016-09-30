@@ -1,0 +1,58 @@
+// // constructor of the service object
+//     $scope.idCounter=0;
+//     function SRV(tit, company_id, desc, pr) {
+//       $scope.idCounter++;
+//       this.id = $scope.idCounter;
+//       this.title = tit;
+//       this.company_id = company_id;
+//       this.desc = desc;
+//       this.price = pr;
+//     };
+//     function SRV(id,tit, company_id, desc, pr) {
+//       this.id = id;
+//       this.title = tit;
+//       this.company_id = company_id;
+//       this.desc = desc;
+//       this.price = pr;
+//     };
+
+//     tokens=[
+//         'Top ',
+//         'Best ',
+//         'Barber ',
+//         'Future ',
+//         'Skin ',
+//         'Nails ',
+//         'Practitioner ',
+//         'Thai ',
+//         'Fishing ',
+//         'Repair ',
+//         'Bikes ',
+//         'Fietsen ',
+//         'Laptops '
+//     ]
+
+
+//     for(var i =0; i<25; i++)
+//     {
+//         $lim = Math.floor((Math.random() * 5) + 1);
+//         $complim = Math.floor((Math.random() * 5) + 1);
+//         $tit = "";
+//         for(var j = 0; j< $lim;j++)
+//         {
+//             $tit += tokens[Math.floor((Math.random() * tokens.length))]
+//         }
+//         $scope.srvces.push(
+//             new SRV(i,$tit,$complim,"Lorem ipsum Lorem. Kekek, Keviin, pepep.",(10+$complim)));   
+//     }
+
+
+
+// //   $scope.rudeboy = {
+// //     id: 0,
+// //     name: 'Billy Hannoway',
+// //     motto: 'fuck off, dumbfuck!',
+// //     face: 'assets/img/billy.jpg'
+// //   };
+
+// //   $scope.message = "FUCK YOU KEVVIIIIIIN!"

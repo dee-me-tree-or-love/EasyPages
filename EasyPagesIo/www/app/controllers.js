@@ -1,6 +1,5 @@
-angular.module('starter.controllers', [])
-
-.controller('DashCtrl', function($scope) {})
+// controller per feature
+var appcntrls = angular.module('starter.controllers', [])
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
