@@ -2,15 +2,19 @@
   <ion-content>
 
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
-   
-<div class="bar bar-header item-input-inset">
-  <label class="item-input-wrapper">
-    <i class="icon ion-ios-search placeholder-icon"></i>
-    <input type="search" placeholder="Search">
-  </label>
-  <button class="button">
-    <i class="icon ion-ios-arrow-right"></i>
-  </button>
-</div>
+
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-keydown="showcancel=true;">
+    </label>
+      <button class="button button-clear button-stable" ng-show="showcancel">
+        Cancel
+    </button>
+
+
+
+    </div>
+
 
 </ion-view>

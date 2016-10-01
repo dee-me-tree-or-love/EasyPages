@@ -1,6 +1,20 @@
-appcntrls.controller('ExploreCtrl', function ($scope, $http) {
+appcntrls.controller('ExploreCtrl', function ($scope,$http) {
 
-   $scope.searchParams = [];
+    $scope.searchOptions = ['service', 'people', 'companies'];
+    $scope.showcancel = false;
+    $scope.sparam = "";
+
+    $scope.showCncl = function showCncl() 
+    {
+        
+        
+        console.log("key down");
+        console.log($scope.sparam);
+        if(($scope.sparam.trim()).length != 0)
+        {
+            $scope.showcancel = !$scope.showcancel;
+        }
+    };
 
     $scope.refresh = function refresh() {
         console.log("refresh called");
