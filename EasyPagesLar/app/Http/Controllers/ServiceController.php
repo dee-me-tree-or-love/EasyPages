@@ -16,7 +16,7 @@ class ServiceController extends Controller {
      * @return Response
      */
     public function index() {
-        $services = Service::all();
+        $services = Service::with('serreviews','relcompany')->get();
         $resp = $services;
         if($resp == null)
         {
@@ -78,8 +78,10 @@ class ServiceController extends Controller {
      * @return Response
      */
     public function show($service_id) {
-        $service = Service::where('service_id', $service_id)->first();
-        $reviews = Review::where('service_id', $service_id)->get();
+        //$service = Service::where('service_id', $service_id)->first();
+        $service = Service::with('relcompany')->find($service_id); // fix!
+		$reviews = Review::where('service_id', $service_id)->get();
+		
         $data = array(
             'service' => $service,
             'reviews' => $reviews,

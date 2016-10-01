@@ -1,4 +1,7 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
+
+  
+  $authProvider.loginUrl = 'http://localhost:8000/api/authenticate';
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -24,23 +27,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
   .state('tab.service', {
-    url: '/service/:serviceId',
+    url: '/services/:serviceId',
     views: {
       'tab-dash': {
-        templateUrl: 'app/components/dashboard/tab-service.html',
-        controller: 'DashCtrl'
+        templateUrl: 'app/components/service/serv-detail.html',
+        controller: 'ServCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.explore', {
+      url: '/explore',
       views: {
         'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          templateUrl: 'app/components/explore/tab-explore.html',
+          controller: 'ExploreCtrl'
         }
       }
     })
@@ -54,12 +56,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
 
-  .state('tab.account', {
+  .state('tab.login', {
     url: '/account',
     views: {
       'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+        templateUrl: 'app/components/auth/authlogin.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('tab.register', {
+    url: '/register',
+    views: {
+      'tab-account': {
+        templateUrl: 'app/components/auth/authreg.html',
+        controller: 'RegCtrl'
       }
     }
   });

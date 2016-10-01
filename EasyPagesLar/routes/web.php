@@ -35,6 +35,12 @@ Route::get('/', function () {
  */
 // |+ ,  'middleware' => 'auth'  +| -- add after prefix if needed
 Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
+	
+	// the JWT authentication routes
+	Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+	// our routes
     Route::resource('users', 'UserController');
     Route::resource('company', 'CompanyController');
     Route::resource('profiles', 'ProfileController');
