@@ -5,7 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'satellizer'])
+var app = angular.module('starter', [
+  'ionic', 
+  'starter.services',
+  'starter.controllers', 
+  'satellizer',
+  ])
+  
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

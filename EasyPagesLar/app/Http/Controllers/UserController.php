@@ -8,6 +8,9 @@ use App\Company;
 
 class UserController extends Controller {
 
+public function __construct(){
+        $this->middleware('jwt.auth');
+}
   /**
    * Display a listing of the resource.
    *
