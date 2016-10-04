@@ -1,11 +1,11 @@
-app.controller('LoginCtrl', function ($scope, $auth) {
+app.controller('LoginCtrl', function ($scope, $auth, $http) {
 
 
 
 // auth method
     $scope.loginData = {};
     $scope.loginError = false;
-    $scope.loginErrorText;
+    $scope.loginErrorText = "";
 
     $scope.login = function () {
 
