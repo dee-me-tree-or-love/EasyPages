@@ -17,8 +17,9 @@ class AuthenticateController extends Controller
     public function __construct(JWTAuth $auth)
     {
         $this->auth = $auth;
-        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
         $this->middleware('cors');
+        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+        
     }
     /**
      * Display a listing of the resource.

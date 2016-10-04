@@ -1,8 +1,7 @@
 appcntrls.controller('ServCtrl', function ($scope, $http) {
     var srvcururl = window.location.href;
     $scope.reviewtab = false;
-    $scope.disp = function swap(x)
-    {
+    $scope.disp = function swap(x) {
         x = !x;
     }
 
@@ -23,9 +22,12 @@ appcntrls.controller('ServCtrl', function ($scope, $http) {
         $scope.stat = response.data.message;
     });
 
-    $scope.createReview = function createReview(x)
-    {
+    $scope.createReview = function createReview(x) {
         //todo
+        x = {};
+        $scope.reviewtab = false;
+        console.log("Fuck off, you forgot to implement me!");
+
     }
 
 
