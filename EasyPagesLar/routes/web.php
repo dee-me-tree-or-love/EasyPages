@@ -49,6 +49,10 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::resource('reviewpictures', 'ReviewPictureController');
     Route::resource('servicepictures', 'ServicePictureController');
     Route::resource('profilepictures', 'ProfilePictureController');
+    //Delete or create review
+    //Route::delete('deletereview', 'ReviewController@destroy');
+    Route::post('newreview', 'ReviewController@store');
+    
 });
 
 Auth::routes();

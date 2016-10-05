@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use JWTAuthentication;
 use Tymon\JWTAuth\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
  
@@ -53,7 +54,7 @@ class AuthenticateController extends Controller
     {
         try {
  
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (! $user = JWTAuthentication::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
  

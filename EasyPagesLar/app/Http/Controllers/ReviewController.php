@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\Service;
+use JWTAuthentication;
+use AuthenticateController;
 
 class ReviewController extends Controller {
 
@@ -55,6 +57,10 @@ public function __construct(){
 //            'service_id' => 'required',
 //            'profile_id' => 'required',
 //        ]);
+        if (! $user = JWTAuthentication::parseToken()->authenticate()) {
+                return response()->json(['Please log in first'], 404);
+            }       
+        
         if(! $request->profile_id || ! $request->service_id){
             return response()->json([
                 'error' => [
@@ -137,6 +143,9 @@ public function __construct(){
      * @return Response
      */
     public function destroy(Request $request) {
+        if (! $user = JWTAuthentication::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
         $resp = false;
         if($request->has('review_id'))
         {
@@ -146,7 +155,7 @@ public function __construct(){
         if(!$resp)
         {
             return response()->json([
-            'message' => 'Sorry, we are confused :('
+            'message' => 'Sorry, we are confused :['
         ], 400);
         }
         return response()->json([
