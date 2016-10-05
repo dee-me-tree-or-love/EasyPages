@@ -1,4 +1,4 @@
-app.controller('LoginCtrl', function ($scope, $auth, $http) {
+app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHistory, $state) {
 
 
 
@@ -18,7 +18,7 @@ app.controller('LoginCtrl', function ($scope, $auth, $http) {
 
         $auth.login(credentials).then(function () {
             // Return an $http request for the authenticated user
-            $http.get('http://localhost:8000/api/eplar/authenticate/user').success(function (response) {
+            $http.get('http://localhost:8000/api/eplar/authenticate').success(function (response) {
                 // Stringify the retured data
                 var user = JSON.stringify(response.user);
 
@@ -33,11 +33,11 @@ app.controller('LoginCtrl', function ($scope, $auth, $http) {
                     disableBack: true
                 });
 
-                $state.go('app.account');
+                $state.go('tab.account');
             })
                 .error(function () {
                     $scope.loginError = true;
-                    $scope.loginErrorText = error.data.error;
+                    $scope.loginErrorText = "Error";
                     console.log($scope.loginErrorText);
                 })
         });

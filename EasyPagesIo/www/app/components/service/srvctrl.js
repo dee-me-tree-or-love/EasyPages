@@ -1,4 +1,4 @@
-appcntrls.controller('ServCtrl', function ($scope, $http) {
+appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope) {
     var srvcururl = window.location.href;
     $scope.reviewtab = false;
     $scope.disp = function swap(x) {
@@ -12,7 +12,7 @@ appcntrls.controller('ServCtrl', function ($scope, $http) {
     $scope.reviews = [];
     $http({
         method: 'GET',
-        url: $url,
+        url: $url
     }).then(function successCallback(response) {
         // everything went well! 
         $scope.stat = "OK"
@@ -24,10 +24,17 @@ appcntrls.controller('ServCtrl', function ($scope, $http) {
 
     $scope.createReview = function createReview(x) {
         //todo
-        x = {};
-        $scope.reviewtab = false;
-        console.log("Fuck off, you forgot to implement me!");
-
+        $profileid = $rootScope.user.id;
+        $url = 'http://localhost:8000/api/eplar/newreview';
+        $http({
+            method: 'POST',
+            url: $url,
+            data: { title : x.title, rating : x.rating, description : x.description, service_id : $srvID, profile_id : $profileid}
+        })
+    }
+    
+    $scope.removeReview = function removeReview(x) {
+        $url = 'http://localhost:8000/api/eplar/'
     }
 
 

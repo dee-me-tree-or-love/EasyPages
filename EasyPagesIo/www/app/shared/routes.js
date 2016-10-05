@@ -61,7 +61,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
       views: {
         'tab-account': {
           templateUrl: 'app/components/account/account.html',
-          controller: 'AccountCtrl'
+          controller: 'AccCtrl'
         }
       }
     })
