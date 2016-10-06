@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use App\Review;
 use Auth;
 use App\Http\Controllers\AuthenticateController;
 
@@ -61,8 +62,19 @@ class ProfileController extends Controller {
      * @return Response
      */
     public function show($userid) {
-        $profile = Profile::where('user_id',$userid)->first();
-        $resp = $profile;
+        
+            $profile = Profile::where('user_id',$userid)->first();
+        if($profile)
+        {
+            $nrreviews = Review::where('profile_id',$profile->profile_id)->count();
+            $profilereviews = $profile->getreviews();    
+        }
+       
+        $resp = array(
+            'profile'=>$profile,
+            'nrreviews' => $nrreviews,
+            'profilereviews' => $profilereviews,
+        );
         if(!$resp)
         {
             return response()->json([

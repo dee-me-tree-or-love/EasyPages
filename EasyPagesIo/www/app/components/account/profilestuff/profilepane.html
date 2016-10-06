@@ -1,3 +1,24 @@
+<!--
+    uses {{userprofile}}
+-->
 <div>
     {{userprofile}}
-<div>
+    <br>
+    <br>
+    <span>Company name: <br>
+    <h2>{{userprofile.profile.fname}}
+        {{userprofile.profile.lname}}
+    </h2></span>
+    <br>
+    <span>Description: <br><h2>{{userprofile.profile.dob}}</h2></span>
+    
+    <br>
+    YOUR REVIEWS
+    <br>
+    <!--a button to display/hide -->
+    <span>Total reviews: <br><h2>{{userprofile.nrreviews}}</h2> <span>Show All</span></span>
+
+    <div ng-repeat="review in usercompany.profilereviews">
+    A service
+    </div>
+</div>
