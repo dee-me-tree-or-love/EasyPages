@@ -153,7 +153,7 @@ public function __construct(){
      * @param  int  $id
      * @return Response
      */
-    public function destroy(Request $request) {
+    public function destroy($id) {
         if(! $user = JWTAuthentication::parseToken()->authenticate() ){
             return response()->json([
                 'error' => [
@@ -165,19 +165,27 @@ public function __construct(){
         $userprofile = $user->getprofile();
         $userprofileid = $userprofile->profile_id;
         
-        $reviewtobedeleted = Review::where('review_id',$request->review_id)->value('profile_id');
+        $reviewtobedeleted = Review::where('review_id',$id)->value('profile_id');
         
         if($userprofileid != $reviewtobedeleted)
         {
             return response()->json([
                 'message' => 'This is not the correct user'
             ], 400);
+        } 
+        
+        if(! $id)
+        {
+            return response()->json([
+            'message' => 'No request review_id found'
+        ], 400);
         }
         
+        
         $resp = false;
-        if($request->has('review_id'))
+        if($id)
         {
-            $deletedreview = Review::where('review_id',$request->review_id)->delete();
+            $deletedreview = Review::where('review_id',$id)->delete();
             $resp = "success";
         }
         if(!$resp)
