@@ -38,7 +38,8 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
 	
 	// the JWT authentication routes
 	Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::post('authenticate', 'AuthenticateController@authenticate');    
+    Route::post('registration', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 	// our routes
     Route::resource('users', 'UserController');
@@ -54,11 +55,17 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::post('newreview', 'ReviewController@store');
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');
-    
+    //Create service
+    Route::post('newservice', 'ServiceController@store'); //should check if a company
+    Route::delete('service/{id}/delete', 'ServiceController@destroy');
+    //Create profile or company
+    Route::post('initprofile', 'ProfileController@store'); 
+    Route::post('initcompany', 'CompanyController@store'); //should check if a company
 });
 
-Auth::routes();
 
+
+Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 

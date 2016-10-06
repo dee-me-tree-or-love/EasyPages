@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use Auth;
+use JWTAuthentication;
 use App\Http\Controllers\AuthenticateController;
 
 class ProfileController extends Controller {
@@ -34,8 +35,24 @@ class ProfileController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'i'){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in as individual first'
+            ]
+            ]);
+        }
+        
         $profile = new Profile;
-        $profile->user_id = $request->user_id;
+        $profile->user_id = $user->id;
         $profile->fname = $request->fname;
         $profile->lname = $request->lname;
         $profile->dob = $request->dob;
@@ -91,8 +108,16 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request) {
-        $profile = Auth::user()->getprofile();
+    public function update(Request $request) {        
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        $profile = $user->getprofile();
         if ($request->has('fname')) {
             $newFirstName = $request->fname;
             Profile::where('profile_id', $profile->profile_id)

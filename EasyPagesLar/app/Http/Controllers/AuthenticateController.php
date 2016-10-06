@@ -19,7 +19,7 @@ class AuthenticateController extends Controller
     {
         $this->auth = $auth;
         $this->middleware('cors');
-        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
+        $this->middleware('jwt.auth', ['except' => ['authenticate', 'register']]);
         
     }
     /**
@@ -31,6 +31,29 @@ class AuthenticateController extends Controller
     {
         $users = User::all();
         return $users;
+    }
+    
+    public function register(Request $request) 
+    {
+    if(!$request->username || !$request->email || !$request->password || !$request->type)
+    {
+        return response()->json([‘please_enter_all_information’], 500);
+    }
+        
+    $newUser = User::create([
+        'username' => $request->username,
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'type' => $request->type,
+    ]);
+        
+    if (!$newUser) {
+        return response()->json([‘failed_to_create_new_user’], 500);
+    }
+    //TODO: implement JWT
+    return response()->json([
+        'token' => $this->auth->fromUser($newUser)
+    ]);
     }
  
     public function authenticate(Request $request)

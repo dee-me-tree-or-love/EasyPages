@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Service;
 use App\Review;
 use App\Http\Requests;
-
+use JWTAuthentication;
 
 class ServiceController extends Controller {
 
@@ -45,20 +45,41 @@ class ServiceController extends Controller {
      */
     public function store(Request $request) {
         
-        if(! $request->company_id || ! $request->title){
+        if(! $request->title){
             return response()->json([
                 'error' => [
-                    'message' => 'Please Provide service_id and profile_id'
+                    'message' => 'Please provide title'
                 ]
             ], 422);
         }
         
-        $service = Service::create($request->all());
-        //$review = Review::create($input);  
-        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
-        //$vars = get_object_vars($service);
-        //return view('/result', ['inputs' => $vars]);
-        //!!!!!! redirect to something better, okay?
+        if(! $user = JWTAuthentication::parseToken()->authenticate()){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'c'){
+               return response()->json([
+                'error' => [
+                    'message' => 'Please log in as company'
+                ]
+            ], 422);         
+        }
+        
+        $company = $user->getcompany();
+        $companyid = $company->company_id;
+        
+        
+        $service = new Service;
+        $service->title = $request->title;
+        $service->company_id = $companyid;
+        $service->description =$request->description;
+        $service->price =$request->price;
+        // should now be saved
+        $service->save();
         $resp = $service;
         if(!$resp)
         {
@@ -124,11 +145,41 @@ class ServiceController extends Controller {
      * @param  Request  $request
      * @return Response
      */
-    public function destroy(Request $request) {
-        $resp = false;
-        if($request->has('service_id'))
+    public function destroy($id) {
+        
+        if(! $user = JWTAuthentication::parseToken()->authenticate()){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'c'){
+               return response()->json([
+                'error' => [
+                    'message' => 'Please log in as company'
+                ]
+            ], 422);         
+        }
+        
+        $company = $user->getcompany();
+        $companyid = $company->company_id;
+        
+        $servicetobedeleted = Service::where('service_id',$id)->value('company_id');
+        
+        if($companyid != $servicetobedeleted)
         {
-            $deletedservice = Service::where('service_id',$request->service_id)->delete();
+            return response()->json([
+                'message' => 'This is not the correct company'
+            ], 400);
+        } 
+        
+        $resp = false;
+        if($id)
+        {
+            $reviewstobedeleted = Review::where('service_id',$id)->delete();
+            $deletedservice = Service::where('service_id',$id)->delete();
             $resp = "success";
         }
         if(!$resp)
