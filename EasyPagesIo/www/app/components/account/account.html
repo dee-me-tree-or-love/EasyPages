@@ -1,20 +1,15 @@
 <ion-view view-title="{{serv.title}}">
   <ion-content class="padding">
-
-    <div>
-      <h2>
-        First name: {{userprofile.fname}}        
-      </h2>
-        <h3>
-        Last name: {{userprofile.lname}}
-        </h3>
-      <h5>
-        Date of birth: {{userprofile.dob}}
-      </h5>
-        <h5>
-        Gender: {{userprofile.sex}}
-      </h5>
-    </div>
-      
-    </ion-content>
+    <ion-list>
+      <ion-item>
+        <span style="text alight right">{{user.username}}</span>
+        <hr/> Email: {{user.email}}
+        <br> Type: {{usertype}}
+        <br> Since: {{user.created_at}}
+      </ion-item>
+      <ion-item>
+          <ng-include src="mdl"></ng-include>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

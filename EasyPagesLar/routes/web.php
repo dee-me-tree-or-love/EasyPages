@@ -42,7 +42,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 	// our routes
     Route::resource('users', 'UserController');
-    Route::resource('company', 'CompanyController');
+    Route::resource('companies', 'CompanyController');
     Route::resource('profiles', 'ProfileController');
     Route::resource('reviews', 'ReviewController');
     Route::resource('services', 'ServiceController');
@@ -54,6 +54,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::post('newreview', 'ReviewController@store');
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');
+    Route::get('company/{id}', 'CompanyController@findbyuser');
     
 });
 

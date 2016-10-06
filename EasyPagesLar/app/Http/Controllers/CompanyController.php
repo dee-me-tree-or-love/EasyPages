@@ -79,6 +79,28 @@ class CompanyController extends Controller {
         ], 200);
     }
 
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function findbyuser($userid) {
+        $company = Company::where('user_id',$userid)->first();
+        $resp = $company;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
