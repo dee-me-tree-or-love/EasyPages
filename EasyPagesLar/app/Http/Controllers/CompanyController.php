@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Company;
+use App\Service;
 use Auth;
 
 class CompanyController extends Controller {
@@ -88,7 +89,15 @@ class CompanyController extends Controller {
      */
     public function findbyuser($userid) {
         $company = Company::where('user_id',$userid)->first();
-        $resp = $company;
+        $companyservices = $company->getservices();
+        $nrservices = Service::where('company_id',$company->company_id)->count();
+
+        $resp = array(
+            'company' => $company,
+            'nrservices' => $nrservices,
+            'companyservices' => $companyservices,
+        );
+
         if(!$resp)
         {
             return response()->json([

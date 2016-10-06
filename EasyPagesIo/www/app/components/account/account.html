@@ -8,7 +8,13 @@
         <br> Since: {{user.created_at}}
       </ion-item>
       <ion-item>
+        <h2>{{moduleTitle}}</h2>
+        <!--<span ng-click="moduleDisplay = true" ng-hide="moduleDisplay">Show</span>
+        <span ng-click="moduleDisplay = false" ng-show="moduleDisplay">Hide</span>
+        <div ng-show="moduleDisplay">-->
+        <div>
           <ng-include src="mdl"></ng-include>
+        </div>
       </ion-item>
     </ion-list>
   </ion-content>
