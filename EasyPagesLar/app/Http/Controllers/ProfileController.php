@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use Auth;
+use App\Http\Controllers\AuthenticateController;
 
 class ProfileController extends Controller {
 
@@ -59,8 +60,8 @@ class ProfileController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function show($profid) {
-        $profile = Profile::where('profile_id',$profid)->first();
+    public function show($userid) {
+        $profile = Profile::where('user_id',$userid)->first();
         $resp = $profile;
         if(!$resp)
         {

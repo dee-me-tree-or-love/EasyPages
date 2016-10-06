@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "2db00158fff2d3e3b1e3f1df6523eac3",
+=======
+    "hash": "e4d3e0c697593602ed129a84f62d4f52",
+>>>>>>> 21d674e1e2f7f7501f9cf5521c7d766b7e973954
     "content-hash": "5813268d0338644b6f68e39856eaa118",
     "packages": [
         {
@@ -2885,6 +2889,7 @@
         },
         {
             "name": "phpunit/phpunit",
+<<<<<<< HEAD
             "version": "5.5.7",
             "source": {
                 "type": "git",
@@ -2895,6 +2900,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3f67cee782c9abfaee5e32fd2f57cdd54bc257ba",
                 "reference": "3f67cee782c9abfaee5e32fd2f57cdd54bc257ba",
+=======
+            "version": "5.5.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "146e0fe0bb7f44d1cefade0c93e86fe0b206dd79"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/146e0fe0bb7f44d1cefade0c93e86fe0b206dd79",
+                "reference": "146e0fe0bb7f44d1cefade0c93e86fe0b206dd79",
+>>>>>>> 21d674e1e2f7f7501f9cf5521c7d766b7e973954
                 "shasum": ""
             },
             "require": {
@@ -2964,6 +2981,7 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2016-10-03 13:04:15"
         },
         {
@@ -2978,6 +2996,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/03500345483e1e17b52e2e4d34a89c9408ab2902",
                 "reference": "03500345483e1e17b52e2e4d34a89c9408ab2902",
+=======
+            "time": "2016-10-03 07:48:45"
+        },
+        {
+            "name": "phpunit/phpunit-mock-objects",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
+                "reference": "7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da",
+                "reference": "7462c19bdb9814f6e6bdeb5cad3eb3ce72c6e0da",
+>>>>>>> 21d674e1e2f7f7501f9cf5521c7d766b7e973954
                 "shasum": ""
             },
             "require": {
@@ -3023,7 +3057,11 @@
                 "mock",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2016-10-04 11:03:26"
+=======
+            "time": "2016-09-27 03:17:40"
+>>>>>>> 21d674e1e2f7f7501f9cf5521c7d766b7e973954
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
