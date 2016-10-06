@@ -36,6 +36,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
         }
       }
     })
+    .state('tab.review', {
+      url: '/reviews/:reviewId',
+      views: {
+        'tab-dash': {
+          templateUrl: 'app/components/review/review-detail.html',
+          controller: 'RvwCtrl'
+        }
+      }
+    })
 
     .state('tab.explore', {
       url: '/explore',
