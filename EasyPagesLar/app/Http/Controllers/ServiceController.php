@@ -135,9 +135,63 @@ class ServiceController extends Controller {
 //     * @param  int  $id
 //     * @return Response
 //     */
-//    public function update($id) {
-//        
-//    }
+    
+    
+    public function update($id, Request $request) {        
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'c'){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in as a company first'
+            ]
+            ]);
+        }
+        
+        $company = $user->getcompany();
+        $service = Service::where('service_id', $id)->first();
+        
+        if($service->company_id != $company->company_id){
+            return response()->json([
+                'error' => [
+                    'message' => 'This is not your service'
+            ]
+            ]);
+        }        
+        
+        if ($request->has('title')) {
+            $newTitle = $request->title;
+            Service::where('service_id', $id)->update(['title' => $newTitle]);
+        }
+        if ($request->has('description')) {
+            $newDescription = $request->description;
+            Service::where('service_id', $id)->update(['description' => $newDescription]);
+        }
+        if ($request->has('rating')) {
+            $newPrice = $request->price;
+            Service::where('service_id', $id)->update(['price' => $newPrice]);
+        }   
+        
+        $service = Service::where('service_id', $id)->first();
+        
+        $resp = $service;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
+    
 
     /**
      * Remove the specified resource from storage.

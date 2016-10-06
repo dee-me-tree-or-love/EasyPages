@@ -53,16 +53,18 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     //Delete or create review
     Route::delete('review/{id}/delete', 'ReviewController@destroy');
     Route::post('newreview', 'ReviewController@store');
+    Route::post('review/{id}/update', 'ReviewController@update');
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');
     //Create service
     Route::post('newservice', 'ServiceController@store'); //should check if a company
     Route::delete('service/{id}/delete', 'ServiceController@destroy');
+    Route::post('service/{id}/update', 'ServiceController@update');
     //Create profile or company
     Route::post('initprofile', 'ProfileController@store'); 
     Route::post('initcompany', 'CompanyController@store'); //should check if a company
-
-    Route::get('company/{id}', 'CompanyController@findbyuser');
+    //Find company
+    Route::get('company/{id}', 'CompanyController@findbyuser'); 
     
 
 });
@@ -76,24 +78,14 @@ Route::get('/home', 'HomeController@index');
 
 ///// redundant shit
 //// profile page link
-//Route::get('profile/{id}', 'ProfileController@show');
 //// redirects to a respective profile setup (individual or corporate)
 //Route::get('newprofile', 'HomeController@afterReg');
-//Route::post('initprofile', 'ProfileController@store'); 
 //Route::post('updateprofile', 'ProfileController@update');
-//// review creation link
-//Route::post('newreview', 'ReviewController@store');
 //// company related routes
-//Route::get('company/{id}', 'CompanyController@show'); 
-//Route::post('initcompany', 'CompanyController@store'); //should check if a company
 //Route::post('updatecompany', 'CompanyController@update'); //should check if a company
 //// service route managment
 //Route::get('services', 'ServiceController@index');
 //Route::get('service/{id}', ['uses' => 'ServiceController@show']);
-//Route::post('newservice', 'ServiceController@store'); //should check if a company
 //Route::delete('deleteservice', 'ServiceController@destroy');
 //// review route management
-//Route::get('reviews', 'ReviewController@index'); 
 //Route::get('review/{id}', ['uses' => 'ReviewController@show']);
-//Route::delete('deletereview', 'ReviewController@destroy');
-//// user related links
