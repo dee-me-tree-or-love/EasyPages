@@ -26,7 +26,7 @@ class Company extends Model {
     }
 
     public function companyservices() {
-        $services = $this->hasMany('Service');
+        $services = $this->hasMany('App\Service','company_id');
         
     }
 

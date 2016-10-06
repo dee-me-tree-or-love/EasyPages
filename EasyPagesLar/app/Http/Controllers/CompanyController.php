@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Company;
+use App\Service;
 use Auth;
 use JWTAuthentication;
 
@@ -96,6 +97,36 @@ class CompanyController extends Controller {
             'message' => $resp
         ], 200);
     }
+
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function findbyuser($userid) {
+        $company = Company::where('user_id',$userid)->first();
+        $companyservices = $company->getservices();
+        $nrservices = Service::where('company_id',$company->company_id)->count();
+
+        $resp = array(
+            'company' => $company,
+            'nrservices' => $nrservices,
+            'companyservices' => $companyservices,
+        );
+
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -1,0 +1,21 @@
+<!--
+    uses {{usercompany}}
+
+    -->
+<div>
+    {{usercompany}}
+    <br>
+    <br>
+    <span>Company name: <br><h2>{{usercompany.company.name}}</h2></span>
+    <br>
+    <span>Description: <br><h2>{{usercompany.company.description}}</h2></span>
+    <br>
+    <span>Website: <br><h2>{{usercompany.company.website}}</h2></span>
+    <br>
+    <!--a button to display/hide -->
+    <span>NrOfServices: <br><h2>{{usercompany.nrservices}}</h2> <span>Show All</span></span>
+
+    <div ng-repeat="service in usercompany.companyservices">
+    A service
+    </div>
+</div>
