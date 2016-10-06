@@ -50,7 +50,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::resource('servicepictures', 'ServicePictureController');
     Route::resource('profilepictures', 'ProfilePictureController');
     //Delete or create review
-    //Route::delete('deletereview', 'ReviewController@destroy');
+    Route::delete('deletereview', 'ReviewController@destroy');
     Route::post('newreview', 'ReviewController@store');
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');

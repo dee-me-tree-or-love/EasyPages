@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use App\Review;
 use App\Service;
 use JWTAuthentication;
+use Tymon\JWTAuth\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\AuthenticateController;
 
 class ReviewController extends Controller {
@@ -57,14 +59,22 @@ public function __construct(){
 //            'service_id' => 'required',
 //            'profile_id' => 'required',
 //        ]);
-        if (! $user = JWTAuthentication::parseToken()->authenticate()) {
-                return response()->json(['message' => 'Please log in first'], 404);
-            }       
         
-        if(! $request->profile_id || ! $request->service_id){
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
             return response()->json([
                 'error' => [
-                    'message' => 'Please Provide service_id and profile_id'
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        $userprofile = $user->getprofile();
+        $userprofileid = $userprofile->profile_id;
+        
+        if(! $request->service_id){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please provide service_id'
                 ]
             ], 422);
         }
@@ -73,7 +83,7 @@ public function __construct(){
         $review = new Review;
         $review->title = $request->title;
         $review->service_id = $request->service_id;
-        $review->profile_id = $request->profile_id;
+        $review->profile_id = $userprofileid;
         $review->description =$request->description;
         $review->rating =$request->rating;
         // should now be saved
@@ -144,6 +154,26 @@ public function __construct(){
      * @return Response
      */
     public function destroy(Request $request) {
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        $userprofile = $user->getprofile();
+        $userprofileid = $userprofile->profile_id;
+        
+        $reviewtobedeleted = Review::where('review_id',$request->review_id)->value('profile_id');
+        
+        if($userprofileid != $reviewtobedeleted)
+        {
+            return response()->json([
+                'message' => 'This is not the correct user'
+            ], 400);
+        }
+        
         $resp = false;
         if($request->has('review_id'))
         {
