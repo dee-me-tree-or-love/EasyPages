@@ -7,6 +7,7 @@ use App\User;
 use App\Company;
 use App\Service;
 use Auth;
+use JWTAuthentication;
 
 class CompanyController extends Controller {
 
@@ -46,18 +47,35 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'c'){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in as company first'
+            ]
+            ]);
+        }
+        
         $company = new Company;
-        $company->user_id = $request->user_id;
+        $company->user_id = $user->id;
         $company->name = $request->name;
         $company->description = $request->description;
         $company->website = $request->website;
         // should now be saved
         $company->save();
-
-        //$review = Review::create($input);  
-        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
-        //$vars = get_object_vars($company);
-        return redirect('/user/'.$company->user_id);
+        
+        
+        $resp = $company;
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -127,7 +145,15 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function update(Request $request) {
-        $company = Auth::user()->getcompany();
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        $company = $user->getcompany();
         if ($request->has('name')) {
             $newName = $request->name;
             Company::where('company_id', $company->company_id)

@@ -24,17 +24,16 @@ appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope) {
 
     $scope.createReview = function createReview(x) {
         //todo
-        $profileid = $rootScope.user.id;
         $url = 'http://localhost:8000/api/eplar/newreview';
         $http({
             method: 'POST',
             url: $url,
-            data: { title : x.title, rating : x.rating, description : x.description, service_id : $srvID, profile_id : $profileid}
+            data: { title : x.title, rating : x.rating, description : x.description, service_id : $srvID}
         })
     }
     
     $scope.removeReview = function removeReview(x) {
-        $url = 'http://localhost:8000/api/eplar/'
+        $url = 'http://localhost:8000/api/eplar/review/' + $rvwID + '/delete';
     }
 
 

@@ -141,9 +141,60 @@ public function __construct(){
 //     * @param  int  $id
 //     * @return Response
 //     */
-//    public function update($id) {
-//        
-//    }
+    public function update($id, Request $request) {        
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'i'){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in as individual first'
+            ]
+            ]);
+        }
+        
+        $profile = $user->getprofile();
+        $review = Review::where('review_id', $id)->first();
+        
+        if($review->profile_id != $profile->profile_id){
+            return response()->json([
+                'error' => [
+                    'message' => 'This is not your review'
+            ]
+            ]);
+        }        
+        
+        if ($request->has('title')) {
+            $newTitle = $request->title;
+            Review::where('review_id', $id)->update(['title' => $newTitle]);
+        }
+        if ($request->has('description')) {
+            $newDescription = $request->description;
+            Review::where('review_id', $id)->update(['description' => $newDescription]);
+        }
+        if ($request->has('rating')) {
+            $newRating = $request->rating;
+            Review::where('review_id', $id)->update(['rating' => $newRating]);
+        }        
+        
+        $review = Review::where('review_id', $id)->first();
+        
+        $resp = $review;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
 
     /**
      * Remove the specified resource from storage.
