@@ -91,7 +91,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           controller: 'RegCtrl'
         }
       }
+    }).state('tab.acinit', {
+      url: '/accountinit',
+      views: {
+        'tab-account': {
+          templateUrl: 'app/components/auth/setup/accountsetup.html',
+          controller: 'AccSetupCtrl'
+        }
+      }
     });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');

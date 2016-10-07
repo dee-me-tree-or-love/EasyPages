@@ -1,0 +1,44 @@
+<ion-view view-title="Personalize" name="register-view">
+    <ion-content scroll="false">
+
+<ion-item ng-href="#/tab/account">
+    <h2>{{user.username}}</h2>
+</ion-item>
+<!-- to be loaded from the module -->
+        <div id="accountsetup_div" class="padding">
+
+            <div class="list list-inset">
+                <label class="item item-divider padding">
+                    Personal Details:
+                 </label>
+                <label class="item item-input">
+              <input type="text" placeholder="First name" ng-model="data.fname">
+          </label>
+                <label class="item item-input">
+              <input type="text" placeholder="Last Name" ng-model="data.lname">
+          </label>
+          <label class="item item-divider padding">
+                   Date of Birth:
+                 </label>
+                <label class="item item-input">  
+              <input type="date" ng-model="data.dob"><span ng-hide="passMatch">
+          </label>
+                
+                    <label class="item item-divider padding">
+                    Gender:
+                 </label>
+                    <label class="item item-input">
+                <ion-radio ng-model="data.sex" ng-value="'s'">S</ion-radio>
+                <ion-radio ng-model="data.sex" ng-value="'m'">M</ion-radio>
+                <ion-radio ng-model="data.sex" ng-value="'f'">F</ion-radio>
+            </label>
+<!-- to be loaded from the module -->
+
+            </div>
+            <!--end of the list-->
+
+            <button class="button button-block button-positive" ng-click="proceed(data)" style="font-size: 14pt">Continue</button>
+        </div>
+
+    </ion-content>
+</ion-view>
