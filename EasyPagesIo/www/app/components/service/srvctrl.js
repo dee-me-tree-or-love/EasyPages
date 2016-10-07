@@ -3,7 +3,7 @@ appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope) {
     $scope.reviewtab = false;
     $scope.disp = function swap(x) {
         x = !x;
-    }
+    };
 
 
     $srvID = srvcururl.substr(srvcururl.length - 1, 1);
@@ -30,11 +30,20 @@ appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope) {
             url: $url,
             data: { title : x.title, rating : x.rating, description : x.description, service_id : $srvID}
         })
-    }
+    };
     
-    $scope.removeReview = function removeReview(x) {
+    $scope.removeReview = function removeReview($rvwID) {
         $url = 'http://localhost:8000/api/eplar/review/' + $rvwID + '/delete';
-    }
+        $http({
+        method: 'DELETE',
+        url: $url
+        }).then(function successCallback(response) {
+            // everything went well! 
+            $scope.stat = "OK"
+        }, function errorCallback(response) {
+            $scope.stat = response.data.message;
+        });
+    };
 
 
 });
