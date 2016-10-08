@@ -64,7 +64,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::post('initprofile', 'ProfileController@store'); 
     Route::post('initcompany', 'CompanyController@store'); //should check if a company
     //Find company
-    Route::get('company/{id}', 'CompanyController@findbyuser'); 
+    Route::get('company/user/{id}', 'CompanyController@findbyuser'); 
     
 
 });

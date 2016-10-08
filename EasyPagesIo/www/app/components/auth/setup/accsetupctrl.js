@@ -3,6 +3,12 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
     // definitely requires a factory
     $url = 'http://localhost:8000/api/eplar/authenticate/user';
     $scope.user = 0;
+    $scope.data = {};
+    $scope.mdl = "";
+
+    // intended to be a delegate
+    $scope.proceed = function () { };
+
     $http({
         method: 'GET',
         url: $url
@@ -21,16 +27,26 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
         //     $scope.mdl = 'app/components/account/companystuff/companypane.html';
         //     $scope.getUserCompany(response.data.user.id);
         // }
-        if ($rootScope.user.type != 'c') {
+        if ($scope.user.type != 'c') {
             $rootScope.usercompany = null;
             $scope.getUserProfile($rootScope.user.id);
-            $scope.profile = $rootScope.userprofile;
-            console.log("It's a PROFILE: " + JSON.stringify($rootScope.userprofile))
+            //$scope.profile = $rootScope.userprofile;
+            console.log("It's a PROFILE!");
+
+            // intended to be a delegate assignment
+            $scope.mdl = 'app/components/auth/setup/profilesetup/profilesetupmod.html';
+
+            
+
         } else {
             $rootScope.userprofile = null;
             $scope.getUserCompany($rootScope.user.id);
-            $scope.profile = $rootScope.usercompany;
-            console.log("It's a PROFILE: " + JSON.stringify($rootScope.usercompany))
+            //$scope.profile = $rootScope.usercompany;
+            console.log("It's a COMPANY!");
+
+            // intended to be a delegate assignment
+            $scope.mdl = 'app/components/auth/setup/companysetup/companysetupmod.html';
+            
         }
 
     }, function errorCallback(response) {
@@ -38,37 +54,40 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
     });
     //
 
-    
 
 
-    $scope.initializeAccout = function (x) {
+
+    $scope.initializeProfile = function (x) {
         if (x.fname && x.lname && x.dob) {
             $url = 'http://localhost:8000/api/eplar/initprofile';
             $http({
                 method: 'POST',
                 url: $url,
                 data: { fname: x.fname, lname: x.lname, dob: x.dob, sex: x.sex }
-            }).successCallback(function (respones) {
-                console.log(JSON.stringify(response));
             })
+            $state.go("tab.account");
         } else {
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));
         }
     }
-    $scope.updateAccout = function (x) {
+    $scope.updateProfile = function (x) {
         if (x.fname && x.lname && x.dob) {
-            $url = 'http://localhost:8000/api/eplar/initprofile';
+            $url = 'http://localhost:8000/api/eplar/profiles/';
             $http({
                 method: 'PUT',
                 url: $url,
                 data: { fname: x.fname, lname: x.lname, dob: x.dob, sex: x.sex }
-            }).successCallback(function (respones) {
-                console.log(JSON.stringify(response));
             })
+            $state.go("tab.account");
         } else {
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));
         }
     }
+
+
+
+
+
 
 
     $scope.getUserProfile = function getUser(userid) {
@@ -79,21 +98,60 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
         }).then(function successCallback(response) {
             // everything went well!
             $rootScope.userprofile = response.data.message;
+            // hopefully it would work
+             $scope.mdl = 'app/components/auth/setup/profilesetup/exprofilesetupmod.html';
         }, function errorCallback(response) {
 
         });
     }
 
+
+
+    $scope.initializeCompany = function (x) {
+        if (x.fname && x.lname && x.dob) {
+            $url = 'http://localhost:8000/api/eplar/initcompany';
+            $http({
+                method: 'POST',
+                url: $url,
+                data: { name: x.name, description: x.description, website: x.website }
+            })
+            $state.go("tab.account");
+        } else {
+            console.log("Here's what I got, something is missing: " + JSON.stringify(x));
+        }
+    }
+    $scope.updateCompany = function (x) {
+        if (x.name || x.description || x.website) {
+            $url = 'http://localhost:8000/api/eplar/companies/';
+            $http({
+                method: 'PUT',
+                url: $url,
+                data: { name: x.name, description: x.description, website: x.website }
+            })
+            $state.go("tab.account");
+        } else {
+            console.log("Here's what I got, something is missing: " + JSON.stringify(x));
+        }
+    }
+
+
+
+
+
+
     $scope.getUserCompany = function getUser(userid) {
-        $url = 'http://localhost:8000/api/eplar/company/' + userid;
+        $url = 'http://localhost:8000/api/eplar/company/user/' + userid;
         $http({
             method: 'GET',
             url: $url
         }).then(function successCallback(response) {
             // everything went well!
-            $rootScope.usercompany = response.data.message;
-        }, function errorCallback(response) {
+            $rootScope.usercompany = response.data.message.company;
+            // hopefully it would work
+             $scope.mdl = 'app/components/auth/setup/companysetup/excompanysetupmod.html';
 
+        }, function errorCallback(response) {
+            console.log(response);
         });
     }
 

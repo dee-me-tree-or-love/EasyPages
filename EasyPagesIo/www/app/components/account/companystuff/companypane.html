@@ -3,7 +3,6 @@
 
     -->
 <div>
-    {{usercompany}}
     <br>
     <br>
     <span>Company name: <br><h2>{{usercompany.company.name}}</h2></span>
@@ -16,6 +15,6 @@
     <span>NrOfServices: <br><h2>{{usercompany.nrservices}}</h2> <span>Show All</span></span>
 
     <div ng-repeat="service in usercompany.companyservices">
-    A service
+    <a href="#/tab/services/{{service.service_id}}">{{service.title}}</a>
     </div>
 </div>

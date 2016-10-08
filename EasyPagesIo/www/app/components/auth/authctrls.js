@@ -37,6 +37,8 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
                     disableBack: true
                 });
 
+                app.isLoggedIn = true;
+
                 $state.go('tab.account');
             })
                 .error(function () {
@@ -82,48 +84,11 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
                 }).success(function (response) {
                     console.log("success" + JSON.stringify(response));
                     var token = JSON.stringify(response);
-
-                    // a really fucking awful way, but whatever works...
-                    $auth.login($credentials).then(function () {
-                        // Return an $http request for the authenticated user
-                        $http.get('http://localhost:8000/api/eplar/authenticate').success(function (response) {
-
-                            // it returns all the users!
-                            console.log("success" + JSON.stringify(response));
-                            // Stringify the retured data
-                            var user = JSON.stringify(response.user);
-                            // ????
-                            console.log("success" + user);
-                            // Set the stringified user data into local storage
-                            localStorage.setItem('user', user);
-
-                            // Getting current user data from local storage
-                            $rootScope.currentUser = response.user;
-                            // $rootScope.currentUser = localStorage.setItem('user');;
-
-                            $ionicHistory.nextViewOptions({
-                                disableBack: true
-                            });
-
-                            $state.go('tab.acinit');
-                        })
-                            .error(function () {
-                                $scope.loginError = true;
-                                $scope.loginErrorText = "Error";
-                                console.log($scope.loginErrorText);
-                            })
-                    });
-                    // Set the stringified user data into local storage
-                    //localStorage.setItem('user', user);
-                    //localStorage.setItem('user', user);
-
-                    // Getting current user data from local storage
-
-                    // $rootScope.currentUser = localStorage.setItem('user');;
-
                     $ionicHistory.nextViewOptions({
                         disableBack: true
                     });
+                    app.isLoggedIn = true;
+                    $state.go('tab.acinit');
 
                 }).error(function () {
                     $scope.msg = "Error appeared";

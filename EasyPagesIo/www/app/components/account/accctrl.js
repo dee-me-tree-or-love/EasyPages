@@ -2,9 +2,11 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
 
     $url = 'http://localhost:8000/api/eplar/authenticate/user';
     $scope.user = 0;
+
     $scope.mdl = 'app/components/account/myFile.html';
     $scope.moduleTitle = "";
     $scope.moduleDisplay = false;
+
 
     // receiving stuff - authorization and all
     $http({
@@ -37,6 +39,7 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
 
 //methods - maybe we should add factories for the profiles and companies instead of declaring everythong int he controller? 
 
+
     $scope.getUserProfile = function getUser(userid) {
         $url = 'http://localhost:8000/api/eplar/profile/' + userid;
         $http({
@@ -51,7 +54,7 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
     }
 
     $scope.getUserCompany = function getUser(userid) {
-        $url = 'http://localhost:8000/api/eplar/company/' + userid;
+        $url = 'http://localhost:8000/api/eplar/company/user/' + userid;
         $http({
             method: 'GET',
             url: $url
