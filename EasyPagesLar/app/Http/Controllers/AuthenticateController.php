@@ -33,6 +33,26 @@ class AuthenticateController extends Controller
         return $users;
     }
     
+    public function logout()
+    {
+        try {
+        JWTAuthentication::invalidate(JWTAuthentication::getToken());
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+ 
+            return response()->json(['token_expired'], $e->getStatusCode());
+ 
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+ 
+            return response()->json(['token_invalid'], $e->getStatusCode());
+ 
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+ 
+            return response()->json(['token_absent'], $e->getStatusCode());
+ 
+        }
+        return response()->json(['Successfully logged out!']);        
+    }
+    
     public function register(Request $request) 
     {
     if(!$request->username || !$request->email || !$request->password || !$request->type)
