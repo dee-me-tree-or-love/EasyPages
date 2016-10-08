@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::post('authenticate', 'AuthenticateController@authenticate');    
     Route::post('registration', 'AuthenticateController@register');
     Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+    Route::post('logout', 'AuthenticateController@logout');
 	// our routes
     Route::resource('users', 'UserController');
     Route::resource('companies', 'CompanyController');
