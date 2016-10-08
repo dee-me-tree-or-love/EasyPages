@@ -37,7 +37,7 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
                     disableBack: true
                 });
 
-                app.isLoggedIn = true;
+                // app.isLoggedIn = true;
 
                 $state.go('tab.account');
             })
@@ -87,7 +87,7 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
                     $ionicHistory.nextViewOptions({
                         disableBack: true
                     });
-                    app.isLoggedIn = true;
+                    // app.isLoggedIn = true;
                     $state.go('tab.acinit');
 
                 }).error(function () {

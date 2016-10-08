@@ -95,7 +95,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
       url: '/accountinit',
       views: {
         'tab-account': {
-          templateUrl: 'app/components/auth/setup/accountsetup.html',
+          templateUrl: 'app/components/account/setup/accountsetup.html',
+          controller: 'AccSetupCtrl'
+        }
+      }
+    }).state('tab.acedit', {
+      url: '/accountinit',
+      views: {
+        'tab-account': {
+          templateUrl: 'app/components/account/setup/accountsetup.html',
           controller: 'AccSetupCtrl'
         }
       }
