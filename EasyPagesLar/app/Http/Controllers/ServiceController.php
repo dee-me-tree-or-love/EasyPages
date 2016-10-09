@@ -153,6 +153,46 @@ class ServiceController extends Controller {
 //     * @return Response
 //     */
     
+    public function search(Request $request){
+        $name = $request->name;
+        $services = Service::where('title', 'LIKE', '%'.$name.'%')->get();
+        return response()->json([
+            'message' => $services
+        ], 200);
+    }
+    
+    public function searchwithprice(Request $request){
+        $name = $request->name;
+        $price = $request->price;
+        if($price == 0)
+        {
+            $services = Service::where('title', 'LIKE', '%'.$name.'%')
+                ->whereBetween('price', [0, 5])
+                ->get();
+        }
+        else if($price == 1)
+        {
+            $services = Service::where('title', 'LIKE', '%'.$name.'%')
+                ->whereBetween('price', [5, 10])
+                ->get();
+        }
+        else if($price == 2)
+        {
+            $services = Service::where('title', 'LIKE', '%'.$name.'%')
+                ->whereBetween('price', [10, 50])
+                ->get();
+        }
+        else if($price == 3)
+        {
+            $services = Service::where('title', 'LIKE', '%'.$name.'%')
+                ->where('price', '>', 50)
+                ->get();
+        }
+        return response()->json([
+            'message' => $services
+        ], 200);
+    }
+    
     
     public function update($id, Request $request) {        
         if(! $user = JWTAuthentication::parseToken()->authenticate() ){
