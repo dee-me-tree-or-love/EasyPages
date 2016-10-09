@@ -4,23 +4,27 @@ app.service('Session', function ($rootScope, LOGGED_STATUS) {
     localStorage.setItem('user', user)
     localStorage.setItem('isAuthorized', LOGGED_STATUS.yes)
   };
+  
+  this.recalluser = function (){
+    return JSON.parse(localStorage.getItem('user'))
+  }
 
   this.rememberprofile = function (profile) {
-    localStorage.setItem('profile', profile)
+    localStorage.setItem('profile', JSON.stringify(profile))
     // maybe something else? 
   };
 
-  this.getprofile = function () {
-    return 
+  this.recallprofile = function () {
+    return JSON.parse(localStorage.getItem('profile'))
   };
 
   this.remembercompany = function (company) {
-    localStorage.setItem('company', company)
+    localStorage.setItem('company', JSON.stringify(company))
     // maybe something else? 
   };
 
-  this.getcompany = function () {
-
+  this.recallcompany = function () {
+    return JSON.parse(localStorage.getItem('company'))
   };
 
   this.destroy = function () {

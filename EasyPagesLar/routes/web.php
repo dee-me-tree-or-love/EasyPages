@@ -55,8 +55,11 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::delete('review/{id}/delete', 'ReviewController@destroy');
     Route::post('newreview', 'ReviewController@store');
     Route::post('review/{id}/update', 'ReviewController@update');
+    // get reviews by profile
+    Route::get('reviews/byprof/{id}', 'ReviewController@showbyprof'); 
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');
+    
     //Create service
     Route::post('newservice', 'ServiceController@store'); //should check if a company
     Route::post('services/searchbyname', 'ServiceController@search'); //SEARCH BY NAME 
