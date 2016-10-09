@@ -83,13 +83,13 @@ class ProfileController extends Controller {
             $profile = Profile::where('user_id',$userid)->first();
         if($profile)
         {
-            $nrreviews = Review::where('profile_id',$profile->profile_id)->count();
+            //$nrreviews = Review::where('profile_id',$profile->profile_id)->count();
             $profilereviews = $profile->getreviews();    
         }
        
         $resp = array(
             'profile'=>$profile,
-            'nrreviews' => $nrreviews,
+            //'nrreviews' => $nrreviews,
             'profilereviews' => $profilereviews,
         );
         if(!$resp)

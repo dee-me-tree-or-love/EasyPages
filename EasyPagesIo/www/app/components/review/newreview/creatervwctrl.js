@@ -1,4 +1,6 @@
-appcntrls.controller('NewRvwCtrl', function ($scope, $http, $state, $stateParams, $ionicHistory, $rootScope, ReviewFactory, LOGGED_STATUS) {
+appcntrls.controller('NewRvwCtrl', function ($scope, $http, $state, 
+$stateParams, $ionicHistory, $rootScope, 
+ReviewFactory, LOGGED_STATUS) {
     if ((localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes)) {
         $scope.user = localStorage.getItem('user');
         if ($scope.user.type != 'c') {

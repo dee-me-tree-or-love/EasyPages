@@ -96,7 +96,7 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
                 var token = JSON.stringify(response);
                 authService.login($credentials);
             }).error(function () {
-                $scope.msg = "Error appeared";
+                //$scope.msg = "Error appeared";
                 console.log("Error appeared" + JSON.stringify($credentials));
             });
 
