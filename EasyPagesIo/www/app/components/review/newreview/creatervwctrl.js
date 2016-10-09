@@ -2,10 +2,9 @@ appcntrls.controller('NewRvwCtrl', function ($scope, $http, $state, $stateParams
     if ((localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes)) {
         $scope.user = localStorage.getItem('user');
         if ($scope.user.type != 'c') {
-            $scope.mdl = 'for profles';
-        }
-        {
-            $scope.mdl = 'for companies';
+            $scope.mdl = 'app/components/review/newreview/forprofiles/templ.html';
+        }else{
+            $scope.mdl = 'app/components/review/newreview/forcompanies/templ.html';
         }
     } else {
         $state.go('tab.login')

@@ -14,7 +14,7 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
                 // Stringify the retured data
                 console.log(response);
                 var user = JSON.stringify(response.user);
-
+                
                 // Set the stringified user data into local storage
                 //localStorage.setItem('user', user);
                 Session.create(user);
