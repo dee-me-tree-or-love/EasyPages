@@ -32,6 +32,7 @@ app.service('ReviewFactory', function($http) {
        return review = {};
     });
    }
+
    reviewService.publish = function ($newreview){
     
         $url = 'http://localhost:8000/api/eplar/newreview';
@@ -42,6 +43,7 @@ app.service('ReviewFactory', function($http) {
         })
 
    }
+   
    reviewService.remove = function ($delreview){
      // todo
    }

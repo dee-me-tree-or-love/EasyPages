@@ -2,9 +2,9 @@
 app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $auth, $rootScope) {
     var authService = {};
 
-    authService.isAuthenticated = function () {
-        return app.isLoggedIn;
-    };
+    // authService.isAuthenticated = function () {
+    //     return app.isLoggedIn;
+    // };
 
     //returns false, if an error occured
     authService.login = function ($credentials) {

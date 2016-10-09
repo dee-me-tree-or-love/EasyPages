@@ -90,6 +90,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
     // })
 
     .state('tab.account', {
+      cache: false,
       url: '/account',
       views: {
         'tab-account': {
@@ -114,6 +115,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       }
     })
     .state('tab.register', {
+      cache: false,
       url: '/register',
       views: {
         'tab-account': {
@@ -126,6 +128,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       }
     }).state('tab.acinit', {
       url: '/accountinit',
+      cache: false,
       views: {
         'tab-account': {
           templateUrl: 'app/components/account/setup/accountsetup.html',
@@ -137,6 +140,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       }
     }).state('tab.acedit', {
       url: '/accountinit',
+      cache: false,
       views: {
         'tab-account': {
           templateUrl: 'app/components/account/setup/accountsetup.html',

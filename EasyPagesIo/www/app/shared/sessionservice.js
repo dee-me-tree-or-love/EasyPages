@@ -1,22 +1,30 @@
 app.service('Session', function ($rootScope, LOGGED_STATUS) {
-    // called at login
+  // called at login
   this.create = function (user) {
-    localStorage.setItem('user',user)
-    localStorage.setItem('isAuthorized',LOGGED_STATUS.yes)
+    localStorage.setItem('user', user)
+    localStorage.setItem('isAuthorized', LOGGED_STATUS.yes)
   };
 
   this.rememberprofile = function (profile) {
-    localStorage.setItem('profile',profile)
+    localStorage.setItem('profile', profile)
     // maybe something else? 
   };
 
+  this.getprofile = function () {
+    return 
+  };
+
   this.remembercompany = function (company) {
-    localStorage.setItem('company',company)
+    localStorage.setItem('company', company)
     // maybe something else? 
+  };
+
+  this.getcompany = function () {
+
   };
 
   this.destroy = function () {
     localStorage.clear();
-    localStorage.setItem('isAuthorized',LOGGED_STATUS.no)
+    localStorage.setItem('isAuthorized', LOGGED_STATUS.no)
   };
 })
