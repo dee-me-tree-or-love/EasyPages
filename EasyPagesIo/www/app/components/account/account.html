@@ -1,8 +1,11 @@
 <ion-view view-title="{{serv.title}}">
   <ion-content class="padding">
     <ion-list>
+      <ion-item class="item-divider">
+        <h2>{{user.username}}<a style="float: right" ng-click="logout()">LOG OUT</a></h2>
+      </ion-item>
       <ion-item>
-        <span style="text alight right">{{user.username}}</span>
+       
         <hr/> Email: {{user.email}}
         <br> Type: {{usertype}}
         <br> Since: {{user.created_at}}
@@ -10,15 +13,15 @@
       <ion-item class="item-divider">
         <h2>{{moduleTitle}}<a style="float: right" ng-href="#/tab/accountinit">EDIT</a></h2>
       </ion-item>
-      <ion-item>
+      
         
         <!--<span ng-click="moduleDisplay = true" ng-hide="moduleDisplay">Show</span>
         <span ng-click="moduleDisplay = false" ng-show="moduleDisplay">Hide</span>
         <div ng-show="moduleDisplay">-->
-        <div>
+
           <ng-include src="mdl"></ng-include>
-        </div>
-      </ion-item>
+
+
     </ion-list>
   </ion-content>
 </ion-view>

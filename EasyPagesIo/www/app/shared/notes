@@ -1,50 +1,70 @@
-// a service to control the authorization and atuhentication
-app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $auth, $rootScope) {
+$auth.login(credentials).then(function() {
+                // Return an $http request for the authenticated user
+                $http.get('http://localhost:8000/api/authenticate/user').success(function(response){
+                    // Stringify the retured data
+                    var user = JSON.stringify(response.user);
+ 
+                    // Set the stringified user data into local storage
+                    localStorage.setItem('user', user);
+ 
+                    // Getting current user data from local storage
+                    $rootScope.currentUser = response.user;
+                    // $rootScope.currentUser = localStorage.setItem('user');;
+                    
+                    $ionicHistory.nextViewOptions({
+                      disableBack: true
+                    });
+ 
+                    $state.go('app.jokes');
+                })
+                .error(function(){
+                    $scope.loginError = true;
+                    $scope.loginErrorText = error.data.error;
+                    console.log($scope.loginErrorText);
+                })
+            });
+
+
+
+            /////
+
+            // a service to control the authorization and atuhentication
+app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $auth) {
     var authService = {};
 
     authService.isAuthenticated = function () {
         return app.isLoggedIn;
     };
 
-    //returns false, if an error occured
     authService.login = function ($credentials) {
-        $auth.login($credentials).then(function () {
+        // $auth.login($credentials).then(function () {
             // Return an $http request for the authenticated user
-            $http.get('http://localhost:8000/api/eplar/authenticate/user').success(function (response) {
+            $http.get('http://localhost:8000/api/eplar/authenticate/').success(function (response) {
                 // Stringify the retured data
                 console.log(response);
                 var user = JSON.stringify(response.user);
 
                 // Set the stringified user data into local storage
-                //localStorage.setItem('user', user);
-                Session.create(user);
+                localStorage.setItem('user', user);
+
                 // Getting current user data from local storage
-                //$rootScope.currentUser = response.user;
+                $rootScope.currentUser = response.user;
                 // $rootScope.currentUser = localStorage.setItem('user');;
 
                 $ionicHistory.nextViewOptions({
                     disableBack: true
                 });
 
-                $state.go('tab.account');
+                $state.go('app.jokes');
             })
-        })
-            .error( function (error) {
-                var loginError = true;
-                var loginErrorText = error;
-                console.log(loginErrorText);
-                return false;
-            });
+        //     })
+        //         .error(function (error) {
+        //             var loginError = true;
+        //             var loginErrorText = error;
+        //             console.log(loginErrorText);
+        //         })
+        // });
     }
-
-    authService.logout = function () {
-        Session.destroy();
-        $ionicHistory.nextViewOptions({
-                    disableBack: true
-                });
-        $state.go('tab.login');
-    }
-
     // $http.get('http://localhost:8000/api/eplar/authenticate').success(function (response) {
 
     //     // it returns all the users!
@@ -94,7 +114,12 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
             }).success(function (response) {
                 console.log("success" + JSON.stringify(response));
                 var token = JSON.stringify(response);
-                authService.login($credentials);
+                $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
+                // app.isLoggedIn = true;
+                $state.go('tab.acinit');
+
             }).error(function () {
                 $scope.msg = "Error appeared";
                 console.log("Error appeared" + JSON.stringify($credentials));

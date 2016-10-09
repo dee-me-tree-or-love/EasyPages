@@ -1,4 +1,4 @@
-app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_STATUS) {
 
 
   $authProvider.loginUrl = 'http://localhost:8000/api/eplar/authenticate';
@@ -25,6 +25,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/dashboard/tab-dash.html',
           controller: 'DashCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
       }
     })
     .state('tab.service', {
@@ -34,6 +37,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/service/serv-detail.html',
           controller: 'ServCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
       }
     })
     .state('tab.review', {
@@ -43,6 +49,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/review/review-detail.html',
           controller: 'RvwCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
+      }
+    })
+    .state('tab.newreview', {
+      url: '/reviews/publish/:serviceId',
+      views: {
+        'tab-dash': {
+          templateUrl: 'app/components/review/newreview/creatervw.html',
+          controller: 'NewRvwCtrl'
+        }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.yes
       }
     })
 
@@ -53,17 +74,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/explore/tab-explore.html',
           controller: 'ExploreCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    // .state('tab.chat-detail', {
+    //   url: '/chats/:chatId',
+    //   views: {
+    //     'tab-chats': {
+    //       templateUrl: 'templates/chat-detail.html',
+    //       controller: 'ChatDetailCtrl'
+    //     }
+    //   }
+    // })
 
     .state('tab.account', {
       url: '/account',
@@ -72,6 +96,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/account/account.html',
           controller: 'AccCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.yes
       }
     })
     .state('tab.login', {
@@ -81,6 +108,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/auth/authlogin.html',
           controller: 'LoginCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.no
       }
     })
     .state('tab.register', {
@@ -90,6 +120,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/auth/authreg.html',
           controller: 'RegCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.no
       }
     }).state('tab.acinit', {
       url: '/accountinit',
@@ -98,6 +131,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/account/setup/accountsetup.html',
           controller: 'AccSetupCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.yes
       }
     }).state('tab.acedit', {
       url: '/accountinit',
@@ -106,6 +142,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider) {
           templateUrl: 'app/components/account/setup/accountsetup.html',
           controller: 'AccSetupCtrl'
         }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.yes
       }
     });
 

@@ -7,3 +7,7 @@ input::-webkit-calendar-picker-indicator{
 input[type="date"]::-webkit-input-placeholder{ 
     visibility: hidden !important;
 }
+
+* {
+    white-space: normal !important;
+}

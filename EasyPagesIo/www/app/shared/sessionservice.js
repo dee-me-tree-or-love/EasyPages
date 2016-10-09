@@ -1,12 +1,22 @@
-app.service('Session', function () {
-  this.create = function (sessionId, userId, userRole) {
-    this.id = sessionId;
-    this.userId = userId;
-    this.userRole = userRole;
+app.service('Session', function ($rootScope, LOGGED_STATUS) {
+    // called at login
+  this.create = function (user) {
+    localStorage.setItem('user',user)
+    localStorage.setItem('isAuthorized',LOGGED_STATUS.yes)
   };
+
+  this.rememberprofile = function (profile) {
+    localStorage.setItem('profile',profile)
+    // maybe something else? 
+  };
+
+  this.remembercompany = function (company) {
+    localStorage.setItem('company',company)
+    // maybe something else? 
+  };
+
   this.destroy = function () {
-    this.id = null;
-    this.userId = null;
-    this.userRole = null;
+    localStorage.clear();
+    localStorage.setItem('isAuthorized',LOGGED_STATUS.no)
   };
 })

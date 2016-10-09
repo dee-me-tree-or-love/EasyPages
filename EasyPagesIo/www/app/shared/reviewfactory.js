@@ -1,30 +1,52 @@
-app.factory('ReviewsFactory', function($http) {
+app.service('ReviewFactory', function($http) {
   // Might use a resource here that returns a JSON array
-   var reviews = [];
-   $http({
+
+   var reviewService = {};
+
+   reviewService.getAll = function($rvwContainer){
+     $http({
         method: 'GET',
         url: 'http://localhost:8000/api/eplar/reviews'
     }).then(function successCallback(response) {
         // everything went well! 
-        reviews = response.data.message;
+        return $rvwContainer = response.data.message;
     }, function errorCallback(response) {
         //nothing happens
+        return $rvwContainer;
     });
+   }
+   
+   reviewService.getById = function ($revID){
+    $url = 'http://localhost:8000/api/eplar/reviews/' + $revID;
+    var review = 0;
+    var comments = [];
 
-  return {
-    all: function() {
-      return reviews;
-    },
-    remove: function(review) {
-      reviews.splice(review.indexOf(chat), 1);
-    },
-    get: function(reviewId) {
-      for (var i = 0; i < reviews.length; i++) {
-        if (reviews[i].review_id === parseInt(reviewId)) {
-          return reviews[i];
-        }
-      }
-      return null;
-    }
-  };
+    $http({
+        method: 'GET',
+        url: $url
+    }).then(function successCallback(response) {
+        // everything went well! 
+        return review = response.data.message;
+        //$scope.comments = response.data.message.comments;
+    }, function errorCallback(response) {
+       return review = {};
+    });
+   }
+   reviewService.publish = function ($newreview){
+    
+        $url = 'http://localhost:8000/api/eplar/newreview';
+        $http({
+            method: 'POST',
+            url: $url,
+            data: { title : $newreview.title, rating : $newreview.rating, description : $newreview.description, service_id : $newreview.service_id}
+        })
+
+   }
+   reviewService.remove = function ($delreview){
+     // todo
+   }
+
+
+  return reviewService;
+  
 });

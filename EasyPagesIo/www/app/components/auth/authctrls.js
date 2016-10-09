@@ -1,5 +1,4 @@
-app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHistory, $state) {
-
+app.controller('LoginCtrl', function ($scope, AuthService, Session, $http, $rootScope, $ionicHistory, $state) {
 
 
     // auth method
@@ -16,37 +15,39 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
 
         console.log($credentials);
 
-        $auth.login($credentials).then(function () {
-            // Return an $http request for the authenticated user
-            $http.get('http://localhost:8000/api/eplar/authenticate').success(function (response) {
+        AuthService.login($credentials);
 
-                // it returns all the users!
-                console.log("success" + JSON.stringify(response));
-                // Stringify the retured data
-                var user = JSON.stringify(response.user);
-                // ????
-                console.log("success" + user);
-                // Set the stringified user data into local storage
-                localStorage.setItem('user', user);
 
-                // Getting current user data from local storage
-                $rootScope.currentUser = response.user;
-                // $rootScope.currentUser = localStorage.setItem('user');;
+       
+            // // Return an $http request for the authenticated user
+            // $http.get('http://localhost:8000/api/eplar/authenticate').success(function (response) {
 
-                $ionicHistory.nextViewOptions({
-                    disableBack: true
-                });
+            //     // it returns all the users!
+            //     console.log("success" + JSON.stringify(response));
+            //     // Stringify the retured data
+            //     var user = JSON.stringify(response.user);
+            //     // ????
+            //     console.log("success" + user);
+            //     // Set the stringified user data into local storage
+            //     localStorage.setItem('user', user);
 
-                // app.isLoggedIn = true;
+            //     // Getting current user data from local storage
+            //     $rootScope.currentUser = response.user;
+            //     // $rootScope.currentUser = localStorage.setItem('user');;
 
-                $state.go('tab.account');
-            })
-                .error(function () {
-                    $scope.loginError = true;
-                    $scope.loginErrorText = "Error";
-                    console.log($scope.loginErrorText);
-                })
-        });
+            //     $ionicHistory.nextViewOptions({
+            //         disableBack: true
+            //     });
+
+            //     // app.isLoggedIn = true;
+
+            //     $state.go('tab.account');
+            // })
+            //     .error(function () {
+            //         $scope.loginError = true;
+            //         $scope.loginErrorText = "Error";
+            //         console.log($scope.loginErrorText);
+            //     })
     }
 
 })
@@ -56,7 +57,7 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
 
     // for the REGISTRATION
 
-    .controller('RegCtrl', function ($scope, $auth, $http, $rootScope, $ionicHistory, $state) {
+    .controller('RegCtrl', function ($scope, AuthService, Session, $http, $rootScope, $ionicHistory, $state) {
         $scope.data = {};
         // being checked inside of the template
         $scope.passMatch = true;
@@ -75,25 +76,25 @@ app.controller('LoginCtrl', function ($scope, $auth, $http, $rootScope, $ionicHi
                     + $credentials.username
                     + " - PW: " + $credentials.password);
 
+                AuthService.register($credentials);    
+                // $url = 'http://localhost:8000/api/eplar/registration';
+                // $http({
+                //     method: 'POST',
+                //     url: $url,
+                //     data: { username: $credentials.username, email: $credentials.email, password: $credentials.password, type: $credentials.type }
+                // }).success(function (response) {
+                //     console.log("success" + JSON.stringify(response));
+                //     var token = JSON.stringify(response);
+                //     $ionicHistory.nextViewOptions({
+                //         disableBack: true
+                //     });
+                //     // app.isLoggedIn = true;
+                //     $state.go('tab.acinit');
 
-                $url = 'http://localhost:8000/api/eplar/registration';
-                $http({
-                    method: 'POST',
-                    url: $url,
-                    data: { username: $credentials.username, email: $credentials.email, password: $credentials.password, type: $credentials.type }
-                }).success(function (response) {
-                    console.log("success" + JSON.stringify(response));
-                    var token = JSON.stringify(response);
-                    $ionicHistory.nextViewOptions({
-                        disableBack: true
-                    });
-                    // app.isLoggedIn = true;
-                    $state.go('tab.acinit');
-
-                }).error(function () {
-                    $scope.msg = "Error appeared";
-                    console.log("Error appeared" + JSON.stringify($credentials));
-                });
+                // }).error(function () {
+                //     $scope.msg = "Error appeared";
+                //     console.log("Error appeared" + JSON.stringify($credentials));
+                // });
 
 
 

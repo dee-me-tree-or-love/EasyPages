@@ -1,0 +1,31 @@
+appcntrls.controller('NewRvwCtrl', function ($scope, $http, $state, $stateParams, $ionicHistory, $rootScope, ReviewFactory, LOGGED_STATUS) {
+    if ((localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes)) {
+        $scope.user = localStorage.getItem('user');
+        if ($scope.user.type != 'c') {
+            $scope.mdl = 'for profles';
+        }
+        {
+            $scope.mdl = 'for companies';
+        }
+    } else {
+        $state.go('tab.login')
+    }
+    $scope.service_id = $stateParams.serviceId;
+    console.log($scope.mdl)
+    $scope.createReview = function createReview(x) {
+        x.service_id = $stateParams.serviceId;
+        ReviewFactory.publish(x);
+
+         $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });
+
+        $state.go('tab.service',{serviceId: $scope.service_id})
+    }
+
+
+
+
+
+});
+

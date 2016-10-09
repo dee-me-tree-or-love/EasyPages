@@ -1,12 +1,14 @@
-app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHistory, $state) {
+app.controller('AccCtrl', function ($scope, $auth, AuthService, $http, $rootScope, $ionicHistory, $state) {
 
     $url = 'http://localhost:8000/api/eplar/authenticate/user';
     $scope.user = 0;
-
     $scope.mdl = 'app/components/account/myFile.html';
     $scope.moduleTitle = "";
     $scope.moduleDisplay = false;
 
+    $scope.logout = function(){
+        AuthService.logout();
+    }
 
     // receiving stuff - authorization and all
     $http({
@@ -15,10 +17,9 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
     }).then(function successCallback(response) {
         // everything went well!
         $rootScope.user = response.data.user;
-
         console.log("me here"+JSON.stringify(response))
         // for the ease of use    
-        $scope.user = $rootScope.user;
+        $scope.user = response.data.user;
         if ($scope.user.type !== 'c') {
             $scope.moduleTitle = "Your Profile"
             $scope.getUserProfile(response.data.user.id);
@@ -49,7 +50,7 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
             // everything went well!
             $rootScope.userprofile = response.data.message;
         }, function errorCallback(response) {
-
+            $state.go('tab.acinit');
         });
     }
 
@@ -62,7 +63,7 @@ app.controller('AccCtrl', function ($scope, $auth, $http, $rootScope, $ionicHist
             // everything went well!
             $rootScope.usercompany = response.data.message;
         }, function errorCallback(response) {
-
+            $state.go('tab.acinit');
         });
     }
 

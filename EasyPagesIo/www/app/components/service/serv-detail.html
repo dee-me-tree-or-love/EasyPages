@@ -1,4 +1,4 @@
-<ion-view view-title="{{serv.title}}">
+<ion-view view-title="Overview">
   <ion-content class="padding">
 
     <div>
@@ -12,10 +12,10 @@
         {{serv.description}}
       </p>
     </div>
-    <div class="item-divider" >
-      <span ng-click="reviewtab = !reviewtab" style="cursor: pointer"  class="padding-left">Add review | {{reviewtab}}</span>
-      <span ng-click="" style="float: right" class="padding-right">Save</span>
-    </div>
+    <ion-item class="item-divider item-stable" href="#/tab/reviews/publish/{{srvID}}">
+        Add review | GO
+    </ion-item>
+    <!--
     <ion-item ng-show="reviewtab">
       <form id="newreview" ng-submit="createReview(rvw)">
         <div class="list">
@@ -29,7 +29,7 @@
           </label>
           <label class="item item-input item-stacked-label">
             <span class="input-label">Description</span>
-            <!--<input type="text" placeholder="Give impression a name." ng-model="task.title">-->
+            <!--<input type="text" placeholder="Give impression a name." ng-model="task.title"> - ->
             <textarea ng-model="rvw.description" form="newreview"  placeholder="Is there something else you'd like to share?'">
 
             </textarea>
@@ -40,18 +40,25 @@
         </div>
       </form>
     </ion-item>
+    -->
     <hr>
 
 
 
     <ion-list>
-      <ion-item class="item-remove-animate item-icon-right" ng-repeat="review in reviews" type="item-text-wrap">
-
-        <h3>{{review.title}}</h3>
-        <p>{{review.description}}</p>
-        <button ng-click="removeReview(review.review_id)">DELETE</button>
+      <ion-item class="item-remove-animate item-icon-right" 
+        ng-repeat="review in reviews" 
+        type="item-text-wrap" 
+        href="#/tab/reviews/{{review.review_id}}">
+        <div >
+          <h3>{{review.relprofile.fname}} {{review.relprofile.lname}}</h3>
+          <hr/>
+          <h3>{{review.title}}<span style="float: right">Rating: {{review.rating}}</span></h3>
+          <p>{{review.description}}</p>
+        </div>
+        <!-- <button ng-click="removeReview(review.review_id)">DELETE</button>     -->
       </ion-item>
-      </ion-list>
+    </ion-list>
 
   </ion-content>
 </ion-view>

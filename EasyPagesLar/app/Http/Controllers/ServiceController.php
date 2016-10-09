@@ -16,7 +16,7 @@ class ServiceController extends Controller {
      * @return Response
      */
     public function index() {
-        $services = Service::with('serreviews','relcompany')->get();
+        $services = Service::with('serreviews.relprofile','relcompany')->get();
         $resp = $services;
         if($resp == null)
         {
@@ -100,14 +100,31 @@ class ServiceController extends Controller {
      */
     public function show($service_id) {
         //$service = Service::where('service_id', $service_id)->first();
-        $service = Service::with('relcompany')->find($service_id); // fix!
-		$reviews = Review::where('service_id', $service_id)->get();
+        $service = Service::with('serreviews.relprofile','relcompany')->find($service_id); // fix!
 		
-        $data = array(
-            'service' => $service,
-            'reviews' => $reviews,
-        );
-        $resp =  compact('service', 'reviews');
+        $resp =  compact('service');
+        if(!$service)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
+
+     /**
+     * Display the minimal info about resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function minshow($service_id) {
+        $service = Service::where('service_id', $service_id)->first();
+        //$service = Service::with('serreviews.relprofile','relcompany')->find($service_id); // fix!
+		
+        $resp =  compact('service');
         if(!$service)
         {
             return response()->json([

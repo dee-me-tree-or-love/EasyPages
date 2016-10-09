@@ -1,13 +1,13 @@
-appcntrls.controller('RvwCtrl', function ($scope, $http, $rootScope) {
-    var rvwcururl = window.location.href;
+appcntrls.controller('RvwCtrl', function ($scope, $http, $rootScope,$stateParams) {
+   
     $scope.commenttab = false;
     $scope.disp = function swap(x) {
         x = !x;
     }
 
 
-    $srvID = rvwcururl.substr(rvwcururl.length - 1, 1);
-    $url = 'http://localhost:8000/api/eplar/reviews/' + $srvID;
+    $scope.revwID = $stateParams.reviewId;
+    $url = 'http://localhost:8000/api/eplar/reviews/' + $scope.revwID;
     $scope.review = 0;
     $scope.comments = [];
 

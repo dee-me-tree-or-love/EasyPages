@@ -6,8 +6,6 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
     $scope.data = {};
     $scope.mdl = "";
 
-    // intended to be a delegate
-    $scope.proceed = function () { };
 
     $http({
         method: 'GET',
@@ -34,7 +32,7 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
             console.log("It's a PROFILE!");
 
             // intended to be a delegate assignment
-            $scope.mdl = 'app/components/auth/setup/profilesetup/profilesetupmod.html';
+            $scope.mdl = 'app/components/account/setup/profilesetup/profilesetupmod.html';
 
             
 
@@ -45,7 +43,7 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
             console.log("It's a COMPANY!");
 
             // intended to be a delegate assignment
-            $scope.mdl = 'app/components/auth/setup/companysetup/companysetupmod.html';
+            $scope.mdl = 'app/components/account/setup/companysetup/companysetupmod.html';
             
         }
 
@@ -99,7 +97,7 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
             // everything went well!
             $rootScope.userprofile = response.data.message;
             // hopefully it would work
-             $scope.mdl = 'app/components/auth/setup/profilesetup/exprofilesetupmod.html';
+             $scope.mdl = 'app/components/account/setup/profilesetup/exprofilesetupmod.html';
         }, function errorCallback(response) {
 
         });
@@ -148,7 +146,7 @@ app.controller('AccSetupCtrl', function ($scope, $auth, $http, $rootScope, $ioni
             // everything went well!
             $rootScope.usercompany = response.data.message.company;
             // hopefully it would work
-             $scope.mdl = 'app/components/auth/setup/companysetup/excompanysetupmod.html';
+             $scope.mdl = 'app/components/account/setup/companysetup/excompanysetupmod.html';
 
         }, function errorCallback(response) {
             console.log(response);

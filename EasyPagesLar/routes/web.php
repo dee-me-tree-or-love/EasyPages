@@ -60,6 +60,7 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     //Create service
     Route::post('newservice', 'ServiceController@store'); //should check if a company
     Route::delete('service/{id}/delete', 'ServiceController@destroy');
+    Route::get('service/min/{id}', 'ServiceController@minshow');
     Route::post('service/{id}/update', 'ServiceController@update');
     //Create profile or company
     Route::post('initprofile', 'ProfileController@store'); 

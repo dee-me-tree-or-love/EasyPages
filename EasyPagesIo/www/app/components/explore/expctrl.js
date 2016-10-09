@@ -1,7 +1,8 @@
-appcntrls.controller('ExploreCtrl', function ($scope, $http, ReviewsFactory) {
+appcntrls.controller('ExploreCtrl', function ($scope, $http, ReviewFactory) {
 
+    $scope.reviews = [];
 
-    this.reviews = ReviewsFactory.all();
+    ReviewFactory.getAll($scope.reviews);
     console.log("formed ctrl instance");
     $scope.searchOptions = ['service', 'people', 'companies'];
     $scope.showCancel = false;
@@ -21,7 +22,7 @@ appcntrls.controller('ExploreCtrl', function ($scope, $http, ReviewsFactory) {
 
     $scope.refresh = function refresh() {
         console.log("refresh called");
-        this.reviews = ReviewsFactory.all();
+        ReviewFactory.getAll($scope.reviews);
         // Stop the ion-refresher from spinning
         $scope.$broadcast('scroll.refreshComplete');
 
