@@ -3,6 +3,14 @@
 
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
 
+        <div>
+            <br>
+                <input type="radio" name="price" value="0"> $0 - $5
+                <input type="radio" name="price" value="1"> $5 - $10
+                <input type="radio" name="price" value="2"> $10 - $50
+                <input type="radio" name="price" value="3"> $50+
+            <br>
+        </div>
         <div class="bar bar-header item-input-inset">
             <label class="item-input-wrapper">
    <i class="icon ion-ios-search-strong placeholder-icon"></i>
@@ -15,6 +23,7 @@
        <i class="icon ion-ios-close-outline placeholder-icon"></i>
     </a>
 </label>
+            
             <button ng-click="SubmitSearch(search.string)" class="button input-button button-clear button-stable padding-left" ng-if="search.string.length">GO</button>
 
         </div>
@@ -33,52 +42,38 @@
             <a class="button button-medium">People</a> <!-- [ People ] -->
         </div>
 
-        <div class="card" ng-if="!reviews.length">
+        <div class="card" ng-if="!services.length">
             <div class="item item-text-wrap">
                 Oups, seems empty?
                 <br/> Upp up to refresh :)
             </div>
         </div>
+        
+        
 
 
 
-
-        <div class="list card" ng-if="reviews.length" ng-repeat="review in reviews">
-
-
-
-            <div class="item item-avatar">
-                <img src="assets/img/adam.jpg">
-                <h2>{{review.relprofile.fname}} {{review.relprofile.lname}}
-                    <p>{{review.updated_at}} </p>
-                </h2>
-                <hr/>
-                <h2>{{review.relservice.title}}</h2>
-                <p>
-                    Rating: {{review.rating}}
-                </p>
+        <div class="list card" ng-if="services.length" ng-repeat="service in services">
+            
+            <div class="item item-avatar">                
                 <h3>
-                    {{review.title}}
+                    {{service.title}}
                 </h3>
                 <p>
-                    {{review.description}}
+                    {{service.description}}
+                </p>
+                <p>
+                    ${{service.price}}
                 </p>
                 <img class="full-image" src="assets/img/matter/wtf.jpg">
                 <br/>
-                <a href="#" class="subdued">Read more...</a>
+                <a href="#/tab/services/{{service.service_id}}" class="subdued">Read more...</a>
                 <hr/>
                 <p>
-                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">3 Reviews</a>
                     <a href="#" class="subdued">5 Comments</a>
                 </p>
             </div>
-
-
-
-
-
-
-
         </div>
     </ion-content>
 </ion-view>

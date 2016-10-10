@@ -40,7 +40,6 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
         } else {
             $scope.moduleTitle = "Your Profile"
             $scope.mdl = 'app/components/account/profilestuff/profilepane.html';
-
             // if (Session.recallprofile()) {
             //     $scope.userprofile = Session.recallprofile();
             // } else {
