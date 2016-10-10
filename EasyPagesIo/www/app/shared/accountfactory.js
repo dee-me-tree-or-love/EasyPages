@@ -6,6 +6,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.getUserProfile = function getUser(userid) {
         $url = 'http://localhost:8000/api/eplar/profile/' + userid;
+        $rootScope.usercompany = {};
         $http({
             method: 'GET',
             url: $url
@@ -14,6 +15,7 @@ app.factory('AccFactory', function ($http, Session,
             $rootScope.userprofile = response.data.message;
             Session.rememberprofile($rootScope.userprofile);
         }, function errorCallback(response) {
+            $rootScope.userprofile = {};
             $state.go('tab.acinit');
             console.log("problem with getuser");
         });
@@ -21,6 +23,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.getUserCompany = function getUser(userid) {
         $url = 'http://localhost:8000/api/eplar/company/user/' + userid;
+        $rootScope.userprofile = {};
         $http({
             method: 'GET',
             url: $url
@@ -29,7 +32,8 @@ app.factory('AccFactory', function ($http, Session,
             $rootScope.usercompany = response.data.message;
             Session.remembercompany($rootScope.usercompany);
         }, function errorCallback(response) {
-            //$state.go('tab.acinit');
+            $state.go('tab.acinit');
+            $rootScope.usercompany = {};
             console.log("problem with getuser");
         });
     }
@@ -51,6 +55,7 @@ app.factory('AccFactory', function ($http, Session,
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));
         }
     }
+
     accountService.updateProfile = function (newdata, olddata) {
         if (newdata.fname || newdata.lname || newdata.dob || newdata.senewdata) {
             $url = 'http://localhost:8000/api/eplar/profiles/';
@@ -83,13 +88,14 @@ app.factory('AccFactory', function ($http, Session,
 
 
     accountService.initializeCompany = function (x) {
-        if (x.fname && x.lname && x.dob) {
+        if (x.title && x.description && x.website) {
             $url = 'http://localhost:8000/api/eplar/initcompany';
             $http({
                 method: 'POST',
                 url: $url,
                 data: { name: x.name, description: x.description, website: x.website }
             })
+            console.log("yeah, got it");
             $state.go("tab.account");
         } else {
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));

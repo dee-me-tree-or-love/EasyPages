@@ -20,6 +20,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
 
     .state('tab.dash', {
       url: '/dash',
+      cache: false,
       views: {
         'tab-dash': {
           templateUrl: 'app/components/dashboard/tab-dash.html',
@@ -31,6 +32,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       }
     })
     .state('tab.service', {
+      cache: false,
       url: '/services/:serviceId',
       views: {
         'tab-dash': {

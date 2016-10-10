@@ -1,4 +1,4 @@
-app.service('ReviewFactory', function ($http) {
+app.service('ReviewFactory', function ($http, $rootScope) {
     // Might use a resource here that returns a JSON array
 
     var reviewService = {};
@@ -24,7 +24,7 @@ app.service('ReviewFactory', function ($http) {
             url: $url
         }).then(function successCallback(response) {
             // everything went well! 
-            return reviews = response.data.message;
+            $rootScope.userprofile.profilereviews = response.data.message;
             //$scope.comments = response.data.message.comments;
         }, function errorCallback(response) {
             return reviews = [];

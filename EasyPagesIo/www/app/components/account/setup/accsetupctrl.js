@@ -55,7 +55,7 @@ app.controller('AccSetupCtrl', function (
                 $scope.company = Session.recallcompany($scope.user.id)
             }
             else {
-                AccFactory.getUserCopmany($scope.user.id);
+                AccFactory.getUserCompany($scope.user.id);
                 $scope.company = Session.recallcompany($scope.user.id)
             }
             if ($scope.company) {

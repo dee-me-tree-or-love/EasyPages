@@ -16,8 +16,7 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
     }
     $scope.removeReview = function removeReview($rvwID) {
         ReviewFactory.remove($rvwID);
-        $scope.userprofile.profilereviews
-            = ReviewFactory.getByProfile($scope.userprofile.profile.profile_id)
+        ReviewFactory.getByProfile($scope.userprofile.profile.profile_id)
     }
 
 
@@ -31,28 +30,28 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
             $scope.usertype = "service provider";
             $scope.mdl = 'app/components/account/companystuff/companypane.html';
 
-            if (Session.recallcompany()) {
-                $scope.usercompany = Session.recallcompany();
-            } else {
+            // if (Session.recallcompany()) {
+            //     $scope.usercompany = Session.recallcompany();
+            // } else {
                 AccFactory.getUserCompany($scope.user.id);
                 //Session.remembercompany(uc);
-            }
+            // }
 
         } else {
             $scope.moduleTitle = "Your Profile"
             $scope.mdl = 'app/components/account/profilestuff/profilepane.html';
 
-            if (Session.recallprofile()) {
-                $scope.userprofile = Session.recallprofile();
-            } else {
+            // if (Session.recallprofile()) {
+            //     $scope.userprofile = Session.recallprofile();
+            // } else {
                 AccFactory.getUserProfile($scope.user.id);
-            }
+            // }
             // review refresh every time
 
-            console.log($scope.userprofile);
+            // console.log($scope.userprofile);
             // $scope.userprofile.profilereviews
             //     = ReviewFactory.getByProfile($scope.userprofile.profile.profile_id);
-            console.log($scope.userprofile.profilereviews);
+            // console.log($scope.userprofile.profilereviews);
         }
     } else {
         $scope.getUser();

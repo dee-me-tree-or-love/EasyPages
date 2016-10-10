@@ -1,7 +1,9 @@
 <!--
-    uses {{userprofile}}
+    uses {{userprofile}} from rootscope
+    {{userprofile.profile}}
+{{userprofile.profilereviews}}
 -->
-{{userprofile.profile}}
+
 <ion-item>
     <span>Name: <br>
     <h2>{{userprofile.profile.fname}}
@@ -14,12 +16,12 @@
     <!--a button to display/hide -->
 </ion-item>
 <ion-item class="item-divider">
-    <h2>Your reviews: 
+    <h2>Your reviews:
         <!--<a style="float: right">ADD NEW</a></h2>-->
 </ion-item>
 <ion-item>
     <table style="width: 100%">
-        <tr ng-repeat="review in userprofile.profilereviews" >
+        <tr ng-repeat="review in userprofile.profilereviews">
             <td><a ng-href="#/tab/reviews/{{review.review_id}}">A review</a></td>
             <td style="text-align: right">EDIT</td>
             <td style="text-align: right"><a ng-click="removeReview({{review.review_id}})">DELETE</a></td>
