@@ -21,7 +21,8 @@
 <ion-item>
     <table style="width: 100%">
         <tr ng-repeat="review in userprofile.profilereviews">
-            <td><a ng-href="#/tab/reviews/{{review.review_id}}">A review</a></td>
+            <td><a ng-href="#/tab/reviews/{{review.review_id}}">{{review.title}}</a>
+            </td>
             <td style="text-align: right">EDIT</td>
             <td style="text-align: right"><a ng-click="removeReview({{review.review_id}})">DELETE</a></td>
         </tr>

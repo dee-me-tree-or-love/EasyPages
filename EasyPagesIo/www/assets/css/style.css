@@ -11,3 +11,8 @@ input[type="date"]::-webkit-input-placeholder{
 * {
     white-space: normal !important;
 }
+
+ul.rating li{
+     display: inline;
+    list-style-type: none !important;
+}

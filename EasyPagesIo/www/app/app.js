@@ -11,12 +11,14 @@
 */
 
 var app = angular.module('starter', [
-  'ionic', 
+
+  'ionic',
+  'ionic.rating',
   'starter.services',
-  'starter.controllers', 
+  'starter.controllers',
   'satellizer',
-  ])
-  
+])
+
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

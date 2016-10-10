@@ -15,12 +15,8 @@ app.factory('AccFactory', function ($http, Session,
             $rootScope.userprofile = response.data.message;
             Session.rememberprofile($rootScope.userprofile);
         }, function errorCallback(response) {
-<<<<<<< HEAD
+
             $rootScope.userprofile = {};
-            $state.go('tab.acinit');
-=======
-            //$state.go('tab.acinit');
->>>>>>> 9b698c5cab05b0989867d39e46b25c07bc44f745
             console.log("problem with getuser");
         });
     }
@@ -59,10 +55,7 @@ app.factory('AccFactory', function ($http, Session,
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));
         }
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9b698c5cab05b0989867d39e46b25c07bc44f745
     accountService.updateProfile = function (newdata, olddata) {
         if (newdata.fname || newdata.lname || newdata.dob || newdata.senewdata) {
             $url = 'http://localhost:8000/api/eplar/profiles/';
@@ -95,21 +88,15 @@ app.factory('AccFactory', function ($http, Session,
 
 
     accountService.initializeCompany = function (x) {
-<<<<<<< HEAD
         if (x.title && x.description && x.website) {
-=======
-        if (x.fname && x.lname && x.dob) {
->>>>>>> 9b698c5cab05b0989867d39e46b25c07bc44f745
             $url = 'http://localhost:8000/api/eplar/initcompany';
             $http({
                 method: 'POST',
                 url: $url,
                 data: { name: x.name, description: x.description, website: x.website }
             })
-<<<<<<< HEAD
+
             console.log("yeah, got it");
-=======
->>>>>>> 9b698c5cab05b0989867d39e46b25c07bc44f745
             $state.go("tab.account");
         } else {
             console.log("Here's what I got, something is missing: " + JSON.stringify(x));

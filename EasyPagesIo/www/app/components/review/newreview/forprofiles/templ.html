@@ -1,24 +1,30 @@
 <ion-item>
-      <form id="newreview" ng-submit="createReview(rvw)">
-        <div class="list">
-          <label class="item item-input">
+  <form id="newreview" ng-submit="createReview(rvw)">
+
+
+    <div class="list">
+      <label class="item item-input">
             <span class="input-label">Rating</span>
-            <input type="number" ng-model="rvw.rating" min="0" max="10" placeholder="0-10">
+            <!--<input type="number" ng-model="rvw.rating" min="0" max="10" placeholder="0-10">-->
           </label>
-          <label class="item item-input item-stacked-label">
+      <div class="item item-input">
+        <rating ng-model="rvw.rate" max="5"></rating>
+      </div>
+      <label class="item item-stacked-label">
             <span class="input-label">Title</span>
-            <input type="text" placeholder="Give your impression a name." ng-model="rvw.title">
+      <input type="text" placeholder="Give your impression a name." ng-model="rvw.title">
+           
           </label>
-          <label class="item item-input item-stacked-label">
+      <label class="item item-input item-stacked-label">
             <span class="input-label">Description</span>
             <!--<input type="text" placeholder="Give impression a name." ng-model="task.title"> -->
             <textarea ng-model="rvw.description" form="newreview"  placeholder="Is there something else you'd like to share?'">
 
             </textarea>
           </label>
-        </div>
-        <div class="padding">
-          <button type="submit" class="button button-block button-calm">Publish</button>
-        </div>
-      </form>
-    </ion-item>
+    </div>
+    <div class="padding">
+      <button type="submit" class="button button-block button-calm">Publish</button>
+    </div>
+  </form>
+</ion-item>
