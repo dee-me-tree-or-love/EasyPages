@@ -55,6 +55,8 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     Route::delete('review/{id}/delete', 'ReviewController@destroy');
     Route::post('newreview', 'ReviewController@store');
     Route::post('review/{id}/update', 'ReviewController@update');
+    // get profile info by idate
+    Route::get('profile/PID/{id}',"ProfileController@showbyPID");
     // get reviews by profile
     Route::get('reviews/byprof/{id}', 'ReviewController@showbyprof'); 
     //Get profile with user id

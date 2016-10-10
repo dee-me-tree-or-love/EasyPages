@@ -44,6 +44,35 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
         requiredAuthState: LOGGED_STATUS.any
       }
     })
+    
+    // for overview of companies and profiles
+    .state('tab.company', {
+      cache: false,
+      url: '/companies/:companyID',
+      views: {
+        'tab-dash': {
+          templateUrl: 'app/components/copmany/companypublic.html',
+          controller: 'ServCtrl'
+        }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
+      }
+    })
+    .state('tab.profile', {
+      cache: false,
+      url: '/profiles/:profileID',
+      views: {
+        'tab-dash': {
+          templateUrl: 'app/components/copmany/profilepublic.html',
+          controller: 'ServCtrl'
+        }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.any
+      }
+    })
+
     .state('tab.review', {
       url: '/reviews/:reviewId',
       views: {

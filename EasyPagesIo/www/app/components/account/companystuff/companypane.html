@@ -15,8 +15,21 @@
     <h2>Your services: {{usercompany.nrservices}}
         <a style="float: right">ADD NEW</a></h2>
 </ion-item>
-<ion-item>
+
+<!-- <ion-item>
     <div ng-repeat="service in usercompany.companyservices">
         <a href="#/tab/services/{{service.service_id}}">{{service.title}}</a>
     </div>
+</ion-item> -->
+<ion-item>
+    <table style="width: 100%">
+        <tr ng-repeat="service in usercompany.companyservices">
+            <td><a href="#/tab/services/{{service.service_id}}">{{service.title}}</a>
+            </td>
+            <!--
+            <td style="text-align: right">EDIT</td>
+            <td style="text-align: right"><a ng-click="removeReview({{service.service_id}})">DELETE</a></td>
+            -->
+        </tr>
+    </table>
 </ion-item>

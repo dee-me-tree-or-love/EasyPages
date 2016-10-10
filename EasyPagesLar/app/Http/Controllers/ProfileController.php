@@ -165,6 +165,31 @@ class ProfileController extends Controller {
         ], 200);
     }
 
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showbyPID($profileId) {
+        
+        $profile = Profile::with('profilehasreviews.relservice')->find($profileId);
+       
+        $resp = $profile;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+        
+    }
+
     /**
      * Remove the specified resource from storage.
      *

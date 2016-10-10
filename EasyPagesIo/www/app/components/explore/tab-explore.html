@@ -3,14 +3,14 @@
 
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
 
-        <div>
+        <!--<div>
             <br>
                 <input type="radio" name="price" value="0"> $0 - $5
                 <input type="radio" name="price" value="1"> $5 - $10
                 <input type="radio" name="price" value="2"> $10 - $50
                 <input type="radio" name="price" value="3"> $50+
             <br>
-        </div>
+        </div>-->
         <div class="bar bar-header item-input-inset">
             <label class="item-input-wrapper">
    <i class="icon ion-ios-search-strong placeholder-icon"></i>
@@ -23,23 +23,47 @@
        <i class="icon ion-ios-close-outline placeholder-icon"></i>
     </a>
 </label>
-            
+
             <button ng-click="SubmitSearch(search.string)" class="button input-button button-clear button-stable padding-left" ng-if="search.string.length">GO</button>
 
         </div>
 
-        <div class="button-bar">
+        <div class="button-bar item-divider">
+            <br>
+                <span style="vertical-align: center">Price:</span>
+                <span class="padding"><input type="radio" name="price" value="0"> $0 - $5</span>
+                <span class="padding"><input type="radio" name="price" value="1"> $5 - $10</span>
+                <span class="padding"><input type="radio" name="price" value="2"> $10 - $50</span>
+                <span class="padding"><input type="radio" name="price" value="3"> $50+</span>
+            <br>
             <!-- iconed butttons
             <a class="button icon ion-gear-a">Services</a>
             <a class="button icon ion-gear-a">Providers</a>
             <a class="button icon ion-gear-a">Reviews</a>
             <a class="button icon ion-gear-a">People</a> 
+
+            <a class="button button-medium">Services</a> <!-- [ Services ] - ->
+            <a class="button button-medium">Providers</a> <!-- [ Providers ] - ->
+            <a class="button button-medium">Reviews</a> <!-- [ Reviews ] - ->
+            <a class="button button-medium">People</a> <!-- [ People ] - ->
             -->
             <!-- [ REPLACE BY TABS! ] -->
-            <a class="button button-medium">Services</a> <!-- [ Services ] -->
-            <a class="button button-medium">Providers</a> <!-- [ Providers ] -->
-            <a class="button button-medium">Reviews</a> <!-- [ Reviews ] -->
-            <a class="button button-medium">People</a> <!-- [ People ] -->
+            <!-- <a class="button button-medium" ng-click="price = 0">$0-$5</a>
+            <a class="button button-medium" ng-click="price = 1">$5-$10</a>
+            <a class="button button-medium" ng-click="price = 2">$10-$50</a>
+            <a class="button button-medium" ng-click="price = 3">$50+</a> -->
+            <!--<label class="item item-input">
+                <!--<ion-radio ng-model="data.type" ng-value="'i'" checked>Personal</ion-radio>
+                <ion-radio ng-model="data.type" ng-value="'c'">Corporate</ion-radio>-->
+                <!--<ion-radio ng-model="price" name="price" ng-value="0">$0 - $5</ion-radio>
+            <ion-radio ng-model="price" name="price" ng-value="1"> $5 - $10</ion-radio>
+            <ion-radio ng-model="price" name="price" ng-value="2"> $10 - $50</ion-radio>
+            <ion-radio ng-model="price" name="price" ng-value="3"> $50+</ion-radio>
+            </label>-->
+            <!-- <input class="button button-medium" type="radio" name="price" value="0"> $0 - $5
+            <input class="button button-medium" type="radio" name="price" value="1"> $5 - $10
+            <input class="button button-medium" type="radio" name="price" value="2"> $10 - $50
+            <input class="button button-medium" type="radio" name="price" value="3"> $50+ -->
         </div>
 
         <div class="card" ng-if="!services.length">
@@ -48,14 +72,14 @@
                 <br/> Upp up to refresh :)
             </div>
         </div>
-        
-        
+
+
 
 
 
         <div class="list card" ng-if="services.length" ng-repeat="service in services">
-            
-            <div class="item item-avatar">                
+
+            <div class="item item-avatar">
                 <h3>
                     {{service.title}}
                 </h3>

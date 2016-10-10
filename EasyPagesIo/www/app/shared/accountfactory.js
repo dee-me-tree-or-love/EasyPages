@@ -33,7 +33,7 @@ app.factory('AccFactory', function ($http, Session,
             Session.remembercompany($rootScope.usercompany);
         }, function errorCallback(response) {
             //$rootScope.usercompany = {};
-            //$state.go('tab.acinit');
+            $state.go('tab.acinit');
             console.log("problem with getuser");
         });
     }
@@ -88,7 +88,9 @@ app.factory('AccFactory', function ($http, Session,
 
 
     accountService.initializeCompany = function (x) {
-        if (x.title && x.description && x.website) {
+        console.log(x);
+        console.log("starting requuest")
+        if (x.name && x.description && x.website) {
             $url = 'http://localhost:8000/api/eplar/initcompany';
             $http({
                 method: 'POST',

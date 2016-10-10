@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Review;
 
 class Profile extends Model {
 
+	protected $primaryKey = 'profile_id';
 	protected $table = 'profiles';
 	public $timestamps = true;
         public $fillable = ['fname','lname','sex','dob','addres_id'];
@@ -26,7 +28,7 @@ class Profile extends Model {
 
 	public function profilehasreviews()
 	{
-		return $this->hasMany('Review');
+		return $this->hasMany('App\Review','profile_id','profile_id');
 	}
 
 	public function avatars()

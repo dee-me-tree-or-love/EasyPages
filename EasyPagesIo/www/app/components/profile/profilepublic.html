@@ -1,0 +1,21 @@
+<ion-view view-title="profile.user.username">
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item class="item-divider">
+        {{profile.fname}} {{profile.lname}}<br>
+        <h4>Description</h4>
+      </ion-item>
+      <ion-item>
+        <p>{{profile.dob}}</p>
+      </ion-item>
+      <ion-item class="item-divider">
+          Reviews: 
+      </ion-item>
+      <ion-list>
+        <ion-item ng-repeat="review in profile.reviews">
+          {{review.title}}
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </ion-content>
+</ion-view>
