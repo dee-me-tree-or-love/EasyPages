@@ -1,4 +1,4 @@
-appcntrls.controller('DashCtrl', function ($scope, $http) {
+appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope) {
 
     $scope.srvces = [];
     $http({
@@ -26,6 +26,10 @@ appcntrls.controller('DashCtrl', function ($scope, $http) {
 
     $scope.loadMoreData = function lmData() {
         console.log("called to load more");
+    }
+    
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
     }
 
 

@@ -11,43 +11,7 @@ appcntrls.controller('ExploreCtrl', function ($scope, $http, ReviewFactory, Serv
         if (($searchText.trim()).length != 0) {
             $scope.showcancel = !$scope.showcancel;
         }
-    };
-
-    $scope.SubmitSearch = function SubmitSearch($searchText) {
-        $scope.price = $scope.getRadioValue();
-        if($scope.price != null)
-            {
-                $url = 'http://localhost:8000/api/eplar/services/searchbynameandprice';
-        $scope.serv = 0;
-        $scope.reviews = [];
-        $http({
-            method: 'POST',
-            url: $url,
-            data: {name : $searchText, price: $scope.price}
-        }).then(function successCallback(response) {
-            // everything went well! 
-            $scope.services = response.data.message;
-        }, function errorCallback(response) {
-            $scope.stat = response.data.message;
-        });
-            }
-        else
-            {
-        $url = 'http://localhost:8000/api/eplar/services/searchbyname';
-        $scope.serv = 0;
-        $scope.reviews = [];
-        $http({
-            method: 'POST',
-            url: $url,
-            data: {name : $searchText}
-        }).then(function successCallback(response) {
-            // everything went well! 
-            $scope.services = response.data.message;
-        }, function errorCallback(response) {
-            $scope.stat = response.data.message;
-        });
-            }
-    }
+    };   
 
     $scope.refresh = function refresh() {
         console.log("refresh called");
