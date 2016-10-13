@@ -1,19 +1,26 @@
 <ion-view view-title="Review">
   <ion-content class="padding">
     <div>
+      <ion-item class="item-icon-left" ng-href="#/tab/profiles/{{review.profile_id}}">
+        <i class="icon ion-android-person"></i>
+      By: {{review.relprofile.fname}}  {{review.relprofile.lname}}
+      </ion-item>
+      <ion-intem class="item">
       <h1>
         {{review.title}}
       </h1>
-      <h5>
+      
+      <h2>
         Rating: {{review.rating}}
-      </h5>
-      <h5>
+      </h2>
+      <h2>
         Description:
-      </h5>
-      <p>
+      </h2>
+      
         {{review.description}}
-      </p>
+
     </div>
+    </ion-item>
     <div class="item-divider" >
       <span ng-click="commenttab = !commenttab" style="cursor: pointer"  class="padding-left">Add comment | {{reviewtab}}</span>
       <span ng-click="" style="float: right" class="padding-right">Save</span>

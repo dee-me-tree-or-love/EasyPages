@@ -21,6 +21,8 @@ app.factory('AccFactory', function ($http, Session,
         });
     }
 
+
+
     accountService.getUserCompany = function getUser(userid) {
         $url = 'http://localhost:8000/api/eplar/company/user/' + userid;
         $rootScope.userprofile = {};

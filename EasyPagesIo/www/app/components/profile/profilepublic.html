@@ -1,19 +1,27 @@
 <ion-view view-title="profile.user.username">
   <ion-content class="padding">
     <ion-list>
+      <!--{{profile}}-->
+      <ion-item class="item item-thumbnail-left">
+        <img src="assets/img/dprofpics/person-flat.png"></img>
+        <h1>{{profile.fname}} {{profile.lname}}</h1>
+        Date of Birth: {{profile.dob}}<br>
+
+      </ion-item>
       <ion-item class="item-divider">
-        {{profile.fname}} {{profile.lname}}<br>
-        <h4>Description</h4>
+        My Info
       </ion-item>
       <ion-item>
-        <p>{{profile.dob}}</p>
+        I am a new user, hi!
       </ion-item>
       <ion-item class="item-divider">
-          Reviews: 
+        Reviews:
       </ion-item>
       <ion-list>
-        <ion-item ng-repeat="review in profile.reviews">
+        <ion-item ng-repeat="review in profile.profilehasreviews" class ="item-icon-right"
+          ng-href="#/tab/reviews/{{review.review_id}}">
           {{review.title}}
+          <i class="icon ion-chevron-right icon-accessory"></i>
         </ion-item>
       </ion-list>
     </ion-list>

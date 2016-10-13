@@ -45,14 +45,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       }
     })
     
-    // for overview of companies and profiles
+    // for public overview of companies and profiles
     .state('tab.company', {
       cache: false,
       url: '/companies/:companyID',
       views: {
         'tab-dash': {
-          templateUrl: 'app/components/copmany/companypublic.html',
-          controller: 'ServCtrl'
+          templateUrl: 'app/components/company/companypublic.html',
+          controller: 'PublicCopmanyCtrl'
         }
       },
       data: {
@@ -64,8 +64,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
       url: '/profiles/:profileID',
       views: {
         'tab-dash': {
-          templateUrl: 'app/components/copmany/profilepublic.html',
-          controller: 'ServCtrl'
+          templateUrl: 'app/components/profile/profilepublic.html',
+          controller: 'PublicProfileCtrl'
         }
       },
       data: {

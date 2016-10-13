@@ -7,6 +7,8 @@ use App\User;
 use App\Service;
 
 class Company extends Model {
+    protected $primaryKey = 'company_id';
+
 
     public $fillable = ['name','description','user_id','website'];
     protected $table = 'companies';
@@ -27,7 +29,7 @@ class Company extends Model {
 
     public function companyservices() {
         $services = $this->hasMany('App\Service','company_id');
-        
+        return $services;
     }
 
 }

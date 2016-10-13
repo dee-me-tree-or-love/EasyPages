@@ -5,9 +5,15 @@
       <h1>
         {{serv.title}}
       </h1>
+      <h4>
+        By:
+        <a href="#/tab/companies/{{serv.company_id}}">{{serv.relcompany.name}}</a>
+      </h4>
       <h5>
+        Price for members:
         ${{serv.price}}
       </h5>
+      Description:
       <p>
         {{serv.description}}
       </p>

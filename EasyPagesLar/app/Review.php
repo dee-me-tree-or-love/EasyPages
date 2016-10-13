@@ -7,7 +7,7 @@ use App\Profile;
 use App\Service;
 
 class Review extends Model {
-
+    protected $primaryKey = 'review_id';
 
     public $fillable = ['title','description','rating','service_id','review_id'];
 

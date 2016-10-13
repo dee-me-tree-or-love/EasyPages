@@ -1,9 +1,12 @@
-<ion-view view-title="company.name">
+<ion-view view-title="Company">
   <ion-content class="padding">
     <ion-list>
+      <!--{{company}}-->
+      <ion-item>
+         <h1>{{company.name}}</h1>
+      </ion-item>
       <ion-item class="item-divider">
-        {{company.Name}}<br>
-        <h4>Description</h4>
+       <span>Description</span>
       </ion-item>
       <ion-item>
         <p>{{company.description}}</p>
@@ -12,8 +15,10 @@
           Our Services: 
       </ion-item>
       <ion-list>
-        <ion-item ng-repeat="service in company.services">
+        <ion-item ng-repeat="service in company.companyservices" class ="item-icon-right"
+          ng-href="#/tab/services/{{service.service_id}}">
           {{service.title}}
+          <i class="icon ion-chevron-right icon-accessory"></i>
         </ion-item>
       </ion-list>
     </ion-list>

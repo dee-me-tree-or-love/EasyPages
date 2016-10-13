@@ -85,7 +85,7 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function show($comid) {
-        $company = Company::where('company_id',$comid)->first();
+        $company = Company::with('companyservices')->find($comid);
         $resp = $company;
         if(!$resp)
         {

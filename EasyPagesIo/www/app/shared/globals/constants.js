@@ -10,3 +10,9 @@ app
   company: 'c',
   individual: 'i',
 })
+
+.constant('APIROUTING',
+{
+  host: 'http://localhost:8000/',
+  prefix: 'api/eplar/',
+})
