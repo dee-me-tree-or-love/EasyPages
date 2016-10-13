@@ -21,9 +21,9 @@ class Profile extends Model {
         }
     }
         
-	public function profilehasuserdata()
+	public function userdata()
 	{
-		return $this->hasOne('User', 'user_id');
+		return $this->belongsTo('App\User','user_id');
 	}
 
 	public function profilehasreviews()
