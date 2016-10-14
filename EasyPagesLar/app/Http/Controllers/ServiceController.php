@@ -17,6 +17,10 @@ class ServiceController extends Controller {
      */
     public function index() {
         $services = Service::with('serreviews.relprofile','relcompany')->get();
+        foreach($services as $srv)
+        {
+            $srv->nrRev = count($srv->serreviews);
+        }
         $resp = $services;
         if($resp == null)
         {

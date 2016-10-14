@@ -24,11 +24,27 @@ appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope) {
             });
     }
 
+
+    // $scope.showReviews = function (service) {
+    //     var alertPopup = $ionicPopup.alert({
+    //         title: 'Reviews for ' + service.title,
+    //         template:
+    //         '<ion-list>' +
+    //         '<ion-item ng-repeat="review in service.serreviews">' +
+    //         '<h3>{{review.title}}</h3>' +
+    //         '</ion-item>' +
+    //         '</ion-list>',
+    //     });
+    //     alertPopup.then(function (res) {
+    //         console.log('Thank you for not eating my delicious ice cream cone');
+    //     });
+    // }
+
     $scope.loadMoreData = function lmData() {
         console.log("called to load more");
     }
-    
-    $scope.orderByMe = function(x) {
+
+    $scope.orderByMe = function (x) {
         $scope.myOrderBy = x;
     }
 

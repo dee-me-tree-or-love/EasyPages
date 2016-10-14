@@ -5,11 +5,21 @@ app.controller('PublicCopmanyCtrl', function ($scope, $auth, Session,
 
     $cpID = $stateParams.companyID;
 
-    $scope.company = PublicAccountFactory.getCompany($cpID).then(function (resp){
+
+    $scope.getCompany = PublicAccountFactory.getCompany($cpID).then(function (resp) {
         console.log(resp);
         $scope.company = resp;
     });
 
 
+    $scope.refresh = function () {
+        //$state.reload();
+        $scope.getCompany = PublicAccountFactory.getCompany($cpID).then(function (resp) {
+            console.log(resp);
+            $scope.company = resp;
+        });
+        // Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+    }
 
 });
