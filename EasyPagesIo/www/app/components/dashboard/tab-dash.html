@@ -1,0 +1,64 @@
+<ion-view view-title="Services">
+	<ion-content>
+
+		<ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+
+		<div class="bar bar-header item-input-inset">
+			<label class="item-input-wrapper">
+   <i class="icon ion-ios-search-strong placeholder-icon"></i>
+   <input type="search"
+          placeholder="Search"
+          ng-model="search.string"
+          ng-keydown="showCancel=true">
+    <a ng-show="showCancel" 
+       on-touch="search.string=''; showCancel = false;">
+       <i class="icon ion-ios-close-outline placeholder-icon"></i>
+    </a>
+</label>
+
+		</div>
+
+		<div class="button-bar item-divider">
+			<br>
+			<button class="button button-small" ng-click="orderByMe('title')">Title</button>
+			<button class="button button-small" ng-click="orderByMe('description')">Description</button>
+			<button class="button button-small" ng-click="orderByMe('updated_at')">Oldest</button>
+			<button class="button button-small" ng-click="orderByMe('relcompany.name')">Company name</button>
+			<br>
+		</div>
+
+		<ion-list>
+
+			<div class="list card" ng-repeat="service in srvces | filter : search.string | orderBy:myOrderBy" type="item-text-wrap" ng-href="#/tab/services/{{service.service_id}}">
+
+				<a ng-href="#/tab/services/{{service.service_id}}" class="item item-icon-left item-icon-right">
+					<i class="icon ion-pricetag dark"></i>
+					<h2>{{service.title}}</h2>
+					<p>Price: ${{service.price}}<br>Average Rating: {{service.avrating}}</p>
+					<i class="icon ion-chevron-right icon-accessory"></i>
+				</a>
+
+				<div class="item item-body">
+					<h2>Description: <p>{{service.description}}</p></h2>
+					<!-- showed in the complete overview
+            <ion-list ng-show="false">
+						<ion-item ng-repeat="review in service.serreviews">
+							<h3>{{review.title}}</h3>
+						</ion-item>
+					</ion-list>-->
+				</div>
+				<div class="item">
+					<p>
+
+						<a ng-click="showReviews(service)" class="subdued">{{service.nrRev}} Reviews.</a>
+						<a href="#/tab/companies/{{service.relcompany.company_id}}" class="subdued">Provider: {{service.relcompany.name}}</a>
+					</p>
+				</div>
+			</div>
+
+			<ion-infinite-scroll icon="ion-loading-c" on-infinite="loadMoreData()">
+			</ion-infinite-scroll>
+		</ion-list>
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+data from api: 
+
+{"message":
+
+{"profile_id":2,"created_at":"2016-09-23 03:27:57","updated_at":"2016-09-23 03:27:57","user_id":"8","fname":"Hugo","lname":"Elliot","dob":"1983-05-14","address_id":null,"sex":"s",
+
+
+"profilehasreviews":
+[{"review_id":"1","created_at":"2016-09-23 03:29:44","updated_at":"2016-09-23 03:29:44","title":"Yeah, that was a nice tattoo","description":" \r\n The guys were very nice and gave me a free banana. Though it was toooooo expensive.","rating":"5","profile_id":"2","service_id":"4",
+
+
+"relservice":
+{"service_id":4,"created_at":"2016-09-23 05:34:55","updated_at":"2016-09-23 05:34:55","title":"Universal Tattoos","price":"15","description":" Woooosh-Woooosh\r\n ","company_id":"1"}},{"review_id":"2","created_at":"2016-09-23 03:32:54","updated_at":"2016-09-23 03:32:54","title":"I had another one, and daaaamn it was good","description":" Heheheh\r\n ","rating":"7","profile_id":"2","service_id":"4","relservice":{"service_id":4,"created_at":"2016-09-23 05:34:55","updated_at":"2016-09-23 05:34:55","title":"Universal Tattoos","price":"15","description":" Woooosh-Woooosh\r\n ","company_id":"1"}}]}}

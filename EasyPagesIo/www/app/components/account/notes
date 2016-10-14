@@ -1,0 +1,16 @@
+{{userprofile}} 
+    <div>
+      <h2>
+        First name: {{userprofile.fname}}        
+      </h2>
+        <h3>
+        Last name: {{userprofile.lname}}
+        </h3>
+      <h5>
+        Date of birth: {{userprofile.dob}}
+      </h5>
+        <h5>
+        Gender: {{userprofile.sex}}
+      </h5>
+    </div>
+      

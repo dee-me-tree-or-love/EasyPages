@@ -1,0 +1,170 @@
+  ??    
+    <ion-content>
+
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+
+        <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+   <i class="icon ion-ios-search-strong placeholder-icon"></i>
+   <input type="search"
+          placeholder="Search"
+          ng-model="search.string"
+          ng-keydown="showCancel=true">
+    <a ng-show="showCancel" 
+       on-touch="search.string=''; showCancel = false;">
+       <i class="icon ion-ios-close-outline placeholder-icon"></i>
+    </a>
+</label>
+            <button ng-click="SubmitSearch(search.string)" class="button input-button button-clear button-stable padding-left" ng-if="search.string.length">GO</button>
+
+        </div>
+
+        <div class="button-bar">
+            <!-- iconed butttons
+            <a class="button icon ion-gear-a">Services</a>
+            <a class="button icon ion-gear-a">Providers</a>
+            <a class="button icon ion-gear-a">Reviews</a>
+            <a class="button icon ion-gear-a">People</a> 
+            -->
+            <!-- [ REPLACE BY TABS! ] -->
+            <a class="button button-medium">Services</a> <!-- [ Services ] -->
+            <a class="button button-medium">Providers</a> <!-- [ Providers ] -->
+            <a class="button button-medium">Reviews</a> <!-- [ Reviews ] -->
+            <a class="button button-medium">People</a> <!-- [ People ] -->
+        </div>
+
+        <div class="card" ng-if="!reviews.length">
+            <div class="item item-text-wrap">
+                Oups, seems empty?
+                <br/> Upp up to refresh :)
+            </div>
+        </div>
+
+
+
+
+        <div class="list card" ng-if="reviews.length" ng-repeat="review in reviews">
+
+
+
+            <div class="item item-avatar">
+                <img src="assets/img/adam.jpg">
+                <h2>{{review.relprofile.fname}} {{review.relprofile.lname}}
+                    <p>{{review.updated_at}} </p>
+                </h2>
+                <hr/>
+                <h2>{{review.relservice.title}}</h2>
+                <p>
+                    Rating: {{review.rating}}
+                </p>
+                <h3>
+                    {{review.title}}
+                </h3>
+                <p>
+                    {{review.description}}
+                </p>
+                <img class="full-image" src="assets/img/matter/wtf.jpg">
+                <br/>
+                <a href="#" class="subdued">Read more...</a>
+                <hr/>
+                <p>
+                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">5 Comments</a>
+                </p>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+</ion-view>  
+  
+  
+  
+    <ion-content>
+
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()"></ion-refresher>
+
+        <div class="bar bar-header item-input-inset">
+            <label class="item-input-wrapper">
+   <i class="icon ion-ios-search-strong placeholder-icon"></i>
+   <input type="search"
+          placeholder="Search"
+          ng-model="search.string"
+          ng-keydown="showCancel=true">
+    <a ng-show="showCancel" 
+       on-touch="search.string=''; showCancel = false;">
+       <i class="icon ion-ios-close-outline placeholder-icon"></i>
+    </a>
+</label>
+            <button ng-click="SubmitSearch(search.string)" class="button input-button button-clear button-stable padding-left" ng-if="search.string.length">GO</button>
+
+        </div>
+
+        <div class="button-bar">
+            <!-- iconed butttons
+            <a class="button icon ion-gear-a">Services</a>
+            <a class="button icon ion-gear-a">Providers</a>
+            <a class="button icon ion-gear-a">Reviews</a>
+            <a class="button icon ion-gear-a">People</a> 
+            -->
+            <!-- [ REPLACE BY TABS! ] -->
+            <a class="button button-medium">Services</a> <!-- [ Services ] -->
+            <a class="button button-medium">Providers</a> <!-- [ Providers ] -->
+            <a class="button button-medium">Reviews</a> <!-- [ Reviews ] -->
+            <a class="button button-medium">People</a> <!-- [ People ] -->
+        </div>
+
+        <div class="card" ng-if="!reviews.length">
+            <div class="item item-text-wrap">
+                Oups, seems empty?
+                <br/> Upp up to refresh :)
+            </div>
+        </div>
+
+
+
+
+        <div class="list card" ng-if="reviews.length" ng-repeat="review in reviews">
+
+
+
+            <div class="item item-avatar">
+                <img src="assets/img/adam.jpg">
+                <h2>{{review.relprofile.fname}} {{review.relprofile.lname}}
+                    <p>{{review.updated_at}} </p>
+                </h2>
+                <hr/>
+                <h2>{{review.relservice.title}}</h2>
+                <p>
+                    Rating: {{review.rating}}
+                </p>
+                <h3>
+                    {{review.title}}
+                </h3>
+                <p>
+                    {{review.description}}
+                </p>
+                <img class="full-image" src="assets/img/matter/wtf.jpg">
+                <br/>
+                <a href="#" class="subdued">Read more...</a>
+                <hr/>
+                <p>
+                    <a href="#" class="subdued">1 Like</a>
+                    <a href="#" class="subdued">5 Comments</a>
+                </p>
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="Sign Up" name="register-view">
+    <ion-content scroll="false">
+
+
+        <!--<ng-include src="app/components/auth/authlogin.html"></ng-include>-->
+        {{msg}}
+        <div id="login_div" class="padding">
+        
+            <div class="list list-inset">
+                <label class="item item-input padding">
+                    Enter User Details:
+                 </label>
+                <label class="item item-input">
+              <input type="text" placeholder="Username" ng-model="data.username">
+          </label>
+                <label class="item item-input">
+              <input type="email" placeholder="Email" ng-model="data.email">
+          </label>
+                <label class="item item-input">
+                                                                                                <!-- Woudl be nice to make the check better -->
+              <input type="password" placeholder="Password" ng-model="data.password" ng-keyup="passMatch = (data.password == data.confpassword)"><span ng-hide="passMatch"> Should match!</span>
+          </label>
+                <label class="item item-input">
+              <input type="password" placeholder="Confirm Password" ng-model="data.confpassword" ng-keyup="passMatch = (data.password == data.confpassword)"><span ng-hide="passMatch"> Should match!</span>
+          </label>
+                <label class="item item-input padding">
+                    Choose Subscription Plan:
+                 </label>
+                <label class="item item-input">
+                <ion-radio ng-model="data.type" ng-value="'i'" checked>Personal</ion-radio>
+                <ion-radio ng-model="data.type" ng-value="'c'">Corporate</ion-radio>
+            </label>
+            </div>
+            <!--end of the list-->
+
+            <button class="button button-block button-positive" ng-click="register(data)" style="font-size: 14pt">Sign Up</button>
+        </div>
+
+
+        <ion-footer-bar align-title="center" class="bar-light">
+            <a href="#/tab/login">
+                <h1 class="title">Already have an account? Sign In</h1>
+            </a>
+        </ion-footer-bar>
+
+    </ion-content>
+</ion-view>

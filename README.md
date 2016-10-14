@@ -1,4 +1,5 @@
 # EasyPages
+
 Hi, we are the `EasyPages` team - Daniel and Dmitrii.   
 
 ## Guide: 

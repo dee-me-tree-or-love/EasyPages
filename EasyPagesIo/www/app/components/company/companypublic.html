@@ -1,0 +1,32 @@
+<ion-view view-title="Company">
+  <ion-content class="padding">
+
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+
+    </ion-refresher>
+    
+    <ion-list>
+      <!--{{company}}-->
+      <ion-item>
+         <h1>{{company.name}}</h1>
+      </ion-item>
+      <ion-item class="item-divider">
+       <span>Description</span>
+      </ion-item>
+      <ion-item>
+        <p>{{company.description}}</p>
+      </ion-item>
+      <ion-item class="item-divider">
+          Our Services: 
+      </ion-item>
+      <ion-list>
+        <ion-item ng-repeat="service in company.companyservices" class ="item-icon-right"
+          ng-href="#/tab/services/{{service.service_id}}">
+          {{service.title}}<br>
+          Member price: ${{service.price}}
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </ion-content>
+</ion-view>

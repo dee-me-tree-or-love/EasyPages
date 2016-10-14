@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Company;
+use App\Service;
 use Auth;
+use JWTAuthentication;
 
 class CompanyController extends Controller {
 
@@ -15,7 +17,19 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function index() {
+        $companies = Company::all();
         
+        
+        $resp = $companies;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -23,9 +37,9 @@ class CompanyController extends Controller {
      *
      * @return Response
      */
-    public function create() {
-        
-    }
+//    public function create() {
+//        
+//    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,18 +47,35 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        if($user->type != 'c'){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in as company first'
+            ]
+            ]);
+        }
+        
         $company = new Company;
-        $company->user_id = $request->user_id;
+        $company->user_id = $user->id;
         $company->name = $request->name;
         $company->description = $request->description;
         $company->website = $request->website;
         // should now be saved
         $company->save();
-
-        //$review = Review::create($input);  
-        //!!!!!! NOT NICE !!!!! PLEASE CHANGE !!!!!!!!!
-        //$vars = get_object_vars($company);
-        return redirect('/user/'.$company->user_id);
+        
+        
+        $resp = $company;
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
 
     /**
@@ -54,9 +85,48 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function show($comid) {
-        $company = Company::where('company_id',$comid)->first();
-        return view('companydashboard.restricted.main', ['company' => $company]);
+        $company = Company::with('companyservices')->find($comid);
+        $resp = $company;
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
     }
+
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function findbyuser($userid) {
+        $company = Company::where('user_id',$userid)->first();
+        $companyservices = $company->getservices();
+        $nrservices = Service::where('company_id',$company->company_id)->count();
+
+        $resp = array(
+            'company' => $company,
+            'nrservices' => $nrservices,
+            'companyservices' => $companyservices,
+        );
+
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :('
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -64,9 +134,9 @@ class CompanyController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id) {
-        
-    }
+//    public function edit($id) {
+//        
+//    }
 
     /**
      * Update the specified resource in storage.
@@ -75,7 +145,15 @@ class CompanyController extends Controller {
      * @return Response
      */
     public function update(Request $request) {
-        $company = Auth::user()->getcompany();
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+        
+        $company = $user->getcompany();
         if ($request->has('name')) {
             $newName = $request->name;
             Company::where('company_id', $company->company_id)
@@ -104,9 +182,9 @@ class CompanyController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
-        
-    }
+//    public function destroy($id) {
+//        
+//    }
 
 }
 

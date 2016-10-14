@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Easy Pages</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
             Does not work! -->
 
             <div class="top-left links">
-                <a href="{{ url('/services') }}"><!--\(^_^)/-->SERVICES</a>
+                <a href="{{ url('/service') }}"><!--\(^_^)/-->SERVICES</a>
                 <!--<a href="{{ url('/#') }}">/(0_0)\</a>-->
             </div>
             @if (Auth::guest())

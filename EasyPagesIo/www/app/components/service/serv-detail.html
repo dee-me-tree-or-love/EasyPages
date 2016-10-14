@@ -1,0 +1,44 @@
+<ion-view view-title="Overview">
+	<ion-content class="padding">
+
+		<ion-item class="item-icon-right " ng-href="#/tab/companies/{{serv.company_id}}">
+			<i class="icon ion-coffee"></i> By: {{serv.relcompany.name}}
+		</ion-item>
+		<ion-item class="item">
+			<h1>
+				{{serv.title}}
+			</h1>
+
+			<h2>
+				Price for members: ${{serv.price}}
+			</h2>
+			<h2>
+				Description:
+			</h2>
+
+			{{serv.description}}
+
+		</ion-item>
+		<a class="item  item-divider" href="#/tab/reviews/publish/{{srvID}}">
+			Add review
+		</a>
+
+
+
+		<div class="card list" ng-repeat="review in reviews" type="item-text-wrap">
+			<a class="item item-animate item-avatar item-icon-right" ng-href="#/tab/reviews/{{review.review_id}}">
+        <img ng-src="{{review.defPic}}">
+				<h2>{{review.relprofile.fname}} {{review.relprofile.lname}}:</h2>
+        <h2><b>{{review.title}}.</b></h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+			</a>
+			<div class="item-body">
+        Rating: <b>{{review.rating}}</b><br>
+			{{review.description}}
+			</div>
+			<!-- <button ng-click="removeReview(review.review_id)">DELETE</button>     -->
+
+		</div>
+
+	</ion-content>
+</ion-view>

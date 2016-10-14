@@ -1,0 +1,25 @@
+<!-- for a company
+    to be loaded from the module -->
+<div id="accountsetup_div" class="padding">
+    <form id="companySetup">
+        <div class="list list-inset">
+            <label class="item item-divider padding">
+                    Company Details:
+                 </label>
+            <label class="item item-input">
+                   <br>
+              <input type="text" placeholder="New Name" ng-model="data.name">
+          </label>
+            <ion-item>
+                
+                <textarea ng-model="data.description" form="companySetup" placeholder="Describe your company here: " style="width: 100%; height: 20%;">
+
+            </textarea>
+            </ion-item>
+            <label class="item item-input">
+                    <br>
+           
+              <input type="text" placeholder="New Web Address" ng-model="data.website">
+          </label>
+            <!-- to be loaded from the module -->
+            <button class="button button-block button-positive" ng-click="initializeCompany(data)" style="font-size: 14pt">Continue</button>

@@ -1,0 +1,58 @@
+<ion-view view-title="Review">
+  <ion-content class="padding">
+     <!--{{review}}-->
+    <div>
+      <ion-item class="item-icon-right " ng-href="#/tab/profiles/{{review.profile_id}}">
+        <i class="icon ion-android-person"></i>
+      By: {{review.relprofile.fname}}  {{review.relprofile.lname}}
+      <p>For {{review.relservice.title}}</p>
+      </ion-item>
+      <ion-item class="item">
+      <h1>
+        {{review.title}}
+      </h1>
+      
+      <h2>
+        Rating: {{review.rating}}
+      </h2>
+      <h2>
+        Description:
+      </h2>
+      
+        {{review.description}}
+    </ion-item>
+    </div>
+    <a class="item item-divider" >
+      <span ng-click="commenttab = !commenttab" style="cursor: pointer"  class="padding-left">Add comment</span>
+      <!--<span ng-click="" style="float: right" class="padding-right">Save</span>-->
+    </a>
+    <ion-item ng-show="commenttab">
+      <form id="newcomment" ng-submit="addComment(cmmnt)">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label"></span>
+            <!--<input type="text" placeholder="Give impression a name." ng-model="task.title">-->
+            <textarea ng-model="cmmnt.text" form="newreview"  placeholder="Share what you think about it">
+
+            </textarea>
+          </label>
+        </div>
+        <div class="padding">
+          <button type="submit" class="button button-block button-calm">Publish</button>
+        </div>
+      </form>
+    </ion-item>
+    <hr>
+
+
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="review in reviews" type="item-text-wrap">
+
+        <h3>{{review.title}}</h3>
+        <p>{{review.description}}</p>
+      </ion-item>
+      <ion-list>
+
+  </ion-content>
+</ion-view>
