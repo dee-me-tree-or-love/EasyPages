@@ -27,7 +27,4 @@ app.controller('PublicProfileCtrl', function ($scope, $auth, Session,
         }
     });
 
-    
-
-
 });

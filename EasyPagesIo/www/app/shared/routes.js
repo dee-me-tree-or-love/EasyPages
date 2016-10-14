@@ -97,6 +97,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
         requiredAuthState: LOGGED_STATUS.yes
       }
     })
+    .state('tab.newservice', {
+      cache: false,
+      url: '/services/publish/:companyId',
+      views: {
+        'tab-dash': {
+          templateUrl: 'app/components/service/newservice/createsrv.html',
+          controller: 'NewSrvCtrl'
+        }
+      },
+      data: {
+        requiredAuthState: LOGGED_STATUS.yes
+      }
+    })
 
     .state('tab.explore', {
       url: '/explore',

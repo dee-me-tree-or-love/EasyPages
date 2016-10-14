@@ -13,7 +13,7 @@
 </ion-item>
 <ion-item class="item-divider">
     <h2>Your services: {{usercompany.nrservices}}
-        <a style="float: right">ADD NEW</a></h2>
+        <a style="float: right" href="#/tab/services/publish/{{usercompany.copmany_id}}">ADD NEW</a></h2>
 </ion-item>
 
 <!-- <ion-item>
@@ -21,15 +21,11 @@
         <a href="#/tab/services/{{service.service_id}}">{{service.title}}</a>
     </div>
 </ion-item> -->
-<ion-item>
-    <table style="width: 100%">
-        <tr ng-repeat="service in usercompany.companyservices">
-            <td><a href="#/tab/services/{{service.service_id}}">{{service.title}}</a>
-            </td>
-            <!--
-            <td style="text-align: right">EDIT</td>
-            <td style="text-align: right"><a ng-click="removeReview({{service.service_id}})">DELETE</a></td>
-            -->
-        </tr>
-    </table>
-</ion-item>
+
+<ion-list>
+	<ion-item class="item item-icon-right" ng-repeat="service in usercompany.companyservices" href="#/tab/services/{{service.service_id}}">
+		<h2>{{service.title}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+	</ion-item>
+
+</ion-list>

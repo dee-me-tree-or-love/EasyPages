@@ -175,7 +175,7 @@ class ProfileController extends Controller {
      */
     public function showbyPID($profileId) {
         
-        $profile = Profile::with('profilehasreviews.relservice')->find($profileId);
+        $profile = Profile::with('profilehasreviews.relservice','userdata')->find($profileId);
        
         $resp = $profile;
         if(!$resp)
