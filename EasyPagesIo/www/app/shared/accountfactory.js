@@ -15,7 +15,7 @@ app.factory('AccFactory', function ($http, Session,
             $rootScope.userprofile = response.data.message;
             Session.rememberprofile($rootScope.userprofile);
         }, function errorCallback(response) {
-
+             $state.go('tab.acinit');
             $rootScope.userprofile = {};
             console.log("problem with getuser");
         });

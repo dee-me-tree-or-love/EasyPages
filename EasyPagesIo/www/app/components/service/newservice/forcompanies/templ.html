@@ -1,0 +1,27 @@
+<ion-item>
+	<form id="newservice" ng-submit="createService(srv)">
+
+
+		<div class="list">
+			<label class="item item-input">
+            <span class="input-label">Title</span>
+            <input type="text" placeholder="Service title" ng-model="srv.title">
+          </label>
+
+			<label class="item item-input">
+			<span class="input-label">Price</span>
+			<input type="number" min="0" placeholder="Price" ng-model="srv.price">
+
+			</label>
+			<label class="item item-input item-stacked-label">
+            <span class="input-label">Description</span>
+            <!--<input type="text" placeholder="Give impression a name." ng-model="task.title"> -->
+            <textarea ng-model="srv.description" form="newservice"  placeholder="Describe what you service is all about">
+            </textarea>
+          </label>
+		</div>
+		<div class="padding">
+			<button type="submit" class="button button-block button-calm">Publish</button>
+		</div>
+	</form>
+</ion-item>

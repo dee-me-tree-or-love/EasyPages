@@ -2,7 +2,7 @@ appcntrls.controller('NewRvwCtrl', function ($scope, $http, $state,
 $stateParams, $ionicHistory, $rootScope, 
 ReviewFactory, LOGGED_STATUS) {
     if ((localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes)) {
-        $scope.user = localStorage.getItem('user');
+        $scope.user = JSON.parse(localStorage.getItem('user'));
         if ($scope.user.type != 'c') {
             $scope.mdl = 'app/components/review/newreview/forprofiles/templ.html';
         }else{
