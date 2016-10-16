@@ -8,6 +8,24 @@ appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope) {
         // everything went well! 
         $scope.stat = "OK"
         $scope.srvces = response.data.message;
+
+        for (var i = 0; i < $scope.srvces.length; i++) {
+            $scope.srvces[i].avrating = 0;
+            for (var j = 0; j < $scope.srvces[i].serreviews.length; j++) {
+                $scope.srvces[i].avrating
+                    += parseInt($scope.srvces[i]
+                        .serreviews[j].rating);
+            }
+            if ($scope.srvces[i].serreviews.length != 0) {
+                $scope.srvces[i].avrating = $scope.srvces[i].avrating
+                                                    /$scope.srvces[i].serreviews.length;
+
+               $scope.srvces[i].avrating = Math.round($scope.srvces[i].avrating);
+            }
+
+        }
+
+
     }, function errorCallback(response) {
         $scope.stat = response.data.message;
     });
