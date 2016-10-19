@@ -6,7 +6,7 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
 
     //$state.reload('tab.account');
 
-    $url = 'http://localhost:8000/api/eplar/authenticate/user';
+    $url = 'http://epapi.000webhostapp.com/api/eplar/authenticate/user';
     $scope.user = 0;
     $scope.mdl = 'app/components/account/myFile.html';
     $scope.moduleTitle = "";

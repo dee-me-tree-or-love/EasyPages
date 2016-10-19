@@ -7,7 +7,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $rootScope,$stateParams
 
 
     $scope.revwID = $stateParams.reviewId;
-    $url = 'http://localhost:8000/api/eplar/reviews/' + $scope.revwID;
+    $url = 'http://epapi.000webhostapp.com/api/eplar/reviews/' + $scope.revwID;
     $scope.review = 0;
     $scope.comments = [];
 
@@ -36,7 +36,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $rootScope,$stateParams
     }
     
     $scope.removeReview = function removeReview(x) {
-        $url = 'http://localhost:8000/api/eplar/'
+        $url = 'http://epapi.000webhostapp.com/api/eplar/'
     }
 
 

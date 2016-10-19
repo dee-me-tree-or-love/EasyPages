@@ -6,7 +6,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     reviewService.getAll = function ($rvwContainer) {
         $http({
             method: 'GET',
-            url: 'http://localhost:8000/api/eplar/reviews'
+            url: 'http://epapi.000webhostapp.com/api/eplar/reviews'
         }).then(function successCallback(response) {
             // everything went well! 
             return $rvwContainer = response.data.message;
@@ -17,7 +17,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
 
     reviewService.getByProfile = function ($profID) {
-        $url = 'http://localhost:8000/api/eplar/reviews/byprof/' + $profID;
+        $url = 'http://epapi.000webhostapp.com/api/eplar/reviews/byprof/' + $profID;
         var reviews = [];
         $http({
             method: 'GET',
@@ -49,7 +49,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
     reviewService.publish = function ($newreview) {
 
-        $url = 'http://localhost:8000/api/eplar/newreview';
+        $url = 'http://epapi.000webhostapp.com/api/eplar/newreview';
         $http({
             method: 'POST',
             url: $url,
@@ -59,7 +59,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
     
     reviewService.remove = function removeReview($rvwID) {
-        $url = 'http://localhost:8000/api/eplar/review/' + $rvwID + '/delete';
+        $url = 'http://epapi.000webhostapp.com/api/eplar/review/' + $rvwID + '/delete';
         $http({
             method: 'DELETE',
             url: $url

@@ -3,7 +3,7 @@ appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope) {
     $scope.srvces = [];
     $http({
         method: 'GET',
-        url: 'http://localhost:8000/api/eplar/services'
+        url: 'http://epapi.000webhostapp.com/api/eplar/services'
     }).then(function successCallback(response) {
         // everything went well! 
         $scope.stat = "OK"

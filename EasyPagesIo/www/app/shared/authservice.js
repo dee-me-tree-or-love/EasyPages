@@ -8,9 +8,9 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
 
     //returns false, if an error occured
     authService.login = function ($credentials) {
-        $auth.login($credentials).then(function () {
+        $auth.login($credentials).then(function successCallback(response) {
             // Return an $http request for the authenticated user
-            $http.get('http://localhost:8000/api/eplar/authenticate/user').success(function (response) {
+            $http.get('http://epapi.000webhostapp.com/api/eplar/authenticate/user').success(function (response) {
                 // Stringify the retured data
                 console.log(response);
                 var user = JSON.stringify(response.user);
@@ -28,13 +28,11 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
 
                 $state.go('tab.account');
             })
-        })
-            .error( function (error) {
-                var loginError = true;
-                var loginErrorText = error;
+        }, function errorCallback(response) {
+            var loginError = true;
+                var loginErrorText = response;
                 console.log(loginErrorText);
-                return false;
-            });
+        })
     }
 
     authService.logout = function () {
@@ -86,7 +84,7 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
                 + " - PW: " + $credentials.password);
 
 
-            $url = 'http://localhost:8000/api/eplar/registration';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/registration';
             $http({
                 method: 'POST',
                 url: $url,

@@ -1,7 +1,7 @@
 app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_STATUS) {
 
 
-  $authProvider.loginUrl = 'http://localhost:8000/api/eplar/authenticate';
+  $authProvider.loginUrl = 'http://epapi.000webhostapp.com/api/eplar/authenticate';
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
