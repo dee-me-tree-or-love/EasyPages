@@ -9,6 +9,7 @@
         "laravel/framework": "5.3.*",
         "laracasts/generators": "^1.1",
 		"tymon/jwt-auth": "0.5.*",
+		"paragonie/random_compat": "~1.4",
         "barryvdh/laravel-cors": "^0.8.2"
     },
     "require-dev": {
