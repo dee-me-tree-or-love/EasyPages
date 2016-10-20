@@ -16,7 +16,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
     $scope.revwID = $stateParams.reviewId;
-    $url = 'http://localhost:8000/api/eplar/reviews/' + $scope.revwID;
+    $url = 'http://epapi.000webhostapp.com/api/eplar/reviews/' + $scope.revwID;
     $scope.review = 0;
     $scope.comments = [];
 
@@ -52,7 +52,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
             console.log("todo: ");
             console.log(x);
             //todo
-            $url = 'http://localhost:8000/api/eplar/newcomment';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/newcomment';
             $http({
                 method: 'POST',
                 url: $url,
@@ -85,7 +85,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
        $scope.removeComment = function removeComment($comID) {
-        $url = 'http://localhost:8000/api/eplar/comment/' + $comID + '/delete';
+        $url = 'http://epapi.000webhostapp.com/api/eplar/comment/' + $comID + '/delete';
         $http({
             method: 'DELETE',
             url: $url
@@ -106,7 +106,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
     $scope.removeReview = function removeReview(x) {
-        $url = 'http://localhost:8000/api/eplar/'
+        $url = 'http://epapi.000webhostapp.com/api/eplar/'
     }
 
 

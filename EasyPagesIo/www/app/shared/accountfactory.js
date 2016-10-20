@@ -5,7 +5,7 @@ app.factory('AccFactory', function ($http, Session,
     var accountService = {};
 
     accountService.getUserProfile = function getUser(userid) {
-        $url = 'http://localhost:8000/api/eplar/profile/' + userid;
+        $url = 'http://epapi.000webhostapp.com/api/eplar/profile/' + userid;
         $rootScope.usercompany = {};
         $http({
             method: 'GET',
@@ -24,7 +24,7 @@ app.factory('AccFactory', function ($http, Session,
 
 
     accountService.getUserCompany = function getUser(userid) {
-        $url = 'http://localhost:8000/api/eplar/company/user/' + userid;
+        $url = 'http://epapi.000webhostapp.com/api/eplar/company/user/' + userid;
         $rootScope.userprofile = {};
         $http({
             method: 'GET',
@@ -43,7 +43,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.initializeProfile = function (x) {
         if (x.fname && x.lname && x.dob) {
-            $url = 'http://localhost:8000/api/eplar/initprofile';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/initprofile';
             $http({
                 method: 'POST',
                 url: $url,
@@ -60,7 +60,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.updateProfile = function (newdata, olddata) {
         if (newdata.fname || newdata.lname || newdata.dob || newdata.senewdata) {
-            $url = 'http://localhost:8000/api/eplar/profiles/';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/profiles/';
             $http({
                 method: 'PUT',
                 url: $url,
@@ -93,7 +93,7 @@ app.factory('AccFactory', function ($http, Session,
         console.log(x);
         console.log("starting requuest")
         if (x.name && x.description && x.website) {
-            $url = 'http://localhost:8000/api/eplar/initcompany';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/initcompany';
             $http({
                 method: 'POST',
                 url: $url,
@@ -108,7 +108,7 @@ app.factory('AccFactory', function ($http, Session,
     }
     accountService.updateCompany = function (newdata, olddata) {
         if (x.name || x.description || x.website) {
-            $url = 'http://localhost:8000/api/eplar/companies/';
+            $url = 'http://epapi.000webhostapp.com/api/eplar/companies/';
             $http({
                 method: 'PUT',
                 url: $url,
