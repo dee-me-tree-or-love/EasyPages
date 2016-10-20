@@ -103,15 +103,48 @@ class CommentsController extends Controller
     
     // }
 
-    // /**
-    // * Remove the specified resource from storage.
-    // *
-    // * @param  int  $id
-    // * @return Response
-    // */
-    // public function destroy($id)
-    // {
-    
-    // }
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return Response
+    */
+    public function destroy($id)
+    {
+        if(! $user = JWTAuthentication::parseToken()->authenticate() ){
+            return response()->json([
+                'error' => [
+                    'message' => 'Please log in first'
+                ]
+            ], 400);
+        }
+                
+        $commenttobedeleted = Review::where('comment_id',$id);
+        
+        
+        if(! $id)
+        {
+            return response()->json([
+            'message' => 'No request comment_id found'
+        ], 400);
+        }
+        
+        
+        $resp = false;
+        if($id)
+        {
+            $deletedcomment = Comment::where('comment_id',$id)->delete();
+            $resp = "success";
+        }
+        if(!$resp)
+        {
+            return response()->json([
+            'message' => 'Sorry, we are confused :['
+        ], 400);
+        }
+        return response()->json([
+            'message' => $resp
+        ], 200);
+    }
  
 }

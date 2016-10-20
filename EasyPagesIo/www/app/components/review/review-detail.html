@@ -26,12 +26,18 @@
 
 
 		<ion-list>
-			<ion-item class="item-icon-left" ng-repeat="comment in review.comments" type="item-text-wrap">
-        <i class="icon ion-chatbubble-working"></i>
+			<ion-item class="item-remove-animate item-icon-left" ng-repeat="comment in review.comments" type="item-text-wrap">
+				<i class="icon ion-chatbubble-working"></i>
 				<h3>{{comment.author}}</h3>
 				<p>{{comment.text}}</p>
+				<ion-option-button ng-show="comment.DeletableComment" 
+					class="button-assertive" 
+					ng-click="removeComment(comment.comment_id)">
+					Delete
+				</ion-option-button>
 			</ion-item>
-			<ion-list>
+
+		</ion-list>
 
 	</ion-content>
 </ion-view>

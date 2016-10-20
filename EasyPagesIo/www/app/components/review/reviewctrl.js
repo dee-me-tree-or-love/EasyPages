@@ -21,7 +21,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
     $scope.comments = [];
 
     $scope.user = Session.recalluser();
-
+    $scope.DeletableComment = false;
 
     $http({
         method: 'GET',
@@ -30,10 +30,18 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
         // everything went well! 
         $scope.stat = "OK"
         $scope.review = response.data.message;
+        for (var i=0; i< $scope.review.comments.length; i++) {
+            if ( $scope.review.comments[i] != undefined) {
+                $scope.review.comments[i].DeletableComment = ($scope.review.comments[i].user_id==$scope.user.id);
+            }
+        }
         //$scope.comments = response.data.message.comments;
     }, function errorCallback(response) {
         $scope.stat = response.data.message;
     });
+
+
+
 
     $scope.addComment = function createComment(x) {
         if (localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes 
@@ -73,8 +81,29 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
                 console.log('Thanks');
             });
         }
-
     }
+
+
+       $scope.removeComment = function removeComment($comID) {
+        $url = 'http://localhost:8000/api/eplar/comment/' + $comID + '/delete';
+        $http({
+            method: 'DELETE',
+            url: $url
+        }).then(function successCallback(response) {
+            // everything went well! 
+            console.log("OK");
+            $state.reload();
+        }, function errorCallback(response) {
+           console.log(response.data.message);
+        });
+    }
+
+
+
+
+
+
+
 
     $scope.removeReview = function removeReview(x) {
         $url = 'http://localhost:8000/api/eplar/'

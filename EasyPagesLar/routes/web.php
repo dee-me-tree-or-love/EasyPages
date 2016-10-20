@@ -67,6 +67,8 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     
     //Create comment
     Route::post('newcomment', 'CommentsController@store');
+    Route::delete('comment/{id}/delete', 'CommentsController@destroy');
+
 
     //Create service
     Route::post('newservice', 'ServiceController@store'); //should check if a company
