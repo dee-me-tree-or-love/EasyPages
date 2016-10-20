@@ -24,6 +24,9 @@ class Review extends Model {
      public function relservice() {
         return $this->belongsTo('App\Service','service_id','service_id');
     }
+    public function comments() {
+        return $this->hasMany('App\Comment','review_id')->where('thread_id',0);
+    }
 
 //    public function getprofile() {
 //        $profile = Profile::where('profile_id', $this->profile_id)->first();
