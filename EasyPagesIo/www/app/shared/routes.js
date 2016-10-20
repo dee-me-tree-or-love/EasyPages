@@ -74,6 +74,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, LOGGED_S
     })
 
     .state('tab.review', {
+      cache: false,
       url: '/reviews/:reviewId',
       views: {
         'tab-dash': {

@@ -111,7 +111,7 @@ public function __construct(){
      * @return Response
      */
     public function show($id) {
-        $review = Review::with('relprofile','relservice')->find($id);
+        $review = Review::with('relprofile','relservice','comments.replies')->find($id);
 
         $resp = $review;
         if(!$resp)
