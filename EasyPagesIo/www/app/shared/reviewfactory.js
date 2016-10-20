@@ -1,4 +1,4 @@
-app.service('ReviewFactory', function ($http, $rootScope) {
+app.service('ReviewFactory', function ($http, $rootScope, APIROUTING) {
     // Might use a resource here that returns a JSON array
 
     var reviewService = {};
@@ -6,7 +6,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     reviewService.getAll = function ($rvwContainer) {
         $http({
             method: 'GET',
-            url: 'http://epapi.000webhostapp.com/api/eplar/reviews'
+            url: APIROUTING.host + APIROUTING.prefix + 'reviews'
         }).then(function successCallback(response) {
             // everything went well! 
             return $rvwContainer = response.data.message;
@@ -17,7 +17,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
 
     reviewService.getByProfile = function ($profID) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/reviews/byprof/' + $profID;
+        $url = APIROUTING.host + APIROUTING.prefix + 'reviews/byprof/' + $profID;
         var reviews = [];
         $http({
             method: 'GET',
@@ -32,7 +32,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
 
     reviewService.getById = function ($revID) {
-        $url = 'http://localhost:8000/api/eplar/reviews/' + $revID;
+        $url = APIROUTING.host + APIROUTING.prefix +'reviews/' + $revID;
         var review = 0;
         var comments = [];
 
@@ -49,7 +49,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
     }
     reviewService.publish = function ($newreview) {
 
-        $url = 'http://epapi.000webhostapp.com/api/eplar/newreview';
+        $url = APIROUTING.host + APIROUTING.prefix +'newreview';
         $http({
             method: 'POST',
             url: $url,
@@ -57,9 +57,9 @@ app.service('ReviewFactory', function ($http, $rootScope) {
         })
 
     }
-    
+
     reviewService.remove = function removeReview($rvwID) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/review/' + $rvwID + '/delete';
+        $url = APIROUTING.host + APIROUTING.prefix +'review/' + $rvwID + '/delete';
         $http({
             method: 'DELETE',
             url: $url
@@ -67,7 +67,7 @@ app.service('ReviewFactory', function ($http, $rootScope) {
             // everything went well! 
             console.log("OK");
         }, function errorCallback(response) {
-           console.log(response.data.message);
+            console.log(response.data.message);
         });
     }
 

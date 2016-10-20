@@ -1,5 +1,5 @@
 // a service to control the authorization and atuhentication
-app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $auth, $rootScope) {
+app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $auth, $rootScope, APIROUTING) {
     var authService = {};
 
     // authService.isAuthenticated = function () {
@@ -10,7 +10,7 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
     authService.login = function ($credentials) {
         $auth.login($credentials).then(function successCallback(response) {
             // Return an $http request for the authenticated user
-            $http.get('http://epapi.000webhostapp.com/api/eplar/authenticate/user').success(function (response) {
+            $http.get(APIROUTING.host + APIROUTING.prefix +'authenticate/user').success(function (response) {
                 // Stringify the retured data
                 console.log(response);
                 var user = JSON.stringify(response.user);
@@ -84,7 +84,7 @@ app.factory('AuthService', function ($http, Session, $ionicHistory, $state, $aut
                 + " - PW: " + $credentials.password);
 
 
-            $url = 'http://epapi.000webhostapp.com/api/eplar/registration';
+            $url = APIROUTING.host + APIROUTING.prefix+'registration';
             $http({
                 method: 'POST',
                 url: $url,

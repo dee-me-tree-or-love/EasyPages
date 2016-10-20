@@ -1,11 +1,11 @@
-app.factory('AccFactory', function ($http, Session,
+app.factory('AccFactory', function ($http, Session, APIROUTING,
     $ionicHistory, $state,
     $auth, $rootScope) {
 
     var accountService = {};
 
     accountService.getUserProfile = function getUser(userid) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/profile/' + userid;
+        $url = APIROUTING.host + APIROUTING.prefix + 'profile/' + userid;
         $rootScope.usercompany = {};
         $http({
             method: 'GET',
@@ -15,7 +15,7 @@ app.factory('AccFactory', function ($http, Session,
             $rootScope.userprofile = response.data.message;
             Session.rememberprofile($rootScope.userprofile);
         }, function errorCallback(response) {
-             $state.go('tab.acinit');
+            $state.go('tab.acinit');
             $rootScope.userprofile = {};
             console.log("problem with getuser");
         });
@@ -24,7 +24,7 @@ app.factory('AccFactory', function ($http, Session,
 
 
     accountService.getUserCompany = function getUser(userid) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/company/user/' + userid;
+        $url = APIROUTING.host + APIROUTING.prefix + 'company/user/' + userid;
         $rootScope.userprofile = {};
         $http({
             method: 'GET',
@@ -43,7 +43,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.initializeProfile = function (x) {
         if (x.fname && x.lname && x.dob) {
-            $url = 'http://epapi.000webhostapp.com/api/eplar/initprofile';
+            $url = APIROUTING.host + APIROUTING.prefix + 'initprofile';
             $http({
                 method: 'POST',
                 url: $url,
@@ -60,7 +60,7 @@ app.factory('AccFactory', function ($http, Session,
 
     accountService.updateProfile = function (newdata, olddata) {
         if (newdata.fname || newdata.lname || newdata.dob || newdata.senewdata) {
-            $url = 'http://epapi.000webhostapp.com/api/eplar/profiles/';
+            $url = APIROUTING.host + APIROUTING.prefix + 'profiles/';
             $http({
                 method: 'PUT',
                 url: $url,
@@ -93,7 +93,7 @@ app.factory('AccFactory', function ($http, Session,
         console.log(x);
         console.log("starting requuest")
         if (x.name && x.description && x.website) {
-            $url = 'http://epapi.000webhostapp.com/api/eplar/initcompany';
+            $url = APIROUTING.host + APIROUTING.prefix + 'initcompany';
             $http({
                 method: 'POST',
                 url: $url,
@@ -108,7 +108,7 @@ app.factory('AccFactory', function ($http, Session,
     }
     accountService.updateCompany = function (newdata, olddata) {
         if (x.name || x.description || x.website) {
-            $url = 'http://epapi.000webhostapp.com/api/eplar/companies/';
+            $url = APIROUTING.host + APIROUTING.prefix + 'companies/';
             $http({
                 method: 'PUT',
                 url: $url,

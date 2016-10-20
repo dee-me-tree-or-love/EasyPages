@@ -1,4 +1,4 @@
-app.factory('ServicesFactory', function ($http) {
+app.factory('ServicesFactory', function ($http, APIROUTING) {
   // Might use a resource here that returns a JSON array
 
   var servService = {};
@@ -7,7 +7,7 @@ app.factory('ServicesFactory', function ($http) {
     var reviews = [];
     $http({
       method: 'GET',
-      url: 'http://epapi.000webhostapp.com/api/eplar/reviews'
+      url: APIROUTING.host + APIROUTING.prefix+'reviews'
     }).then(function successCallback(response) {
       // everything went well! 
       $rvewcontainer = response.data.message;
@@ -23,7 +23,7 @@ app.factory('ServicesFactory', function ($http) {
 
   servService.publish = function ($newservice) {
 
-    $url = 'http://epapi.000webhostapp.com/api/eplar/newservice';
+    $url = APIROUTING.host + APIROUTING.prefix+'newservice';
     $http({
       method: 'POST',
       url: $url,
