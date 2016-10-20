@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    
+	
     public function afterReg()
     {
         // the further logics is done there

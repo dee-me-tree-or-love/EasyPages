@@ -17,6 +17,13 @@
         <p>{{company.description}}</p>
       </ion-item>
       <ion-item class="item-divider">
+       <span>Contacts</span>
+      </ion-item>
+      <ion-item>
+        <p>{{company.website}}</p>
+        <p ng-show="company.phone != 'null'">{{company.phone}}</p>
+      </ion-item>
+      <ion-item class="item-divider">
           Our Services: 
       </ion-item>
       <ion-list>

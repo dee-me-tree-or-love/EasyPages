@@ -21,14 +21,18 @@
             Does not work! -->
 
             <div class="top-left links">
-                <a href="{{ url('/service') }}"><!--\(^_^)/-->SERVICES</a>
+                <a href="{{ url('/#') }}"><!--\(^_^)/-->HOME</a>
+                <a href="{{ url('/api') }}"><!--\(^_^)/-->API</a>
                 <!--<a href="{{ url('/#') }}">/(0_0)\</a>-->
             </div>
+			<!--
             @if (Auth::guest())
+				
             <div class="top-right links">
                 <a href="{{ url('/login') }}">Login</a>
                 <a href="{{ url('/register') }}">Register</a>
             </div>
+			
             @else
             <div class="top-right links">
                 <a href="/user/{{Auth::user()->id}}"> {{Auth::user()->username}} </a>
@@ -44,8 +48,12 @@
             </div>
 
             @endif
-
-
+-->
+			<div class="top-right links">
+                <a href="https://github.com/dee-me-tree-or-love/EasyPages">GitHub</a>
+                <a href="mailto:'dmtreeprod@gmail.com'">Contact Us</a>
+            </div>
+			
             <div class="content">
                 <div class="title m-b-md">
 

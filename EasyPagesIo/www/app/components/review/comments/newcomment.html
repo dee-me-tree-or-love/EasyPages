@@ -1,0 +1,22 @@
+<a class="item item-divider">
+	<span ng-click="commenttab = !commenttab" style="cursor: pointer" class="padding-left">Add comment</span>
+	<!--<span ng-click="" style="float: right" class="padding-right">Save</span>-->
+</a>
+
+
+<ion-item ng-show="commenttab">
+	<form id="newcomment" ng-submit="addComment(cmmnt)">
+		<div class="list">
+			<label class="item item-input item-stacked-label">
+            <span class="input-label">Hi, {{user.username}}</span>
+            <!--<input type="text" placeholder="Give impression a name." ng-model="task.title">-->
+            <textarea ng-model="cmmnt.text" form="newreview"  placeholder="Share what you think about it">
+
+            </textarea>
+          </label>
+		</div>
+		<div class="padding">
+			<button type="submit" class="button button-block button-calm">Publish</button>
+		</div>
+	</form>
+</ion-item>
