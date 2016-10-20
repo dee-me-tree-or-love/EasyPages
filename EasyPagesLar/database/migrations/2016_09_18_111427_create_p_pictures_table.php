@@ -21,6 +21,6 @@ class CreatePPicturesTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('p_pictures');
+		Schema::dropIfExists('p_pictures');
 	}
 }

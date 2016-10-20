@@ -65,6 +65,11 @@ Route::group(['prefix' => 'api/eplar', 'middleware' => 'cors'], function() {
     //Get profile with user id
     Route::get('profile/{id}', 'ProfileController@show');
     
+    //Create comment
+    Route::post('newcomment', 'CommentsController@store');
+    Route::delete('comment/{id}/delete', 'CommentsController@destroy');
+
+
     //Create service
     Route::post('newservice', 'ServiceController@store'); //should check if a company
     Route::post('services/searchbyname', 'ServiceController@search'); //SEARCH BY NAME 

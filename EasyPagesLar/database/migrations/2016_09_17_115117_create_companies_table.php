@@ -14,12 +14,13 @@ class CreateCompaniesTable extends Migration {
 			$table->integer('user_id')->unsigned()->nullable();
 			$table->string('name', 250);
 			$table->string('website', 250);
+			$table->string('phone', 32)->nullable()->default('null');
 			$table->string('description', 512);
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('companies');
+		Schema::dropIfExists('companies');
 	}
 }

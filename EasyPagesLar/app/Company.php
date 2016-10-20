@@ -10,7 +10,7 @@ class Company extends Model {
     protected $primaryKey = 'company_id';
 
 
-    public $fillable = ['name','description','user_id','website'];
+    public $fillable = ['name','description','user_id','website','phone'];
     protected $table = 'companies';
     public $timestamps = true;
 
