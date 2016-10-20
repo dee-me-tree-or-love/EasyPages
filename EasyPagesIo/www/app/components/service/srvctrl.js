@@ -1,4 +1,4 @@
-appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $stateParams) {
+appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $stateParams, LOGGED_STATUS, Session) {
     var srvcururl = window.location.href;
 
 
@@ -7,6 +7,19 @@ appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $statePara
     $url = 'http://localhost:8000/api/eplar/services/' + $scope.srvID;
     $scope.serv = 0;
     $scope.reviews = [];
+
+    if ((localStorage.getItem('isAuthorized') == LOGGED_STATUS.yes)) {
+        var user = Session.recalluser();
+        if (user.type != 'c') {
+            $scope.revmdl = 'app/components/service/reviewbutton/newreview.html';
+        } else {
+            $scope.revmdl = 'app/components/service/reviewbutton/noreviewforcorp.html';
+        }
+    } else {
+        $scope.revmdl = 'app/components/service/reviewbutton/nologinnoreview.html';
+    }
+
+
     $http({
         method: 'GET',
         url: $url
@@ -16,8 +29,8 @@ appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $statePara
         $scope.serv = response.data.message.service;
         $scope.reviews = response.data.message.service.serreviews;
 
-        for (var i=0; i< $scope.reviews.length; i++) {
-            if ( $scope.reviews[i] != undefined) {
+        for (var i = 0; i < $scope.reviews.length; i++) {
+            if ($scope.reviews[i] != undefined) {
                 $scope.reviews[i].defPic = DetermineAvatar($scope.reviews[i].relprofile.sex);
             }
         }
