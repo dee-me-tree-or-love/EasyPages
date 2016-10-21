@@ -1,10 +1,10 @@
-appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $stateParams, LOGGED_STATUS, Session) {
+appcntrls.controller('ServCtrl', function ($scope, $http, $rootScope, $stateParams, LOGGED_STATUS, Session, APIROUTING) {
     var srvcururl = window.location.href;
 
 
     $scope.srvID = $stateParams.serviceId;
 
-    $url = 'http://epapi.000webhostapp.com/api/eplar/services/' + $scope.srvID;
+    $url = APIROUTING.host + APIROUTING.prefix + 'services/' + $scope.srvID;
     $scope.serv = 0;
     $scope.reviews = [];
 

@@ -1,4 +1,4 @@
-appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope, $state, $stateParams, Session, LOGGED_STATUS) {
+appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope, $state, $stateParams, Session, LOGGED_STATUS, APIROUTING) {
 
     $scope.commenttab = false;
     $scope.disp = function swap(x) {
@@ -16,7 +16,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
     $scope.revwID = $stateParams.reviewId;
-    $url = 'http://epapi.000webhostapp.com/api/eplar/reviews/' + $scope.revwID;
+    $url = APIROUTING.host + APIROUTING.prefix + 'reviews/' + $scope.revwID;
     $scope.review = 0;
     $scope.comments = [];
 
@@ -52,7 +52,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
             console.log("todo: ");
             console.log(x);
             //todo
-            $url = 'http://epapi.000webhostapp.com/api/eplar/newcomment';
+            $url = APIROUTING.host + APIROUTING.prefix + 'newcomment';
             $http({
                 method: 'POST',
                 url: $url,
@@ -85,7 +85,7 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
        $scope.removeComment = function removeComment($comID) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/comment/' + $comID + '/delete';
+        $url = APIROUTING.host + APIROUTING.prefix + 'comment/' + $comID + '/delete';
         $http({
             method: 'DELETE',
             url: $url
@@ -105,9 +105,9 @@ appcntrls.controller('RvwCtrl', function ($scope, $http, $ionicPopup, $rootScope
 
 
 
-    $scope.removeReview = function removeReview(x) {
-        $url = 'http://epapi.000webhostapp.com/api/eplar/'
-    }
+    // $scope.removeReview = function removeReview(x) {
+    //     $url = 'http://epapi.000webhostapp.com/api/eplar/'
+    // }
 
 
 });

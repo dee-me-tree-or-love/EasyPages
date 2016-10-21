@@ -1,9 +1,9 @@
-appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope) {
+appcntrls.controller('DashCtrl', function ($scope, $http, $rootScope, APIROUTING) {
 
     $scope.srvces = [];
     $http({
         method: 'GET',
-        url: 'http://epapi.000webhostapp.com/api/eplar/services'
+        url: APIROUTING.host + APIROUTING.prefix + 'services'
     }).then(function successCallback(response) {
         // everything went well! 
         $scope.stat = "OK"

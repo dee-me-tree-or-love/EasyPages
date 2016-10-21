@@ -13,6 +13,6 @@ app
 
 .constant('APIROUTING',
 {
-  host: 'http://epapi.000webhostapp.com/',
+  host: 'http://localhost:8000/',
   prefix: 'api/eplar/',
 })

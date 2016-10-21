@@ -1,30 +1,26 @@
 app.controller('AccSetupCtrl', function (
-    $scope, $auth,
+    $scope, $auth, APIROUTING,
     $http, $rootScope, // the data about the companies and profiles is in the rootscope
     $ionicHistory, $state,
     AccFactory, Session) {
 
     // definitely requires a factory
-    $url = 'http://localhost:8000/api/eplar/authenticate/user';
+    $url = APIROUTING.host + APIROUTING.prefix + 'authenticate/user';
     $scope.user = 0;
     $scope.data = {};
     $scope.mdl = "";
     $scope.mdltemp = "app/components/account/setup";
 
-    $scope.initializeCompany = function (x)
-    {
+    $scope.initializeCompany = function (x) {
         AccFactory.initializeCompany(x);
     }
-    $scope.updateCompany = function (x)
-    {
+    $scope.updateCompany = function (x) {
         AccFactory.updateCompany(x);
     }
-    $scope.initializeProfile = function (x)
-    {
+    $scope.initializeProfile = function (x) {
         AccFactory.initializeProfile(x);
     }
-    $scope.updateProfile = function (x)
-    {
+    $scope.updateProfile = function (x) {
         AccFactory.updateProfile(x);
     }
 
@@ -67,7 +63,7 @@ app.controller('AccSetupCtrl', function (
             }
         }
     }
-    $scope.mdl =  $scope.mdltemp;
+    $scope.mdl = $scope.mdltemp;
 
 
 });

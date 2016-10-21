@@ -1,4 +1,4 @@
-app.controller('AccCtrl', function ($scope, $auth, Session,
+app.controller('AccCtrl', function ($scope, $auth, Session, APIROUTING,
     AuthService, AccFactory,
     $http, $rootScope,
     $ionicHistory, $state,
@@ -6,7 +6,7 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
 
     //$state.reload('tab.account');
 
-    $url = 'http://epapi.000webhostapp.com/api/eplar/authenticate/user';
+    $url = APIROUTING.host + APIROUTING.prefix + 'authenticate/user';
     $scope.user = 0;
     $scope.mdl = 'app/components/account/myFile.html';
     $scope.moduleTitle = "";
@@ -33,8 +33,8 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
             // if (Session.recallcompany()) {
             //     $scope.usercompany = Session.recallcompany();
             // } else {
-                AccFactory.getUserCompany($scope.user.id);
-                //Session.remembercompany(uc);
+            AccFactory.getUserCompany($scope.user.id);
+            //Session.remembercompany(uc);
             // }
 
         } else {
@@ -43,7 +43,7 @@ app.controller('AccCtrl', function ($scope, $auth, Session,
             // if (Session.recallprofile()) {
             //     $scope.userprofile = Session.recallprofile();
             // } else {
-                AccFactory.getUserProfile($scope.user.id);
+            AccFactory.getUserProfile($scope.user.id);
             // }
             // review refresh every time
 
