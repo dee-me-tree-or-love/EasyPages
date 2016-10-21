@@ -23,3 +23,6 @@ Trello: [EasyPages](https://trello.com/easypages)
 GDrive: [Documentation](https://drive.google.com/drive/folders/0B0AcRiO9tw8PQjFONGdvNkhONkU)    
 LaravelSD: [Schema Design](http://www.laravelsd.com/share/w1ZXaZ)  
 Running Website: [API/Website hut](https://epapi.000webhostapp.com/)
+
+### PS:   
+For running the project in local environment - the environment is available on the branch trial.
